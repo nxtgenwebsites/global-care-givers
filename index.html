@@ -118,8 +118,7 @@
                                             here</p>
                                         <p class="text-muted small mb-3 download-btn">.csv, .xls, .xlsx or .txt (max.
                                             80MB)</p>
-                                        <button class="btn btn-primary browsebtn px-4"
-                                            onclick="document.getElementById('fileInput').click()">
+                                        <button class="btn btn-primary browsebtn px-4">
                                             Browse File
                                         </button>
                                         <input type="file" id="fileInput" hidden accept=".csv,.xls,.xlsx">
@@ -484,14 +483,68 @@
             'is_24hours'
         ];
 
-        // Make entire drag area clickable
-        dragArea.addEventListener('click', (e) => {
-            // Only trigger file input if the click wasn't on the start import button
-            if (!e.target.matches('#startImportBtn')) {
+        let data;
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const dragArea = document.getElementById("dragArea");
+        const fileInput = document.getElementById("fileInput");
+
+        if (!dragArea || !fileInput) {
+            console.error("Required elements not found!");
+            return;
+        }
+
+        // ✅ Make the entire drag area clickable (except #startImportBtn)
+        dragArea.addEventListener("click", (e) => {
+            if (!e.target.matches("#startImportBtn")) {
                 fileInput.click();
             }
         });
 
+        // ✅ Handle file selection from input
+        fileInput.addEventListener("change", function () {
+            if (this.files.length > 0) {
+                uploadFile(this.files[0]);
+            }
+        });
+
+        // ✅ Upload file function
+        function uploadFile(file) {
+            const formData = new FormData();
+            formData.append("file", file);
+
+            axios.post("https://health-care-facilities-backend.vercel.app/api/upload", formData, {
+                headers: { "Content-Type": "multipart/form-data" }
+            })
+                .then(response => {
+                    if (!response.data.dropdownData || response.data.dropdownData.length < 2) {
+                        throw new Error("Invalid API response format");
+                    }
+
+                    const [title, data] = response.data.dropdownData;
+
+                    if (!Array.isArray(title) || !Array.isArray(data)) {
+                        throw new Error("Unexpected dropdownData format");
+                    }
+
+                    // ✅ Convert title and data into an object
+                    const result = title.reduce((obj, item, index) => {
+                        obj[item] = data[index] || null; // Handle missing values gracefully
+                        return obj;
+                    }, {});
+
+                    // data = result;
+                    console.log("Processed Data:", result);
+                    alert("File uploaded successfully!");
+                })
+                .catch(error => {
+                    console.error("File upload failed:", error.response?.data || error.message);
+                    alert("Upload failed! " + (error.response?.data?.message || "Please try again."));
+                });
+        }
+    });
+
+        
         // Drag and drop handlers
         dragArea.addEventListener('dragover', (e) => {
             e.preventDefault();
