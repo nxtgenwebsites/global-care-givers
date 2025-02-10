@@ -1606,6 +1606,18 @@ textarea.form-control {
   font-weight: 500;
 }
 
+.updated-box {
+  max-width: 572px;
+  width: 100%;
+  padding: 40px 30px;
+}
+
+.updated-box h5 {
+  font-size: 23px;
+  color: #00B67B;
+  font-weight: 500;
+}
+
 .close-btn {
   position: absolute;
   top: 10px;

@@ -933,3 +933,29 @@ line-height: normal;
     font-size: 14px;
     margin-right: 4px;
 }
+
+.share-box {
+    padding: 20px 30px;
+}
+
+.share-box h4{
+    font-size: 20px;
+}
+
+.social-button button{
+    text-align: left;
+     width: 100%;
+     background: transparent;
+     padding: 0;
+     border: none;
+     outline: none;
+     margin-top: 15px;
+}
+
+.social-button button:hover span{
+    text-decoration: underline;
+}
+
+.social-button button img{
+    width: 30px;
+}

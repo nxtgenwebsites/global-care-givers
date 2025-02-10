@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/responsive.css" />
     <link rel="stylesheet" href="css/facility.css" />
-
 </head>
 
 <body>
@@ -27,7 +26,7 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                `
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul
@@ -39,7 +38,7 @@
                         <a class="nav-link mx-2 text-primary" href="#">Community</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-2 text-primary" href="#">Register</a>
+                        <button class="nav-link mx-2 text-primary" id="registerBtn">Register</button>
                     </li>
                 </ul>
                 <div class="login-btn">
@@ -61,7 +60,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <ul class="nav nav-tabs" id="providerTabs" role="tablist">
+                    <ul class="nav nav-tabs providerTabs" role="tablist">
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active w-100" id="bulk-tab" data-bs-toggle="tab"
                                 data-bs-target="#bulk" type="button" role="tab">
@@ -159,9 +158,9 @@
                                 </div>
 
                                 <div class="d-flex justify-content-between mb-4">
-                                    <span class="step-indicator active" id="step1Indicator">Organization</span>
+                                    <span class="step-indicator active" id="step1Indicator">Organization Details</span>
                                     <span class="step-indicator" id="step2Indicator">Location</span>
-                                    <span class="step-indicator" id="step3Indicator">Details</span>
+                                    <span class="step-indicator" id="step3Indicator">Complete Registration</span>
                                 </div>
 
                                 <!-- Step 1: Organization Details -->
@@ -222,7 +221,8 @@
                                 <!-- Step 2: Location Information -->
                                 <form id="step2" class="form-step" style="display: none;">
                                     <div class="mb-3 form-group">
-                                        <select id="country" class="form-select country-drop-down" name="country" required>
+                                        <select id="country" class="form-select country-drop-down" name="country"
+                                            required>
                                             <option value="">Select Country*</option>
                                         </select>
                                     </div>
@@ -236,8 +236,7 @@
                                             required>
                                     </div>
                                     <div class="mb-3">
-                                        <input type="text" class="form-control" name="zipcode" placeholder="Zipcode*"
-                                            required>
+                                        <input type="text" class="form-control" name="zipcode" placeholder="Zipcode*">
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <button type="button" class="btn btn-secondary" id="prevBtn"
@@ -416,6 +415,15 @@
 
 
     <script>
+
+        document.getElementById("registerBtn").addEventListener("click", function () {
+            // Find the form-tab button
+            var formTab = document.getElementById("form-tab");
+
+            // Trigger click event on form-tab button
+            formTab.click();
+        });
+
         const submitBtn = document.querySelector('.submit-data-from');
 
         submitBtn.addEventListener(('click'), async () => {
@@ -431,14 +439,14 @@
                 phone: document.querySelector('input[name="phone_number"]').value,
                 google_maps_link: document.querySelector('input[name="google_map_link"]').value,
                 is_24_hours: document.querySelector('input[name="is_24hours"]:checked').value,
-              facility_a_e: document.querySelector('input[name="ae_available"]:checked')?.value || "",
+                facility_a_e: document.querySelector('input[name="ae_available"]:checked')?.value || "",
             };
-       await axios.post('https://health-care-facilities-backend.vercel.app/api/save' , formData).then((res) => {
-            console.log(res.data);
-        }).catch((err) => {
-            console.log(err);
-        })
-           
+            await axios.post('https://health-care-facilities-backend.vercel.app/api/save', formData).then((res) => {
+                console.log(res.data);
+            }).catch((err) => {
+                console.log(err);
+            })
+
         });
 
         // File Upload Handling
@@ -954,7 +962,7 @@
         }
 
         // Initialize Bootstrap tabs
-        var triggerTabList = [].slice.call(document.querySelectorAll('#providerTabs button'))
+        var triggerTabList = [].slice.call(document.querySelectorAll('.providerTabs button'))
         triggerTabList.forEach(function (triggerEl) {
             var tabTrigger = new bootstrap.Tab(triggerEl)
             triggerEl.addEventListener('click', function (event) {
@@ -964,7 +972,7 @@
         })
 
         // Optional: Add animation when switching tabs
-        document.querySelectorAll('#providerTabs button').forEach(tab => {
+        document.querySelectorAll('.providerTabs button').forEach(tab => {
             tab.addEventListener('shown.bs.tab', function (event) {
                 const targetPanel = document.querySelector(event.target.dataset.bsTarget)
                 targetPanel.style.opacity = 0
