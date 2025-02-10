@@ -1145,7 +1145,7 @@
                 const res = await axios.get('https://health-care-facilities-backend.vercel.app/api/get-reports');
                 console.log(res.data.data);
 
-                const facilityCounts = { Hospital: 0, emergency: 0, chemists: 0, "medical labs": 0 };
+                const facilityCounts = { hospital: 0, emergency: 0, chemists: 0, "medical labs": 0 };
 
                 // Clear existing table content
                 tableBody.innerHTML = "";
@@ -1225,7 +1225,7 @@
 
 
                 document.getElementById('total-chemists').innerText = facilityCounts.chemists;
-                document.getElementById('total-hospital').innerText = facilityCounts.Hospital;
+                document.getElementById('total-hospital').innerText = facilityCounts.hospital;
                 document.getElementById('total-emergency').innerText = facilityCounts.emergency;
                 document.getElementById('total-medical-labs').innerText = facilityCounts["medical labs"];
 
@@ -1251,7 +1251,12 @@
                             document.querySelector('.facility-type').innerHTML = `${res.data.data.facility_type} , ${res.data.data.city} , ${res.data.data.state} , ${res.data.data.country}`;
                             document.querySelector('.facility-email').innerHTML = `<a href="mailto:${res.data.data.email}">${res.data.data.email}</a>`;
                             document.querySelector('.facility-phone').innerHTML = `<a href="tel:${res.data.data.phone}">${res.data.data.phone}</a>`;
-                            document.querySelector('.facility-address').innerHTML = `${res.data.data.address} , ${res.data.data.city} , ${res.data.data.state} , ${res.data.data.country}`;
+                            
+                            if (res.data.data.address) {
+                                document.querySelector('.facility-address').innerHTML = `${res.data.data.address} , ${res.data.data.city} , ${res.data.data.state} , ${res.data.data.country}`;
+                            }else{
+                                document.querySelector('.facility-address').innerHTML = `${res.data.data.city} , ${res.data.data.state} , ${res.data.data.country}`;
+                            }
 
                             const directionsBtn = document.querySelector('.directions-btn');
                             const open24Hours = res.data.data.is_24_hours;

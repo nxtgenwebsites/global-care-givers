@@ -318,7 +318,7 @@
             </div>
             <h3 class="text-success mb-3">Thank You!</h3>
             <p class="text-muted">Your information has been successfully submitted.</p>
-            <button class="btn btn-primary mt-3 uploadbtn" onclick="resetForm()">Submit Another</button>
+            <button class="btn btn-primary mt-3 uploadbtn" id="submit-another">Submit Another</button>
         </div>
     </div>
     <!-- Hero Start -->
@@ -416,6 +416,14 @@
 
     <script>
 
+        document.getElementById('submit-another').addEventListener(('click') , () => { 
+            const allfrom = document.querySelectorAll('form');
+
+            allfrom.forEach((item) => {
+                item.reset();
+            })
+        })
+
         document.getElementById("registerBtn").addEventListener("click", function () {
             // Find the form-tab button
             var formTab = document.getElementById("form-tab");
@@ -443,6 +451,9 @@
             };
             await axios.post('https://health-care-facilities-backend.vercel.app/api/save', formData).then((res) => {
                 console.log(res.data);
+                setInterval(() => {
+                    location.reload();
+                }, 1000);
             }).catch((err) => {
                 console.log(err);
             })
