@@ -852,8 +852,8 @@
                     <div class="modal-body p-4">
                         <!-- Title and Meta -->
                         <div class="text-center mb-3">
-                            <h2 class="facility-name mb-1">Kelina Hospital Lagos</h2>
-                            <p class="facility-type mb-3">Private Hospital in Lagos, Nigeria</p>
+                            <h2 class="facility-name mb-1"></h2>
+                            <p class="facility-type mb-3"></p>
                         </div>
 
                         <!-- Action Buttons -->
@@ -864,22 +864,23 @@
                             <button class="btn btn-light px-3 py-1 rounded-pill">
                                 <i class="bi bi-share"></i> Share
                             </button>
-                            <button class="btn btn-light px-3 py-1 rounded-pill">
-                                <i class="bi bi-geo-alt"></i> Directions
-                            </button>
+                            <a href="#">
+                                <button class="btn btn-light px-3 py-1 rounded-pill">
+                                    <i class="bi bi-geo-alt"></i> Directions
+                                </button>
+                            </a>
                         </div>
 
                         <!-- Address Section -->
                         <div class="text-center mb-3">
                             <h6 class="address-label mb-2">Address</h6>
-                            <p class="facility-address mb-3">7, Ologun Agbaje Street, Off Adeola Odeku St, Victoria
-                                Island, Lagos, Nigeria</p>
+                            <p class="facility-address mb-3"></p>
                         </div>
 
                         <!-- Contact Section -->
                         <div class="text-center mb-3">
-                            <div class="facility-email mb-1">info@kelinahosp.com</div>
-                            <div class="facility-phone">+234 912 033 8737</div>
+                            <div class="facility-email mb-1"></div>
+                            <div class="facility-phone"></div>
                         </div>
 
                         <!-- Facility Type Section -->
@@ -1033,35 +1034,8 @@
         });
 
         // View Facility Modal functionality
-        document.addEventListener('DOMContentLoaded', function () {
-            // Add modal HTML to document if it doesn't exist
-            if (!document.getElementById('viewFacilityModal')) {
-                document.body.insertAdjacentHTML('beforeend', modalHTML);
-            }
-
-            // Initialize view buttons
-            const viewButtons = document.querySelectorAll('.view-facility-btn');
-            viewButtons.forEach(button => {
-                button.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                    // Get row data
-                    const row = button.closest('tr');
-                    const facilityName = row.cells[0].textContent;
-                    const email = row.cells[3].textContent;
-
-                    // Update modal with facility data
-                    const modal = document.getElementById('viewFacilityModal');
-                    modal.querySelector('h2').textContent = facilityName;
-                    modal.querySelector('.text-muted:nth-child(2)').textContent = email;
-
-                    // Show modal
-                    const modalInstance = new bootstrap.Modal(modal);
-                    modalInstance.show();
-                });
-            });
-        });
+        // document.addEventListener('DOMContentLoaded', function () {
+        // });
         // Add this after the viewPopup HTML but before attaching event listeners
         const deletePopup = `<div class="modal fade" id="deleteFacilityModal" tabindex="-1" aria-labelledby="deleteFacilityModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -1094,19 +1068,6 @@
             if (!document.getElementById('deleteFacilityModal')) {
                 document.body.insertAdjacentHTML('beforeend', deletePopup);
             }
-
-
-
-
-
-            // Handle confirm delete action
-            document.getElementById('confirmDelete')?.addEventListener('click', () => {
-                // Add your delete logic here
-                console.log('Facility deleted');
-                // Close the modal
-                const modal = bootstrap.Modal.getInstance(document.getElementById('deleteFacilityModal'));
-                modal.hide();
-            });
         });
 
 
@@ -1129,14 +1090,14 @@
                     <td>${item.email}</td>
                      <td>
                                         <div class="d-flex ">
-                                            <a class="btn btn-sm " href="/admin-dashboard/edit-facilities.html"><svg
+                                            <button class="btn btn-sm edit-facility-btn"  data-id=${item._id}><svg
                                                     xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                     viewBox="0 0 20 20" fill="none">
                                                     <path
                                                         d="M12.922 2.87165C13.4799 2.31364 14.2366 2.00009 15.0256 2C15.8147 1.99991 16.5715 2.31327 17.1295 2.87115C17.6875 3.42903 18.0011 4.18574 18.0012 4.9748C18.0012 5.76386 17.6879 6.52064 17.13 7.07865L7.772 16.4367C7.43412 16.7762 7.00579 17.0115 6.538 17.1147L2.612 17.9877C2.52981 18.006 2.44432 18.0033 2.36345 17.9798C2.28258 17.9563 2.20896 17.9128 2.14941 17.8532C2.08987 17.7937 2.04632 17.7201 2.02283 17.6392C1.99933 17.5583 1.99664 17.4728 2.015 17.3907L2.892 13.4407C2.993 12.9887 3.221 12.5737 3.548 12.2467L12.922 2.87165ZM16.457 3.61465C16.2754 3.42361 16.0574 3.27084 15.8159 3.16535C15.5744 3.05986 15.3141 3.00379 15.0506 3.00043C14.787 2.99708 14.5255 3.04651 14.2813 3.14581C14.0372 3.24512 13.8154 3.39229 13.629 3.57865L12.958 4.25065L15.751 7.04265L16.421 6.37165C17.179 5.61365 17.195 4.39165 16.457 3.61465ZM15.044 7.74965L12.25 4.95865L4.254 12.9547C4.06083 13.1479 3.9266 13.392 3.867 13.6587L3.16 16.8417L6.319 16.1397C6.601 16.0767 6.859 15.9347 7.063 15.7307L15.044 7.74965ZM2.5 2.99865H11.38L10.38 3.99865H2.5C2.36739 3.99865 2.24021 3.94597 2.14645 3.85221C2.05268 3.75844 2 3.63126 2 3.49865C2 3.36604 2.05268 3.23887 2.14645 3.1451C2.24021 3.05133 2.36739 2.99865 2.5 2.99865ZM2.5 5.99865H8.38L7.378 6.99865H2.5C2.36739 6.99865 2.24021 6.94597 2.14645 6.85221C2.05268 6.75844 2 6.63126 2 6.49865C2 6.36604 2.05268 6.23887 2.14645 6.1451C2.24021 6.05133 2.36739 5.99865 2.5 5.99865ZM2.5 8.99865H5.379L4.379 9.99865H2.5C2.36739 9.99865 2.24021 9.94597 2.14645 9.85221C2.05268 9.75844 2 9.63126 2 9.49865C2 9.36604 2.05268 9.23887 2.14645 9.1451C2.24021 9.05133 2.36739 8.99865 2.5 8.99865Z"
                                                         fill="#9197B3" />
-                                                </svg></a>
-                                            <button class="btn btn-sm delete-facility-btn"><svg
+                                                </svg></button>
+                                            <button class="btn btn-sm delete-facility-btn" data-id=${item._id}><svg
                                                     xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                     viewBox="0 0 20 20" fill="none">
                                                     <path
@@ -1146,7 +1107,7 @@
                                                         d="M5.41669 5H5.50835C5.84373 4.99143 6.1687 4.88185 6.44079 4.68559C6.71287 4.48934 6.9194 4.21553 7.03335 3.9L7.06169 3.81417L7.14252 3.57167C7.21169 3.36417 7.24669 3.26083 7.29252 3.1725C7.38269 2.99949 7.51211 2.84999 7.67042 2.73597C7.82872 2.62194 8.01152 2.54655 8.20419 2.51583C8.30169 2.5 8.41085 2.5 8.62919 2.5H11.3709C11.5892 2.5 11.6984 2.5 11.7959 2.51583C11.9885 2.54655 12.1713 2.62194 12.3296 2.73597C12.4879 2.84999 12.6173 2.99949 12.7075 3.1725C12.7534 3.26083 12.7884 3.36417 12.8575 3.57167L12.9384 3.81417C13.044 4.16523 13.2624 4.47167 13.5598 4.68605C13.8571 4.90043 14.2169 5.01077 14.5834 5"
                                                         stroke="#9197B3" stroke-width="1.5" />
                                                 </svg></button>
-                                            <button class="btn btn-sm view-facility-btn" data-bs-toggle="modal"
+                                            <button class="btn btn-sm view-facility-btn" data-id=${item._id} data-bs-toggle="modal"
                                                 data-bs-target="#viewFacilityModal"><svg
                                                     xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                     viewBox="0 0 20 20" fill="none">
@@ -1167,21 +1128,96 @@
                                         </div>
                                     </td>
                 </tr>`;
-
-                    // Get all delete buttons
-                    const deleteButtons = document.querySelectorAll('.delete-facility-btn');
-
-                    // Initialize delete buttons click handlers
-                    deleteButtons.forEach(button => {
-                        button.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            const modal = new bootstrap.Modal(document.getElementById('deleteFacilityModal'));
-                            modal.show();
-                        });
-                    });
-
                 });
+
+                let deleteFacilityId;
+
+                // Get all delete buttons
+                const editButtons = document.querySelectorAll('.edit-facility-btn');
+
+                // Initialize delete buttons click handlers
+                editButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const id = button.getAttribute('data-id');
+                        localStorage.setItem('facilityId', id)
+                        location.href = "/admin-dashboard/edit-facilities.html";
+                    });
+                });
+
+
+                // Add modal HTML to document if it doesn't exist
+                if (!document.getElementById('viewFacilityModal')) {
+                    document.body.insertAdjacentHTML('beforeend', modalHTML);
+                }
+
+
+                let viewFacilityId;
+                // Initialize view buttons
+                const viewButtons = document.querySelectorAll('.view-facility-btn');
+
+                viewButtons.forEach(button => {
+                    button.addEventListener('click', async (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        const id = button.getAttribute('data-id');
+                        localStorage.setItem('facilityId', id)
+
+                        await axios.get('https://health-care-facilities-backend.vercel.app/api/get-report', {
+                            headers: {
+                                'id': id
+                            }
+                        }).then((res) => {
+                            console.log(res.data);
+                            document.querySelector('.facility-name').innerHTML = res.data.data.organisation_name;
+                            document.querySelector('.facility-type').innerHTML = res.data.data.facility_type;
+                            document.querySelector('.facility-type').innerHTML = res.data.data.facility_type;
+                            document.querySelector('.facility-email').innerHTML = res.data.data.email;
+                            document.querySelector('.facility-phone').innerHTML = res.data.data.phone;
+                            document.querySelector('.facility-address').innerHTML = `${res.data.data.address} , ${res.data.data.city} , ${res.data.data.state} , ${res.data.data.country}`;
+                        }).catch((err) => {
+                            console.log(err);
+                        })
+                        // Show modal
+                        const modalInstance = new bootstrap.Modal(modal);
+                        modalInstance.show();
+                    });
+                });
+
+                // Get all delete buttons
+                const deleteButtons = document.querySelectorAll('.delete-facility-btn');
+
+                // Initialize delete buttons click handlers
+                deleteButtons.forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const id = button.getAttribute('data-id');
+                        deleteFacilityId = id
+
+                        const modal = new bootstrap.Modal(document.getElementById('deleteFacilityModal'));
+                        modal.show();
+                    });
+                });
+
+                // const id = item._id
+                document.getElementById('confirmDelete')?.addEventListener('click', async () => {
+                    try {
+                        await axios.delete('https://health-care-facilities-backend.vercel.app/api/delete', {
+                            headers: {
+                                'id': deleteFacilityId
+                            }
+                        }).then((res) => {
+                            console.log(res.data);
+                            getData()
+                        })
+                    } catch (error) {
+                        console.log(error);
+                    }
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('deleteFacilityModal'));
+                    modal.hide();
+                });
+
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
