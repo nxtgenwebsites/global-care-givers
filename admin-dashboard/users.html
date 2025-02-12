@@ -469,7 +469,7 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h2 class="mb-0 fw-bold card-heading" id="total-hospital">3</h2>
+                                    <h2 class="mb-0 fw-bold card-heading" id="total-hospital">0</h2>
                                     <p class="text-muted mb-0 card-text">Hospitals</p>
                                 </div>
                             </div>
@@ -494,7 +494,7 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h2 class="mb-0 fw-bold card-heading" id="total-emergency">3</h2>
+                                    <h2 class="mb-0 fw-bold card-heading" id="total-emergency">0</h2>
                                     <p class="text-muted mb-0 card-text">Emergency</p>
                                 </div>
                             </div>
@@ -525,7 +525,7 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h2 class="mb-0 fw-bold card-heading" id="total-medical-labs">3</h2>
+                                    <h2 class="mb-0 fw-bold card-heading" id="total-medical-labs">0</h2>
                                     <p class="text-muted mb-0 card-text">Medical Labs</p>
                                 </div>
                             </div>
@@ -556,7 +556,7 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h2 class="mb-0 fw-bold card-heading" id="total-chemists">3</h2>
+                                    <h2 class="mb-0 fw-bold card-heading" id="total-chemists">0</h2>
                                     <p class="text-muted mb-0 card-text">Chemists</p>
                                 </div>
                             </div>
@@ -796,19 +796,18 @@
                         <div class="text-muted pagination-info">
                             Showing data 1 to 4 of 500 entries
                         </div>
-                        <nav>
-                            <ul class="pagination mb-0">
-                                <li class="page-item"><a class="page-link" href="#"><i
-                                            class="bi bi-chevron-left"></i></a></li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
-                                <li class="page-item"><a class="page-link" href="#">20</a></li>
-                                <li class="page-item"><a class="page-link" href="#"><i
-                                            class="bi bi-chevron-right"></i></a></li>
-                            </ul>
-                        </nav>
+                        <div class="d-flex justify-content-center align-items-center gap-4">
+                            <nav>
+                                <ul class="pagination mb-0" id="pagination">
+                                </ul>
+                            </nav>
+                            <select id="pageSize" class="form-select w-auto" onchange="getData(1)">
+                                <option value="5">5</option>
+                                <option value="10" selected>10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1099,10 +1098,7 @@
             alert("Link copied to clipboard.");
         });
 
-        // View Facility Modal functionality
-        // document.addEventListener('DOMContentLoaded', function () {
-        // });
-        // Add this after the viewPopup HTML but before attaching event listeners
+
         const deletePopup = `<div class="modal fade" id="deleteFacilityModal" tabindex="-1" aria-labelledby="deleteFacilityModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -1139,22 +1135,43 @@
 
         const tableBody = document.getElementById('table-body');
 
-        async function getData() {
+        let totalRecords = 0;
+        let currentPage = 1;
+
+        async function getData(page) {
+            const pageSize = document.getElementById("pageSize").value;
+            currentPage = page;
+
 
             try {
                 const res = await axios.get('https://health-care-facilities-backend.vercel.app/api/get-reports');
-                console.log(res.data.data);
-
                 const facilityCounts = { hospital: 0, emergency: 0, chemists: 0, "medical labs": 0 };
 
-                // Clear existing table content
+
+                const allData = res.data.data;
+                totalRecords = allData.length;
+
+                allData.forEach((item) => {
+                    const facilityType = item.facility_type.toLowerCase();
+
+                    if (Object.keys(facilityCounts).some(key => key.toLowerCase() === facilityType)) {
+                        facilityCounts[facilityType] = (facilityCounts[facilityType] || 0) + 1;
+                    }
+                });
+
+
+                const start = (page - 1) * pageSize;
+                const end = start + parseInt(pageSize);
+                const paginatedData = allData.slice(start, end);
+
+                document.querySelector(".pagination-info").textContent = `Showing data ${start + 1} to ${end} of ${totalRecords} entries`;
+
+                console.log(paginatedData);
+                renderPagination(totalRecords, pageSize, page);
+
                 tableBody.innerHTML = "";
 
-                res.data.data.forEach((item) => {
-                    if (facilityCounts.hasOwnProperty(item.facility_type)) {
-                        facilityCounts[item.facility_type]++;
-                    }
-                    console.log(facilityCounts);
+                paginatedData.forEach((item) => {
                     tableBody.innerHTML += `
                 <tr class="table-row">
                     <td>${item.organisation_name}</td>
@@ -1251,10 +1268,10 @@
                             document.querySelector('.facility-type').innerHTML = `${res.data.data.facility_type} , ${res.data.data.city} , ${res.data.data.state} , ${res.data.data.country}`;
                             document.querySelector('.facility-email').innerHTML = `<a href="mailto:${res.data.data.email}">${res.data.data.email}</a>`;
                             document.querySelector('.facility-phone').innerHTML = `<a href="tel:${res.data.data.phone}">${res.data.data.phone}</a>`;
-                            
+
                             if (res.data.data.address) {
                                 document.querySelector('.facility-address').innerHTML = `${res.data.data.address} , ${res.data.data.city} , ${res.data.data.state} , ${res.data.data.country}`;
-                            }else{
+                            } else {
                                 document.querySelector('.facility-address').innerHTML = `${res.data.data.city} , ${res.data.data.state} , ${res.data.data.country}`;
                             }
 
@@ -1321,7 +1338,64 @@
                 console.error("Error fetching data:", error);
             }
         }
-        getData();
+
+
+        function renderPagination(total, pageSize, currentPage) {
+            const pagination = document.getElementById("pagination");
+            pagination.innerHTML = "";
+
+            const totalPages = Math.ceil(total / pageSize);
+            if (totalPages <= 1) return;
+
+            // Previous button
+            pagination.innerHTML += `
+        <li class="page-item ${currentPage === 1 ? 'd-none' : ''}">
+            <a class="page-link" href="#" onclick="getData(${currentPage - 1})">Previous</a>
+        </li>
+    `;
+
+            // First page
+            pagination.innerHTML += createPageItem(1, currentPage);
+
+            if (totalPages > 4 && currentPage > 3) {
+                pagination.innerHTML += `<li class="page-item disabled"><span class="page-link">...</span></li>`;
+            }
+
+            let start = Math.max(2, currentPage - 1);
+            let end = Math.min(totalPages - 1, currentPage + 1);
+
+            for (let i = start; i <= end; i++) {
+                pagination.innerHTML += createPageItem(i, currentPage);
+            }
+
+            if (totalPages > 4 && currentPage < totalPages - 2) {
+                pagination.innerHTML += `<li class="page-item disabled"><span class="page-link">...</span></li>`;
+            }
+
+            if (totalPages > 1) {
+                pagination.innerHTML += createPageItem(totalPages, currentPage);
+            }
+
+            // Next button
+            pagination.innerHTML += `
+        <li class="page-item ${currentPage === totalPages ? 'd-none' : ''}">
+            <a class="page-link" href="#" onclick="getData(${currentPage + 1})">Next</a>
+        </li>
+    `;
+        }
+
+        function createPageItem(page, currentPage) {
+            return `
+        <li class="page-item ${page === currentPage ? 'active' : ''}">
+            <a class="page-link" href="#" onclick="getData(${page})">${page}</a>
+        </li>
+    `;
+        }
+
+
+
+
+        getData(1)
 
     </script>
 
