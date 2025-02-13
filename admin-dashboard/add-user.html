@@ -742,8 +742,10 @@
 
 
         updateBtn.addEventListener(('click'), async (e) => {
-            e.preventDefault()
+   e.preventDefault();
+
             const id = localStorage.getItem('userId');
+
             const formData = {
                 name: document.querySelector('input[name="name"]').value,
                 last_name: document.querySelector('input[name="last_name"]').value,
@@ -751,12 +753,28 @@
                 password: document.querySelector('input[name="password"]').value,
                 role: document.querySelector('.select-role').value,
             };
-            await axios.post('https://health-care-facilities-backend.vercel.app/api/add-user', formData).then((res) => {
-                console.log(res.data);
+
+            const emailData = {
+                name: formData.name,
+                email: formData.email,
+                password: formData.password,
+            };
+
+            try {
+                const userResponse = await axios.post('https://health-care-facilities-backend.vercel.app/api/add-user', formData);
+                console.log(userResponse.data);
                 updatedPopup.classList.remove('d-none');
-            }).catch((err) => {
-                console.log(err);
-            })
+
+                try {
+                    const emailResponse = await axios.post('https://health-care-facilities-backend.vercel.app/api/send-details', emailData);
+                    console.log(emailResponse.data);
+                } catch (emailError) {
+                    console.error('Error sending email details:', emailError);
+                }
+
+            } catch (error) {
+                console.error('Error adding user:', error);
+            }
         })
     </script>
 
