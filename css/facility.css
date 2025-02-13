@@ -111,11 +111,10 @@
 }
 
 .col-12 {
-    
     padding-top: 0px !important;
     padding-bottom: 0px !important;
-    padding-left: 7em !important;
-    padding-right: 4.5em !important;
+    padding-left: 7em;
+    padding-right: 4.5em;
 }
 .page-head > span {
     font-size: 2.5rem;

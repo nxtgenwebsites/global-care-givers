@@ -1514,3 +1514,10 @@ position: relative;
     color:white;
     border: 2px solid transparent;
 }
+
+@media (max-width : 1130px) {
+  .header a{
+    font-size: 13px !important;
+  }
+
+}

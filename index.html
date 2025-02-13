@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/responsive-1.css" />
     <link rel="stylesheet" href="css/facility.css" />
 </head>
 
@@ -19,34 +20,42 @@
     <!-- loading End -->
 
     <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <a class="navbar-brand" href="/"><img src="assets/images/logo.png" width="145" class="img-fluid"
-                    alt="logo"></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                `
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul
-                    class="navbar-nav align-items-lg-center justify-content-lg-center flex-lg-grow-1 mb-2 mb-lg-0 mt-lg-0 mt-4">
-                    <li class="nav-item">
-                        <a class="nav-link mx-2 text-primary" href="#">Emergency</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link mx-2 text-primary" href="#">Community</a>
-                    </li>
-                    <li class="nav-item">
-                        <button class="nav-link mx-2 text-primary" id="registerBtn">Register</button>
-                    </li>
-                </ul>
-                <div class="login-btn">
-                    <a href="login.html"><button class="btn primary-btn">Login</button></a>
-                </div>
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container">
+        <!-- Logo -->
+        <a class="navbar-brand" href="/">
+            <img src="assets/images/logo.png" width="145" class="img-fluid" alt="logo">
+        </a>
+
+        <!-- Mobile Toggle Button -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar Links -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul
+                class="navbar-nav align-items-lg-center justify-content-lg-center flex-lg-grow-1 mb-2 mb-lg-0 mt-lg-0 mt-4">
+                <li class="nav-item">
+                    <a class="nav-link mx-2 text-primary" href="#">Emergency</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-2 text-primary" href="#">Community</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-2 text-primary" href="#" id="registerBtn">Register</a>
+                </li>
+            </ul>
+
+            <!-- Login Button -->
+            <div class="d-flex ms-lg-auto">
+                <a href="login.html" class="btn primary-btn">Login</a>
             </div>
         </div>
-    </nav>
+    </div>
+</nav>
+
     <!-- Navbar End -->
     <div class="container-fluid py-4">
         <div class="row mb-4">
@@ -58,7 +67,7 @@
         </div>
 
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 container-box">
                 <div class="card">
                     <ul class="nav nav-tabs providerTabs" role="tablist">
                         <li class="nav-item" role="presentation">
@@ -202,10 +211,10 @@
                                         <div class="mapping-row">
                                             <div class="row align-items-center">
                                                 <div class="col-md-4">
-                                                    <label class="form-label mb-0">facility_address:</label>
+                                                    <label class="form-label mb-0">country:</label>
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <select class="form-select" id="facility_address">
+                                                    <select class="form-select" id="csv-country">
                                                         <option value="">Select CSV Column (Optional)</option>
                                                     </select>
                                                 </div>
@@ -214,10 +223,10 @@
                                         <div class="mapping-row">
                                             <div class="row align-items-center">
                                                 <div class="col-md-4">
-                                                    <label class="form-label mb-0">country:</label>
+                                                    <label class="form-label mb-0">Street Address:</label>
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <select class="form-select" id="country">
+                                                    <select class="form-select" id="street_address">
                                                         <option value="">Select CSV Column (Optional)</option>
                                                     </select>
                                                 </div>
@@ -382,9 +391,13 @@
                                         </select>
                                     </div>
                                     <div class="mb-3 form-group">
-                                        <select id="state" class="form-select select-state" required disabled>
+                                        <select id="state-drop-down" class="form-select select-state" required disabled>
                                             <option value="">Select State*</option>
                                         </select>
+                                    </div>
+                                    <div class="mb-3 form-group">
+                                        <input type="text" class="form-control" name="street-address"
+                                            placeholder="Street Address*" required>
                                     </div>
                                     <div class="mb-3 form-group">
                                         <input type="text" class="form-control" name="city" placeholder="City*"
@@ -446,7 +459,10 @@
 
                                     <!-- Time Schedule Fields -->
                                     <div id="timeSchedule" style="display: none;" class="mt-4">
-                                        <h6 class="mb-4">Operating Hours</h6>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <h6 class="mb-4">Operating Hours</h6>
+                                            <button id="setAllButton" class="btn btn-primary mb-3">Set All</button>
+                                        </div>
                                         <div class="time-slots">
                                             <!-- Will be populated by JavaScript -->
                                         </div>
@@ -587,32 +603,111 @@
             formTab.click();
         });
 
-        const submitBtn = document.querySelector('.submit-data-from');
+        document.addEventListener('DOMContentLoaded', function () {
+            const timeScheduleDiv = document.getElementById('timeSchedule');
+            const timeSlotsDiv = document.querySelector('.time-slots');
+            const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
-        submitBtn.addEventListener(('click'), async () => {
-            const formData = {
-                organisation_name: document.querySelector('input[name="org_name"]').value,
-                facility_type: document.querySelector('select[name="facility_type"]').value,
-                ownership: document.querySelector('select[name="ownership_type"]').value,
-                state: document.querySelector('.select-state').value,
-                country: document.querySelector('.country-drop-down option:checked').innerText,
-                city: document.querySelector('input[name="city"]').value,
-                address: document.querySelector('input[name="zipcode"]').value,
-                email: document.querySelector('input[name="email_address"]').value,
-                phone: document.querySelector('input[name="phone_number"]').value,
-                google_maps_link: document.querySelector('input[name="google_map_link"]').value,
-                is_24_hours: document.querySelector('input[name="is_24hours"]:checked').value,
-                facility_a_e: document.querySelector('input[name="ae_available"]:checked')?.value || "",
-            };
-            await axios.post('https://health-care-facilities-backend.vercel.app/api/save', formData).then((res) => {
-                console.log(res.data);
-                setInterval(() => {
-                    location.reload();
-                }, 1000);
-            }).catch((err) => {
-                console.log(err);
-            })
+            // Function to create time slots dynamically
+            function createTimeSlots() {
+                timeSlotsDiv.innerHTML = days.map(day => `
+            <div class="time-slot row align-items-center g-3 mb-2">
+                <div class="col-3">
+                    <span class="day-label">${day}</span>
+                </div>
+                <div class="col-9">
+                    <div class="d-flex align-items-center time-input-group">
+                        <input type="time" class="form-control form-control-sm start-time" data-day="${day}" required>
+                        <span class="time-separator mx-2">to</span>
+                        <input type="time" class="form-control form-control-sm end-time" data-day="${day}" required>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+            }
 
+            // Function to copy the start and end time of the first day to all other days
+            function setAllTimes(event) {
+                event.preventDefault();
+                const firstDayStartTime = document.querySelector('.time-slot .start-time').value;
+                const firstDayEndTime = document.querySelector('.time-slot .end-time').value;
+
+                const allStartInputs = document.querySelectorAll('.start-time');
+                const allEndInputs = document.querySelectorAll('.end-time');
+
+                allStartInputs.forEach(input => input.value = firstDayStartTime);
+                allEndInputs.forEach(input => input.value = firstDayEndTime);
+            }
+
+            // Event listener for the "Set All" button
+            setAllButton.addEventListener('click', setAllTimes);
+
+            // Handle 24-hour facility toggle
+            document.querySelectorAll('input[name="is_24hours"]').forEach(radio => {
+                radio.addEventListener('change', function () {
+                    if (this.value === 'no') {
+                        createTimeSlots(); // Generate the time slots when shown
+                        timeScheduleDiv.style.display = 'block';
+                    } else {
+                        timeScheduleDiv.style.display = 'none';
+                    }
+                });
+            });
+
+            // Ensure A&E radio buttons are required
+            document.querySelectorAll('input[name="ae_available"]').forEach(radio => {
+                radio.required = true;
+            });
+
+
+            const submitBtn = document.querySelector('.submit-data-from');
+            // Submit button event
+            submitBtn.addEventListener('click', async () => {
+                // Collect form data
+                const formData = {
+                    organisation_name: document.querySelector('input[name="org_name"]').value,
+                    facility_type: document.querySelector('select[name="facility_type"]').value,
+                    ownership: document.querySelector('select[name="ownership_type"]').value,
+                    state: document.querySelector('.select-state').value,
+                    country: document.querySelector('.country-drop-down option:checked')?.innerText,
+                    city: document.querySelector('input[name="city"]').value,
+                    address: document.querySelector('input[name="street-address"]').value,
+                    zip_code: document.querySelector('input[name="zipcode"]').value,
+                    email: document.querySelector('input[name="email_address"]').value,
+                    phone: document.querySelector('input[name="phone_number"]').value,
+                    google_maps_link: document.querySelector('input[name="google_map_link"]').value,
+                    is_24_hours: document.querySelector('input[name="is_24hours"]:checked').value,
+                    facility_a_e: document.querySelector('input[name="ae_available"]:checked').value,
+                    time_slots: []
+                };
+
+                // Only add time slots if the facility is NOT 24 hours
+                if (formData.is_24_hours === 'no') {
+                    document.querySelectorAll('.time-slot').forEach(slot => {
+                        const day = slot.querySelector('.day-label').innerText;
+                        const startTime = slot.querySelector('.start-time')?.value;
+                        const endTime = slot.querySelector('.end-time')?.value;
+
+                        if (startTime && endTime) {
+                            formData.time_slots.push({ day, start_time: startTime, end_time: endTime });
+                        }
+                    });
+                }
+
+                console.log("Submitting form data:", JSON.stringify(formData, null, 2)); // Debugging output
+
+                try {
+                    const response = await axios.post('http://localhost:3000/api/save', formData);
+                    console.log("Response:", response.data);
+
+                    // Reload after submission
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1000);
+                } catch (error) {
+                    console.error("Error submitting form:", error.response?.data || error);
+                }
+            });
         });
 
         // File Upload Handling
@@ -699,6 +794,7 @@
                     .catch(error => {
                         console.error("File upload failed:", error.response?.data || error.message);
                         alert("Upload failed! " + (error.response?.data?.message || "Please try again."));
+                        location.reload()
                     });
             }
         });
@@ -803,7 +899,7 @@
 
         const dataArray = Object.entries(data).map(([key, value]) => ({
             label: key,
-            value: value !== null && value !== undefined ? value : 'No Data' // Handle null/undefined
+            value: value !== null && value !== undefined ? value : 'No Data'
         }));
 
         function showFieldMapping() {
@@ -815,11 +911,11 @@
                 document.getElementById('ownership_type').append(new Option(item.ownership, item.ownership));
                 document.getElementById('email_address').append(new Option(item.email_address, item.email_address));
                 document.getElementById('phone_number').append(new Option(item.phone_number, item.phone_number));
-                document.getElementById('facility_address').append(new Option(item.address, item.address));
-                document.getElementById('country').append(new Option(item.country, item.country));
+                document.getElementById('street_address').append(new Option(item.address, item.address));
+                document.getElementById('csv-country').append(new Option(item.country, item.country));
                 document.getElementById('city_name').append(new Option(item.city, item.city));
                 document.getElementById('state').append(new Option(item.state, item.state));
-                document.getElementById('zipcode').append(new Option(item.address, item.address));
+                document.getElementById('zipcode').append(new Option(item.zip_code, item.zip_code));
                 document.getElementById('google_map_link').append(new Option(item.google_maps_link, item.google_maps_link));
                 if (item['is_A&E'] !== null) {
                     document.getElementById('A&E').append(new Option(item['is_A&E'], item['is_A&E']));
@@ -835,7 +931,7 @@
 
         async function submitMapping() {
             await axios.post('https://health-care-facilities-backend.vercel.app/api/save-file', data).then((res) => {
-               location.reload();
+                location.reload();
             }).catch((err) => {
                 console.log(err);
             })
@@ -919,55 +1015,55 @@
 
         // Handle time schedule visibility
         // Handle time schedule visibility
-        document.addEventListener('DOMContentLoaded', function () {
-            const timeScheduleDiv = document.getElementById('timeSchedule');
-            const timeSlotsDiv = timeScheduleDiv.querySelector('.time-slots');
-            const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+        // document.addEventListener('DOMContentLoaded', function () {
+        //     const timeScheduleDiv = document.getElementById('timeSchedule');
+        //     const timeSlotsDiv = timeScheduleDiv.querySelector('.time-slots');
+        //     const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
-            // Create time slots
-            function createTimeSlots() {
-                timeSlotsDiv.innerHTML = days.map(day => `
-            <div class="time-slot row align-items-center g-3 mb-2">
-                <div class="col-3">
-                    <span class="day-label">${day}</span>
-                </div>
-                <div class="col-9">
-                    <div class="d-flex align-items-center time-input-group">
-                        <input type="time" class="form-control form-control-sm" name="${day.toLowerCase()}_start" 
-                               placeholder="Start Time" required>
-                        <span class="time-separator mx-2">to</span>
-                        <input type="time" class="form-control form-control-sm" name="${day.toLowerCase()}_end" 
-                               placeholder="End Time" required>
-                    </div>
-                </div>
-            </div>
-        `).join('');
-            }
+        //     // Create time slots
+        //     function createTimeSlots() {
+        //         timeSlotsDiv.innerHTML = days.map(day => `
+        //     <div class="time-slot row align-items-center g-3 mb-2">
+        //         <div class="col-3">
+        //             <span class="day-label">${day}</span>
+        //         </div>
+        //         <div class="col-9">
+        //             <div class="d-flex align-items-center time-input-group">
+        //                 <input type="time" class="form-control form-control-sm" name="${day.toLowerCase()}_start" 
+        //                        placeholder="Start Time" required>
+        //                 <span class="time-separator mx-2">to</span>
+        //                 <input type="time" class="form-control form-control-sm" name="${day.toLowerCase()}_end" 
+        //                        placeholder="End Time" required>
+        //             </div>
+        //         </div>
+        //     </div>
+        // `).join('');
+        //     }
 
-            // Handle 24 hours toggle
-            document.querySelectorAll('input[name="is_24hours"]').forEach(radio => {
-                radio.addEventListener('change', function () {
-                    const showTimeSchedule = this.value === 'no';
-                    if (showTimeSchedule) {
-                        createTimeSlots(); // Create the time slots when showing
-                    }
-                    timeScheduleDiv.style.display = showTimeSchedule ? 'block' : 'none';
+        //     // Handle 24 hours toggle
+        //     document.querySelectorAll('input[name="is_24hours"]').forEach(radio => {
+        //         radio.addEventListener('change', function () {
+        //             const showTimeSchedule = this.value === 'no';
+        //             if (showTimeSchedule) {
+        //                 createTimeSlots(); // Create the time slots when showing
+        //             }
+        //             timeScheduleDiv.style.display = showTimeSchedule ? 'block' : 'none';
 
-                    // Update required attribute for time inputs
-                    const timeInputs = timeScheduleDiv.querySelectorAll('input[type="time"]');
-                    timeInputs.forEach(input => {
-                        input.required = showTimeSchedule;
-                    });
-                });
-            });
+        //             // Update required attribute for time inputs
+        //             const timeInputs = timeScheduleDiv.querySelectorAll('input[type="time"]');
+        //             timeInputs.forEach(input => {
+        //                 input.required = showTimeSchedule;
+        //             });
+        //         });
+        //     });
 
-            // Add required to A&E radio buttons
-            document.querySelectorAll('input[name="ae_available"]').forEach(radio => {
-                radio.required = true;
-            });
-        });
+        //     // Add required to A&E radio buttons
+        //     document.querySelectorAll('input[name="ae_available"]').forEach(radio => {
+        //         radio.required = true;
+        //     });
+        // });
         const countryDropdown = $('#country');
-        const stateDropdown = $('#state');
+        const stateDropdown = $('#state-drop-down');
         const cityDropdown = $('#city');
 
         // Step 1: Load Countries
@@ -1011,6 +1107,7 @@
                             stateDropdown.append(new Option(state.name, state.code));
                         });
                         stateDropdown.prop('disabled', false);
+
                     } else {
                         alert('No states found for the selected country.');
                     }
@@ -1046,7 +1143,7 @@
                 const stateCode = $(this).val();
                 const countryCode = countryDropdown.val();
                 if (stateCode && countryCode) {
-                    // loadCities(stateCode, countryCode);
+                    loadCities(stateCode, countryCode);
                 } else {
                     cityDropdown.prop('disabled', true).empty().append('<option value="">Select City</option>');
                 }
@@ -1183,6 +1280,7 @@
                 orDivider.style.display = 'flex';
             }
         }
+
 
         // Initialize Bootstrap tabs
         var triggerTabList = [].slice.call(document.querySelectorAll('.providerTabs button'))

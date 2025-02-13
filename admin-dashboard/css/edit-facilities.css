@@ -1893,3 +1893,19 @@ textarea.form-control {
   border-radius: 8px;
   margin-bottom: 10px;
 }
+
+.upload-image-container {
+    width: 120px;
+    height: 120px;
+    padding: 30px;
+    border-radius: 10px;
+    background: #F5F6FA;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
