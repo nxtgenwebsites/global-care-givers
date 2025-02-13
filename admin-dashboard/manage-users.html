@@ -970,7 +970,7 @@
 
 
             try {
-                const res = await axios.get('http://localhost:3000/api/get-all-users');
+                const res = await axios.get('https://health-care-facilities-backend.vercel.app/api/get-all-users');
 
                 const allData = res.data.users;
                 totalRecords = allData.length;
@@ -1068,7 +1068,7 @@
                         const id = button.getAttribute('data-id');
                         localStorage.setItem('facilityId', id)
 
-                        await axios.get('http://localhost:3000/api/get-user', {
+                        await axios.get('https://health-care-facilities-backend.vercel.app/api/get-user', {
                             headers: {
                                 'id': id
                             }
@@ -1129,7 +1129,7 @@
                 // const id = item._id
                 document.getElementById('confirmDelete')?.addEventListener('click', async () => {
                     try {
-                        await axios.delete('http://localhost:3000/api/delete-user', {
+                        await axios.delete('https://health-care-facilities-backend.vercel.app/api/delete-user', {
                             headers: {
                                 'id': deleteFacilityId
                             }

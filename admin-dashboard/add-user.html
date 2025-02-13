@@ -751,7 +751,7 @@
                 password: document.querySelector('input[name="password"]').value,
                 role: document.querySelector('.select-role').value,
             };
-            await axios.post('http://localhost:3000/api/add-user', formData).then((res) => {
+            await axios.post('https://health-care-facilities-backend.vercel.app/api/add-user', formData).then((res) => {
                 console.log(res.data);
                 updatedPopup.classList.remove('d-none');
             }).catch((err) => {

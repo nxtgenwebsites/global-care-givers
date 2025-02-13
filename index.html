@@ -697,7 +697,7 @@
                 console.log("Submitting form data:", JSON.stringify(formData, null, 2)); // Debugging output
 
                 try {
-                    const response = await axios.post('http://localhost:3000/api/save', formData);
+                    const response = await axios.post('https://health-care-facilities-backend.vercel.app/api/save', formData);
                     console.log("Response:", response.data);
 
                     // Reload after submission
