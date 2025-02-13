@@ -189,20 +189,41 @@
     
     </footer>
     <!-- Footer end -->
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+      <script src="js/auth.js"></script>
     <script>
-       document.getElementById("login-form").addEventListener("submit", function (event) {
-          event.preventDefault(); // Prevent form from submitting normally
+       document.getElementById("login-form").addEventListener("submit", async function (e) {
+           e.preventDefault(); // Prevent default form submission
 
-          // Get user input
-          var email = document.getElementById("login-email").value;
-          var password = document.getElementById("login-password").value;
-          // Check credentials
-          if (email === "hcp@nxtgenwebsite.com" && password === "admin123") {
-            window.location.href = "admin-dashboard/users.html";
-          } else {
-            window.location.href = "/";
-          }
+         const email = document.getElementById("login-email").value;
+         const password = document.getElementById("login-password").value;
+
+         if (email === "hcp@nxtgenwebsite.com" && password === "admin123") {
+           window.location.href = "admin-dashboard/users.html"; // Redirect for admin login
+           return; // Stop further execution
+         }
+
+         const data = { email, password };
+
+         try {
+           const response = await axios.post('https://health-care-facilities-backend.vercel.app/api/login-user', data);
+           console.log(response.data);
+
+           // Redirect based on response (modify this as needed)
+           if (response.data.message === "Login successfully") {
+            localStorage.setItem("login", true)
+             window.location.href = "/";
+           } else {
+             alert(response.response.data.message);
+            localStorage.setItem("login", false)
+            }
+         } catch (error) {
+           console.error("Login error:", error);
+           alert("An error occurred. Please try again.");
+         }
         });
+
       document.getElementById('linkedin-share-btn').addEventListener(('click'), () => {
         const shareUrl = "https://www.linkedin.com/sharing/share-offsite";
 
@@ -234,8 +255,6 @@
         window.open(shareUrl, "_blank", "width=600,height=400");
       })
     </script>
-  <script src="js/auth.js"></script>
-  <script src="js/bootstrap.min.js"></script>
 </body>
 
 </html>
