@@ -504,11 +504,11 @@ th {
     align-items: center;
     gap: 4px;
     border: none;
-    background: #F9FAFB;
+    background: #F9FAFB !important;
     padding: 8px 14px;
     border-radius: 8px;
     font-size: 14px;
-    color: #667085;
+    color: #667085 !important;
 }
 
 .dropdown .btn-outline-secondary::after {
