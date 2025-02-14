@@ -451,6 +451,11 @@ background: linear-gradient(275.33deg, #0F75BD 3.69%, #21ABE9 99.26%);
 /* demo video Start */
 
 /* Footer start */
+footer a{
+  color: rgb(33, 37, 41) !important;
+  margin-top: 10px;
+  padding: 0 !important;
+}
 .footer-content {
   margin-top: -30px !important;
 }

@@ -75,7 +75,13 @@
   padding: 6px 23px;
 }
 
-#nextBtn, #prevBtn {
+#nextBtn {
+    background:  linear-gradient(93.22deg, #0b6fc0 1.06%, #1fd2e5 97.02%);
+    border: none;
+    padding: 6px 23px;
+}
+
+#submit-btn {
     background:  linear-gradient(93.22deg, #0b6fc0 1.06%, #1fd2e5 97.02%);
     border: none;
     padding: 6px 23px;

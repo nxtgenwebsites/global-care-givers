@@ -354,13 +354,13 @@ th {
 
 .table th:nth-child(2),
 .table td:nth-child(2) {
-    width: 25% !important;
+    width: 35% !important;
     padding-left: 24px;
 }
 
 .table th:nth-child(3),
 .table td:nth-child(3) {
-    width: 25% !important;
+    width: 15% !important;
     text-align: center;
 }
 
@@ -372,6 +372,38 @@ th {
 
 .table th:nth-child(5),
 .table td:nth-child(5) {
+    width: 20%;
+    text-align: center;
+}
+
+
+/* Column widths */
+.facilities-table th:nth-child(1),
+.facilities-table td:nth-child(1) {
+    width: 20%;
+    padding-left: 16px;
+}
+
+.facilities-table th:nth-child(2),
+.facilities-table td:nth-child(2) {
+    width: 15% !important;
+    padding-left: 24px;
+}
+
+.facilities-table th:nth-child(3),
+.facilities-table td:nth-child(3) {
+    width: 20% !important;
+    text-align: center;
+}
+
+.facilities-table th:nth-child(4),
+.facilities-table td:nth-child(4) {
+    width: 30%;
+    padding-left: 24px;
+}
+
+.facilities-table th:nth-child(5),
+.facilities-table td:nth-child(5) {
     width: 20%;
     text-align: center;
 }
@@ -425,64 +457,6 @@ th {
     line-height: normal;
     letter-spacing: -0.131px;
     }
-    
-    /* Table base styles */
-    .table {
-        table-layout: fixed;
-        width: 100%;
-    }
-    
-    /* Column widths */
-    .table th:nth-child(1),
-    .table td:nth-child(1) {
-        width: 15%;
-        padding-left: 16px;
-    }
-    
-    .table th:nth-child(2),
-    .table td:nth-child(2) {
-        width: 15%;
-        padding-left: 24px;
-    }
-    
-    .table th:nth-child(3),
-    .table td:nth-child(3) {
-        width: 15%;
-        text-align: center;
-    }
-    
-    .table th:nth-child(4),
-    .table td:nth-child(4) {
-        width: 35%;
-        padding-left: 24px;
-    }
-    
-    .table th:nth-child(5),
-    .table td:nth-child(5) {
-        width: 20%;
-        text-align: center;
-    }
-    
-    /* Table cell base padding */
-    td, th {
-        padding: 16px 8px;
-        vertical-align: middle;
-    }
-    
-    /* Action column buttons container */
-    td:nth-child(5) .d-flex {
-        justify-content: center;
-       
-    }
-    
-   
-    
-    /* DHA and User role styling */
-    td:nth-child(3) {
-        color: var(--Secondary, #3ED2E7);
-        font-weight: 500;
-    }
-
     /* Search bar and button container styles */
 .d-flex.justify-content-between {
     align-items: center;

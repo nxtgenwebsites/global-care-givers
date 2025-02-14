@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Health Monitor</title>
+  <title>HealthCare Providers</title>
   <link rel="shortcut icon" href="assets/icons/logo.svg" type="image/x-icon" />
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/style.css">
@@ -212,7 +212,9 @@
 
            // Redirect based on response (modify this as needed)
            if (response.data.message === "Login successfully") {
+
             localStorage.setItem("login", true)
+            localStorage.setItem('userId' , response.data.user.id)
              window.location.href = "/";
            } else {
              alert(response.response.data.message);
@@ -220,7 +222,7 @@
             }
          } catch (error) {
            console.error("Login error:", error);
-           alert("An error occurred. Please try again.");
+           alert('Invalid email or password. Please try again!');
          }
         });
 

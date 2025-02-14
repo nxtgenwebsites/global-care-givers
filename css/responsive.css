@@ -1,32 +1,93 @@
 @media (max-width: 1200px) {
-  .navbar .container{
+  .navbar .container {
     height: 100% !important;
   }
 
-  .navbar .navbar-brand img{
+  .navbar .navbar-brand img {
     height: 100px !important;
     width: 120px;
   }
-    .navbar-collapse {
+}
+
+@media (max-width: 991px) {
+  .navbar-collapse {
     width: 100%;
     position: absolute;
     padding: 1rem 2rem;
     background-color: #f6f6f6;
     top: 100px;
     left: 0;
-    z-index: 100;
+    z-index: 100 !important;
+  }
+
+  .navbar ul li {
+    margin-top: 10px;
+  }
+
+  #profile-btn {
+    display: flex !important;
+    justify-content: end;
   }
 }
 @media (max-width: 768px) {
-  .page-head{
+  .page-head {
     font-size: 2rem !important;
   }
-  .page-head span{
-    font-size: 2rem !important;
-  }
-  .container-box{
+  
+  .container-box {
     padding: 0 !important;
     width: 90%;
     margin: auto;
+  }
+  
+  #bulk-tab {
+    font-size: 12px;
+  }
+  
+  #form-tab {
+    font-size: 12px;
+  }
+  
+  .download-btn{
+    font-size: 14px;
+  }
+  .heading-text{
+    padding: 0 !important;
+    width: 90%;
+    margin: auto !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .upload-txt{
+    font-size: 12px
+}
+.download-btn{
+  font-size: 12px
+}
+.step-indicator{
+  font-size: 12px !important;
+}
+#providerTabContent{
+  padding: 1rem;
+}
+}
+@media (max-width: 500px) {
+  .step-indicator{
+    font-size: 10px !important;
+  }
+  .container-box{
+    width: 95%;
+  }
+  .page-head{
+    font-size: 1.5rem !important;
+    margin-bottom: 5px !important;
+  }
+  .page-head span{
+    font-size: 1.5rem !important;
+  }
+  .heading-paraf {
+    font-size: 14px;
+    margin-top: 5px !important;
   }
 }

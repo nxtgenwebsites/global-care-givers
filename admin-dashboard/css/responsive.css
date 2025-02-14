@@ -1,0 +1,77 @@
+@media (max-width: 1250px) {
+  .total-card .card-body {
+    padding: 20px 30px !important;
+  }
+  .total-card svg {
+    width: 30px;
+  }
+
+  .total-card .total-card-content {
+    gap: 5px !important;
+  }
+
+  .total-card .total-card-content h2 {
+    font-size: 2rem;
+  }
+
+  .total-card .total-card-content p {
+    font-size: 13px;
+  }
+}
+@media (max-width: 991px) {
+  .logo {
+    width: 100px !important;
+    height: 75px !important;
+  }
+}
+
+@media (max-width: 800px) {
+  .facilities-table {
+    width: 100%;
+  }
+  table {
+    width: 800px !important;
+    overflow-x: scroll !important;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+  }
+}
+
+@media (max-width: 600px) {
+  .facilities-table {
+    width: 100%;
+  }
+  table {
+    width: 730px !important;
+    overflow-x: scroll !important;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+  }
+
+  table th{
+    font-size: 12px !important;
+  }
+
+}
+
+@media (max-width: 786px) {
+  .facilities-card {
+    text-align: start !important;
+    width: 100% !important;
+  }
+  
+  .heading-text{
+    text-align: start;
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 500px) {
+  .pagination-info{
+    font-size: 15px;
+  }
+}
