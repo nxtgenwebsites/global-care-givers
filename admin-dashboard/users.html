@@ -286,7 +286,8 @@
                         <div class="dropdown-toggle"></div>
                     </button>
                     <ul class="d-none m-remote-care-dropdown" id="m-remote-care-dropdown"">
-                            <li><a href=" /admin-dashboard/add-user.html" class="dropdown-item  text-black active">Add New
+                            <li><a href=" /admin-dashboard/add-user.html" class="dropdown-item  text-black active">Add
+                        New
                         User</a></li>
                         <li><a href="/admin-dashboard/manage-users.html" class="dropdown-item text-black ">Staff
                                 Members</a></li>
@@ -477,11 +478,12 @@
             <!-- Users Table Section -->
             <div class="card border-0 shadow-sm">
                 <div class="card-body p-4">
-                    <div class="facilities-card d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
+                    <div
+                        class="facilities-card d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
                         <h5 class="card-title mb-0 heading-text">Care Facilities</h5>
                         <div class="d-flex align-items-center">
                             <div class="search-box">
-                                <input type="text"  id="searchInput" class="form-control" placeholder="Search">
+                                <input type="text" id="searchInput" class="form-control" placeholder="Search">
                             </div>
                             <div class="dropdown">
                                 <button class="btn btn-outline-secondary dropdown-toggle" type="button"
@@ -831,6 +833,7 @@
         let totalRecords = 0;
         let currentPage = 1;
         let allData = [];
+        let deleteFacilityId;
 
         async function getData(page) {
             const pageSize = document.getElementById("pageSize").value;
@@ -915,17 +918,13 @@
                 </tr>`;
                 });
 
-                let deleteFacilityId;
-
                 // Get all delete buttons
                 const editButtons = document.querySelectorAll('.edit-facility-btn');
 
                 // Initialize delete buttons click handlers
                 editButtons.forEach(button => {
                     button.addEventListener('click', () => {
-                        const id = button.getAttribute('data-id');
-                        localStorage.setItem('facilityId', id)
-                        location.href = "/admin-dashboard/edit-facilities.html";
+                        editBtn(button)
                     });
                 });
 
@@ -949,68 +948,7 @@
                     button.addEventListener('click', async (e) => {
                         e.preventDefault();
                         e.stopPropagation();
-
-                        const id = button.getAttribute('data-id');
-                        localStorage.setItem('facilityId', id)
-
-                        await axios.get('https://health-care-facilities-backend.vercel.app/api/get-report', {
-                            headers: {
-                                'id': id
-                            }
-                        }).then((res) => {
-                            console.log(res.data);
-                            document.querySelector('.facility-name').innerHTML = res.data.data.organisation_name;
-                            document.querySelector('.facility-type').innerHTML = `${res.data.data.facility_type.charAt(0).toUpperCase() + res.data.data.facility_type.slice(1)} , ${res.data.data.city} , ${res.data.data.state} , ${res.data.data.country}`;
-                            document.querySelector('.facility-email').innerHTML = `<a href="mailto:${res.data.data.email}">${res.data.data.email}</a>`;
-                            document.querySelector('.facility-phone').innerHTML = `<a href="tel:${res.data.data.phone}">${res.data.data.phone}</a>`;
-
-                            if (res.data.data.address) {
-                                document.querySelector('.facility-address').innerHTML = `${res.data.data.address} , ${res.data.data.city} , ${res.data.data.state} , ${res.data.data.country}`;
-                                if (res.data.data.zip_code) {
-                                    document.querySelector('.facility-address').innerHTML = `${res.data.data.address} , ${res.data.data.zip_code} , ${res.data.data.city} , ${res.data.data.state} , ${res.data.data.country}`;
-                                }
-                            } else {
-                                document.querySelector('.facility-address').innerHTML = `${res.data.data.city} , ${res.data.data.state} , ${res.data.data.country}`;
-                            }
-
-                            const directionsBtn = document.querySelector('.directions-btn');
-                            const open24Hours = res.data.data.is_24_hours;
-                            const facilityAE = res.data.data.facility_a_e;
-
-                            if (open24Hours === 'yes') {
-                                document.querySelector('.timing-box').innerHTML = `<p class="hours-24 mb-1">Open 24 Hours</p>`;
-                            } else {
-                                const timeSlots = res.data.data.time_slots
-
-                                function formatTime(time) {
-                                    let [hours, minutes] = time.split(":").map(Number);
-                                    let period = hours >= 12 ? "PM" : "AM";
-                                    hours = hours % 12 || 12; // Convert to 12-hour format
-                                    return `${hours}:${minutes.toString().padStart(2, "0")} ${period}`;
-                                }
-
-                                const openingTime = formatTime(timeSlots[0].start_time);
-                                const closingTime = formatTime(timeSlots[0].end_time);
-
-                                document.querySelector('.timing-box').innerHTML = `
-        <p class="hours-normal mb-1">Opens ${openingTime} - Closes ${closingTime}</p>
-    `;
-                            }
-
-                            if (facilityAE === 'yes') {
-                                document.querySelector('.facility-box').innerHTML = `<p class="facility-ae mb-1">A&E Facility</p>`;
-                            }
-
-                            directionsBtn.addEventListener(('click'), () => {
-                                window.open(res.data.data.google_maps_link, "_blank");
-                            })
-
-                        }).catch((err) => {
-                            console.log(err);
-                        })
-                        // Show modal
-                        const modalInstance = new bootstrap.Modal(modal);
-                        modalInstance.show();
+                        viewBtn(button)
                     });
                 });
 
@@ -1022,11 +960,7 @@
                     button.addEventListener('click', (e) => {
                         e.preventDefault();
                         e.stopPropagation();
-                        const id = button.getAttribute('data-id');
-                        deleteFacilityId = id
-
-                        const modal = new bootstrap.Modal(document.getElementById('deleteFacilityModal'));
-                        modal.show();
+                      deleteBtn(button)
                     });
                 });
 
@@ -1053,34 +987,115 @@
             }
         }
 
-        // 🔍 Search Function
-            document.getElementById("searchInput").addEventListener("input", function () {
-                let query = this.value.toLowerCase();
-                let filteredData = allData.filter(item =>
-                    item.organisation_name.toLowerCase().includes(query) ||
-                    item.email.toLowerCase().includes(query)
-                );
-                renderTable(filteredData);
-            });
+        const viewBtn = async (button) => {
+                     const id = button.getAttribute('data-id');
+            localStorage.setItem('facilityId', id)
 
-            // 🔄 Sorting Function
-            document.getElementById("sortNewest").addEventListener("click", function () {
-                let sortedData = [...allData].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-                renderTable(sortedData);
-            });
+            await axios.get('https://health-care-facilities-backend.vercel.app/api/get-report', {
+                headers: {
+                    'id': id
+                }
+            }).then((res) => {
+                console.log(res.data);
+                document.querySelector('.facility-name').innerHTML = res.data.data.organisation_name;
+                document.querySelector('.facility-type').innerHTML = `${res.data.data.facility_type.charAt(0).toUpperCase() + res.data.data.facility_type.slice(1)} , ${res.data.data.city} , ${res.data.data.state} , ${res.data.data.country}`;
+                document.querySelector('.facility-email').innerHTML = `<a href="mailto:${res.data.data.email}">${res.data.data.email}</a>`;
+                document.querySelector('.facility-phone').innerHTML = `<a href="tel:${res.data.data.phone}">${res.data.data.phone}</a>`;
 
-            document.getElementById("sortOldest").addEventListener("click", function () {
-                let sortedData = [...allData].sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
-                renderTable(sortedData);
-            });
+                if (res.data.data.address) {
+                    document.querySelector('.facility-address').innerHTML = `${res.data.data.address} , ${res.data.data.city} , ${res.data.data.state} , ${res.data.data.country}`;
+                    if (res.data.data.zip_code) {
+                        document.querySelector('.facility-address').innerHTML = `${res.data.data.address} , ${res.data.data.zip_code} , ${res.data.data.city} , ${res.data.data.state} , ${res.data.data.country}`;
+                    }
+                } else {
+                    document.querySelector('.facility-address').innerHTML = `${res.data.data.city} , ${res.data.data.state} , ${res.data.data.country}`;
+                }
 
-            // 📌 Table Render Function
-            function renderTable(data) {
-                let tableBody = document.getElementById("table-body");
-                tableBody.innerHTML = "";
+                const directionsBtn = document.querySelector('.directions-btn');
+                const open24Hours = res.data.data.is_24_hours;
+                const facilityAE = res.data.data.facility_a_e;
 
-                data.forEach(item => {
-                    tableBody.innerHTML += `
+                if (open24Hours === 'yes') {
+                    document.querySelector('.timing-box').innerHTML = `<p class="hours-24 mb-1">Open 24 Hours</p>`;
+                } else {
+                    const timeSlots = res.data.data.time_slots
+
+                    function formatTime(time) {
+                        let [hours, minutes] = time.split(":").map(Number);
+                        let period = hours >= 12 ? "PM" : "AM";
+                        hours = hours % 12 || 12; // Convert to 12-hour format
+                        return `${hours}:${minutes.toString().padStart(2, "0")} ${period}`;
+                    }
+
+                    const openingTime = formatTime(timeSlots[0].start_time);
+                    const closingTime = formatTime(timeSlots[0].end_time);
+
+                    document.querySelector('.timing-box').innerHTML = `
+        <p class="hours-normal mb-1">Opens ${openingTime} - Closes ${closingTime}</p>
+    `;
+                }
+
+                if (facilityAE === 'yes') {
+                    document.querySelector('.facility-box').innerHTML = `<p class="facility-ae mb-1">A&E Facility</p>`;
+                }
+
+                directionsBtn.addEventListener(('click'), () => {
+                    window.open(res.data.data.google_maps_link, "_blank");
+                })
+
+            }).catch((err) => {
+                console.log(err);
+            })
+            // Show modal
+            const modalInstance = new bootstrap.Modal(modal);
+            modalInstance.show();
+        }
+
+        // Edit Button 
+        const editBtn = (button) => {
+             const id = button.getAttribute('data-id');
+            localStorage.setItem('facilityId', id)
+            location.href = "/admin-dashboard/edit-facilities.html";
+        }
+
+         // Edit Button Delete Button
+            const deleteBtn = async (button) => {
+                  const id = button.getAttribute('data-id');
+                deleteFacilityId = id
+
+                const modal = new bootstrap.Modal(document.getElementById('deleteFacilityModal'));
+                modal.show();
+            }
+
+
+        //  Search Function
+        document.getElementById("searchInput").addEventListener("input", function () {
+            let query = this.value.toLowerCase();
+            let filteredData = allData.filter(item =>
+                item.organisation_name.toLowerCase().includes(query) ||
+                item.email.toLowerCase().includes(query)
+            );
+            renderTable(filteredData);
+        });
+
+        //  Sorting Function
+        document.getElementById("sortNewest").addEventListener("click", function () {
+            let sortedData = [...allData].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            renderTable(sortedData);
+        });
+
+        document.getElementById("sortOldest").addEventListener("click", function () {
+            let sortedData = [...allData].sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+            renderTable(sortedData);
+        });
+
+        //  Table Render Function
+        function renderTable(data) {
+            let tableBody = document.getElementById("table-body");
+            tableBody.innerHTML = "";
+
+            data.forEach(item => {
+                tableBody.innerHTML += `
                 <tr class="table-row">
                     <td>${item.organisation_name}</td>
                     <td>${new Date(item.createdAt).toLocaleDateString('en-US')}</td>
@@ -1126,8 +1141,42 @@
                                         </div>
                                     </td>
                 </tr>`;
+            });
+            
+
+            // Initialize view buttons
+            const viewButtons = document.querySelectorAll('.view-facility-btn');
+
+            viewButtons.forEach(button => {
+                button.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    viewBtn(button)
                 });
-            }
+            });
+
+            // Get all delete buttons
+            const deleteButtons = document.querySelectorAll('.delete-facility-btn');
+
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    deleteBtn(button)
+                });
+            });
+            
+                     // Get all delete buttons
+            const editButtons = document.querySelectorAll('.edit-facility-btn');
+
+            // Initialize delete buttons click handlers
+            editButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    editBtn(button)
+                });
+            });
+
+        }
 
         function renderPagination(total, pageSize, currentPage) {
             const pagination = document.getElementById("pagination");

@@ -810,7 +810,7 @@
                 if (is24Hours === "yes") {
                     document.querySelector('input[name="is_24hours"]').checked = true;
                 } else if (is24Hours === "no") {
-                    const timeSchedule = document.getElementById('timeSchedule');
+                    // const timeSchedule = document.getElementById('timeSchedule');
 
                     timeSchedule.style.display = 'block';
 
@@ -975,56 +975,122 @@
             });
         }
 
-        // Form functionality
-        document.addEventListener('DOMContentLoaded', function () {
-            // Get elements
-            const editButton = document.getElementById('editButton');
-            const cancelButton = document.getElementById('cancelButton');
-            const timeSchedule = document.getElementById('timeSchedule');
-            const is24HoursInputs = document.querySelectorAll('input[name="is_24hours"]');
+    // Form functionality
+    document.addEventListener('DOMContentLoaded', function () {
+        // Get elements
+        const editButton = document.getElementById('editButton');
+        const form = document.getElementById('facilityForm');
+        const actionButtons = document.getElementById('actionButtons');
+        const cancelButton = document.getElementById('cancelButton');
+        const facilityType = document.getElementById('facilityType');
+        const otherFacilityType = document.getElementById('otherFacilityType');
+        const ownershipType = document.getElementById('ownershipType');
+        const otherOwnershipType = document.getElementById('otherOwnershipType');
+        const timeSchedule = document.getElementById('timeSchedule');
+        const is24HoursInputs = document.querySelectorAll('input[name="is_24hours"]');
 
-            // Create time slots dynamically
-            function createTimeSlots() {
-                const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-                const timeSlotsContainer = document.querySelector('.time-slots');
-                if (!timeSlotsContainer) return;
+        // Create time slots
+        function createTimeSlots() {
+            const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+            const timeSlots = document.querySelector('.time-slots');
+            if (!timeSlots) return;
 
-                timeSlotsContainer.innerHTML = days.map(day => `
-                    <div class="time-slot row align-items-center g-3 mb-2">
-                        <div class="col-3">
-                            <span class="day-label">${day}</span>
-                        </div>
-                        <div class="col-9">
-                            <div class="d-flex align-items-center time-input-group">
-                                <input type="time" class="form-control form-control-sm" name="${day.toLowerCase()}_start" value="09:00" required>
-                                <span class="time-separator mx-2">to</span>
-                                <input type="time" class="form-control form-control-sm" name="${day.toLowerCase()}_end" value="17:00" required>
-                            </div>
-                        </div>
+            timeSlots.innerHTML = days.map(day => `
+            <div class="time-slot row align-items-center g-3 mb-2">
+                <div class="col-3">
+                    <span class="day-label">${day}</span>
+                </div>
+                <div class="col-9">
+                    <div class="d-flex align-items-center time-input-group">
+                        <input type="time" class="form-control form-control-sm" name="${day.toLowerCase()}_start" 
+                               value="09:00" disabled required>
+                        <span class="time-separator mx-2">to</span>
+                        <input type="time" class="form-control form-control-sm" name="${day.toLowerCase()}_end" 
+                               value="17:00" disabled required>
                     </div>
-                `).join('');
+                </div>
+            </div>
+        `).join('');
+        }
+
+        // Initialize time slots
+        createTimeSlots();
+
+        if (editButton && form && actionButtons && cancelButton) {
+            // Store initial values
+            const allInputs = form.querySelectorAll('input, select, textarea');
+            const initialValues = {};
+            allInputs.forEach(input => {
+                if (input.type === 'radio') {
+                    if (input.checked) {
+                        initialValues[input.name] = input.value;
+                    }
+                } else {
+                    initialValues[input.name] = input.value;
+                }
+            });
+
+            // Edit button click handler
+            editButton.addEventListener('click', function () {
+                // Toggle edit mode
+                const currentlyDisabled = allInputs[0].disabled;  // Check current state
+
+                // Enable/disable inputs
+                allInputs.forEach(input => {
+                    input.disabled = !currentlyDisabled;  // Toggle the disabled state
+                });
+
+                // Show/hide action buttons
+                actionButtons.style.display = currentlyDisabled ? 'block' : 'none';
+            });
+
+            // Cancel button click handler
+            cancelButton.addEventListener('click', function () {
+                // Reset to initial values
+                allInputs.forEach(input => {
+                    if (input.type === 'radio') {
+                        input.checked = input.value === initialValues[input.name];
+                    } else {
+                        input.value = initialValues[input.name] || '';
+                    }
+                    input.disabled = true;
+                });
+                actionButtons.style.display = 'none';
+            });
+
+            // Form submit handler
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                allInputs.forEach(input => {
+                    input.disabled = true;
+                });
+                actionButtons.style.display = 'none';
+            });
+
+            // Facility type change handler
+            if (facilityType && otherFacilityType) {
+                facilityType.addEventListener('change', function () {
+                    otherFacilityType.style.display = this.value === 'other' ? 'block' : 'none';
+                });
             }
 
-            // Initialize time slots on page load
-            createTimeSlots();
+            // Ownership type change handler
+            if (ownershipType && otherOwnershipType) {
+                ownershipType.addEventListener('change', function () {
+                    otherOwnershipType.style.display = this.value === 'other' ? 'block' : 'none';
+                });
+            }
 
             // 24 hours service change handler
-            if (is24HoursInputs.length) {
+            if (timeSchedule && is24HoursInputs) {
                 is24HoursInputs.forEach(input => {
                     input.addEventListener('change', function () {
-                        console.log("Selected Value:", this.value);
                         timeSchedule.style.display = this.value === 'no' ? 'block' : 'none';
                     });
                 });
             }
-
-            // Cancel button click handler
-            if (cancelButton) {
-                cancelButton.addEventListener('click', function () {
-                    location.href = '/admin-dashboard/users.html';
-                });
-            }
-        });
+        }
+    });
 
         const countrySelect = document.getElementById('country');
         const stateSelect = document.getElementById('state');

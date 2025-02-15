@@ -199,11 +199,6 @@
          const email = document.getElementById("login-email").value;
          const password = document.getElementById("login-password").value;
 
-         if (email === "hcp@nxtgenwebsite.com" && password === "admin123") {
-           window.location.href = "admin-dashboard/users.html"; // Redirect for admin login
-           return; // Stop further execution
-         }
-
          const data = {
            email: email.trim(),
            password: password.trim()
@@ -217,7 +212,12 @@
             localStorage.setItem("login", true)
             localStorage.setItem('u_id' , response.data.user.id)
             localStorage.setItem('token' , response.data.token)
-             window.location.href = "/";
+
+            if (response.data.user.role === 'admin') {
+              window.location.href = "/admin-dashboard/users.html";
+            }else{
+               window.location.href = "/";
+            }
            } else {
             localStorage.setItem("login", false)
             alert(`${error.response?.data?.error || 'Something went wrong.'}`);
