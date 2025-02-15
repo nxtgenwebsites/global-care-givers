@@ -208,21 +208,19 @@
 
          try {
            const response = await axios.post('https://health-care-facilities-backend.vercel.app/api/login-user', data);
-           console.log(response.data);
-
+          console.log(response.data);
            // Redirect based on response (modify this as needed)
-           if (response.data.message === "Login successfully") {
-
+           if (response.data.message === "Login successful") {
             localStorage.setItem("login", true)
             localStorage.setItem('userId' , response.data.user.id)
+            localStorage.setItem('token' , response.data.token)
              window.location.href = "/";
            } else {
-             alert(response.response.data.message);
             localStorage.setItem("login", false)
-            }
-         } catch (error) {
-           console.error("Login error:", error);
-           alert('Invalid email or password. Please try again!');
+            alert(`${error.response?.data?.error || 'Something went wrong.'}`);
+          }
+        } catch (error) {
+          console.error("Login error:", error);  
          }
         });
 

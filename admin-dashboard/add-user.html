@@ -724,20 +724,32 @@
                 password: formData.password,
             };
 
+            
+            console.log(emailData);
             try {
                 const userResponse = await axios.post('https://health-care-facilities-backend.vercel.app/api/add-user', formData);
                 console.log(userResponse.data);
                 updatedPopup.classList.remove('d-none');
 
                 try {
-                    const emailResponse = await axios.post('https://health-care-facilities-backend.vercel.app/api/send-details', emailData);
-                    console.log(emailResponse.data);
+                    const emailResponse = await axios.post(
+                        'https://health-care-facilities-backend.vercel.app/api/send-details',
+                        emailData,
+                        {
+                            headers: {
+                                Authorization: `Bearer ${userResponse.data.token}`,
+                            },
+                        }
+                    );
+                  // Clear the form after a successful request
+                    document.getElementById("facilityForm").reset();
                 } catch (emailError) {
                     console.error('Error sending email details:', emailError);
                 }
 
             } catch (error) {
                 console.error('Error adding user:', error);
+                alert(`${error.response?.data?.message || 'Something went wrong.'}`);
             }
         })
     </script>
