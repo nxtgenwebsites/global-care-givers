@@ -204,7 +204,10 @@
            return; // Stop further execution
          }
 
-         const data = { email, password };
+         const data = {
+           email: email.trim(),
+           password: password.trim()
+         };
 
          try {
            const response = await axios.post('https://health-care-facilities-backend.vercel.app/api/login-user', data);
@@ -212,7 +215,7 @@
            // Redirect based on response (modify this as needed)
            if (response.data.message === "Login successful") {
             localStorage.setItem("login", true)
-            localStorage.setItem('userId' , response.data.user.id)
+            localStorage.setItem('u_id' , response.data.user.id)
             localStorage.setItem('token' , response.data.token)
              window.location.href = "/";
            } else {

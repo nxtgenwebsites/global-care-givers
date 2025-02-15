@@ -625,7 +625,7 @@
     <script>
 
 
-        const id = localStorage.getItem('userId');
+        const id = localStorage.getItem('u_id');
 
         console.log(id);
         axios.get('https://health-care-facilities-backend.vercel.app/api/get-user', {
@@ -665,7 +665,7 @@
 
         loginOut.addEventListener(('click'), () => {
             localStorage.removeItem('login')
-            localStorage.removeItem('userId')
+            localStorage.removeItem('u_id')
             location.reload()
         })
         loginOut2.addEventListener(('click'), () => {
