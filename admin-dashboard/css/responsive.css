@@ -37,6 +37,10 @@
     width: 100%;
     border: 1px solid #ddd;
   }
+  #viewFacilityModal .modal-content {
+    max-width: 500px;
+    min-width: 100%;
+  }
 }
 
 @media (max-width: 600px) {
@@ -52,10 +56,9 @@
     border: 1px solid #ddd;
   }
 
-  table th{
+  table th {
     font-size: 12px !important;
   }
-
 }
 
 @media (max-width: 786px) {
@@ -63,15 +66,41 @@
     text-align: start !important;
     width: 100% !important;
   }
-  
-  .heading-text{
+
+  .heading-text {
     text-align: start;
     width: 100% !important;
   }
 }
 
 @media (max-width: 500px) {
-  .pagination-info{
+  .pagination-info {
     font-size: 15px;
+  }
+  .search-box .form-control {
+    padding: 6px 5px 8px 32px;
+    width: 150px;
+    font-size: 12px !important;
+  }
+  .dropdown .btn-outline-secondary {
+    padding: 6px 8px;
+  }
+
+  .add-icon {
+    padding: 1px 0;
+    padding-left: 6px;
+    padding-right: 4px;
+  }
+  .dropdown button {
+    font-size: 12px !important;
+  }
+  .seach-filter {
+    gap: 5px !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .search-box .form-control {
+    width: 120px;
   }
 }

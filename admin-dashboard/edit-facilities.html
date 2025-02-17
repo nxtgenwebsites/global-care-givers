@@ -150,69 +150,33 @@
             </button>
 
             <!-- User Dropdown (visible on desktop) -->
-            <div class="dropdown d-none d-lg-block">
-                <div class="dropdown-toggle d-flex align-items-center gap-2" data-bs-toggle="dropdown"
-                    style="cursor: pointer;">
-                    <img src="assets/1.png" alt="" class="user-avatar">
-                    <span class="d-none d-lg-inline">Bohdan Peter</span>
-                </div>
-                <ul class="dropdown-menu shadow" style="width: 313px; padding: 16px; border-radius: 0px; border: none;">
-                    <li class="dropdown-header p-0 mb-3">
-                        <div class="d-flex gap-3 align-items-center">
-                            <img src="assets/1.png" alt="" style="width: 87px; height: 87px; border-radius: 50%;">
-                            <div>
-                                <h6 class="mb-0">Bohdan Peter</h6>
-                                <small class="text-muted">Preston, UK</small>
+            <div class="d-flex ms-lg-auto" id="profile-btn">
+                <div class="dropdown d-none d-lg-block">
+                    <div class="dropdown-toggle d-flex align-items-center gap-2 show" data-bs-toggle="dropdown"
+                        style="cursor: pointer;" aria-expanded="true">
+                        <img src="assets/1.png" alt="a" class="user-avatar">
+                        <span class=" d-inline user-name">Faheem Shafique</span>
+                    </div>
+                    <ul class="dropdown-menu shadow"
+                        style="width: 313px; padding: 16px; border-radius: 0px; border: none; position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(0px, 42.2222px);"
+                        data-popper-placement="bottom-end">
+                        <li class="dropdown-header p-0 mb-3">
+                            <div class="d-flex gap-3 align-items-center">
+                                <img src="assets/1.png" width="30" class="img-fluid" alt=""
+                                    style="width: 87px; height: 87px; border-radius: 50%;">
+                                <div>
+                                    <h6 class="mb-0 user-name">Faheem Shafique</h6>
+                                    <small class="text-muted" id="user-role">Super Admin</small>
+                                </div>
                             </div>
+                        </li>
+                        <div class="border-top mt-2 pt-2">
+                            <button class="dropdown-item py-2 text-primary fw-semibold" id="logout-btn">
+                                Logout
+                            </button>
                         </div>
-                    </li>
-                    <li><a class="dropdown-item py-2 d-flex align-items-center gap-3"
-                            href="/user-dashboard/user-profile.html">
-                            <i class="bi bi-person-circle text-muted" style="font-size: 20px;"></i>
-                            Profile
-                        </a></li>
-                    <li><a class="dropdown-item py-2 d-flex align-items-center gap-3"
-                            href="/user-dashboard/new-sponsorship.html">
-                            <i class="bi bi-star text-muted" style="font-size: 20px;"></i>
-                            Sponsorship
-                        </a></li>
-                    <li><a class="dropdown-item py-2 d-flex align-items-center gap-3"
-                            href="/user-dashboard/user-print.html">
-                            <i class="bi bi-printer text-muted" style="font-size: 20px;"></i>
-                            Print
-                        </a></li>
-                    <li><a class="dropdown-item py-2 d-flex align-items-center gap-3"
-                            href="/user-dashboard/user-change-pin.html">
-                            <i class="bi bi-key text-muted" style="font-size: 20px;"></i>
-                            Password & 2FA
-                        </a></li>
-                    <li><a class="dropdown-item py-2 d-flex align-items-center gap-3"
-                            href="/user-dashboard/remote-access.html">
-                            <i class="bi bi-shield-lock text-muted" style="font-size: 20px;"></i>
-                            Access Control
-                        </a></li>
-                    <li><a class="dropdown-item py-2 d-flex align-items-center gap-3"
-                            href="/user-dashboard/monitors.html">
-                            <i class="bi bi-display text-muted" style="font-size: 20px;"></i>
-                            System
-                        </a></li>
-                    <li><button class="dropdown-item py-2 d-flex align-items-center gap-3" id="share-profile-btn">
-                            <i class="bi bi-share text-muted" style="font-size: 20px;"></i>
-                            Share link
-                        </button></li>
-
-                    <li><a class="dropdown-item py-2 d-flex align-items-center gap-3"
-                            href="/user-dashboard/user-delete-acc.html">
-                            <i class="bi bi-trash text-muted" style="font-size: 20px;"></i>
-                            Delete Account
-                        </a></li>
-                    <li class="border-top mt-2 pt-2">
-                        <a class="dropdown-item py-2 text-primary fw-semibold"
-                            href="/user-dashboard/upgrade-to-dha.html">
-                            Upgrade to Community Edition
-                        </a>
-                    </li>
-                </ul>
+                    </ul>
+                </div>
             </div>
         </div>
     </header>
@@ -313,7 +277,7 @@
             <!-- Menu Items -->
 
             <a href="/admin-dashboard/users.html">
-                <div class="menu-item">
+                <div class="menu-item active">
                     <svg class="icon sidebar-icon" width="26" height="26" viewBox="0 0 26 26" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -325,7 +289,7 @@
                 </div>
             </a>
 
-            <div class="menu-item-dropdown active">
+            <div class="menu-item-dropdown">
                 <div class="menu-icon-wrapper">
                     <svg class="icon sidebar-icon" width="26" height="26" viewBox="0 0 26 26" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -337,9 +301,9 @@
                 </div>
                 <i class="bi bi-chevron-right arrow"></i>
             </div>
-            <div class="dropdown-content ps-4 show">
+            <div class="dropdown-content ps-4">
                 <ul class="custom-bullets">
-                    <li><a href="/admin-dashboard/add-user.html" class="dropdown-item-custom active">Add New User</a>
+                    <li><a href="/admin-dashboard/add-user.html" class="dropdown-item-custom">Add New User</a>
                     </li>
                     <li><a href="/admin-dashboard/manage-users.html" class="dropdown-item-custom">Staff Members</a></li>
                 </ul>
@@ -482,6 +446,7 @@
                                 <!-- Will be populated by JavaScript -->
                             </div>
                         </div>
+
 
                         <div id="actionButtons" class="col-12 mt-4">
                             <div class="d-flex gap-3">
@@ -727,6 +692,45 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
+        // Remote Care functionality
+        const remoteCareDropdown = document.getElementById('m-remote-care-dropdown');
+        const remoteCareDropdownBtn = document.getElementById('remote-care-dropdown');
+        const remoteCareBtn = document.querySelectorAll('.remote-care-btn');
+        const pairDevicePopop = document.getElementById('paired-device-popup');
+        const pairedBackBtn = document.getElementById('paired-black-btn');
+        const pairedCloseBtn = document.getElementById('paired-close-btn');
+
+        // Share Profile functionality
+        const shareProfilePopup = document.getElementById('share-profile-popup');
+        const shareProfileBtn = document.getElementById('share-profile-btn');
+        const ProfileCloseBtn = document.getElementById('profile-close-btn');
+
+        // Add event listeners for remote care dropdown
+        remoteCareDropdownBtn.addEventListener('click', () => {
+            remoteCareDropdown.classList.toggle('d-none');
+        });
+
+        ProfileCloseBtn.addEventListener('click', () => {
+            shareProfilePopup.classList.toggle('d-none');
+        });
+
+        // Remote Care Button functionality
+        remoteCareBtn.forEach(btn => {
+            btn.addEventListener('click', () => {
+                pairDevicePopop.classList.remove('d-none');
+                pairDevicePopop.classList.add('d-flex');
+            });
+        });
+
+        pairedBackBtn.addEventListener('click', () => {
+            pairDevicePopop.classList.add('d-none');
+        });
+
+        pairedCloseBtn.addEventListener('click', () => {
+            pairDevicePopop.classList.add('d-none');
+        });
+
+
         const updateBtn = document.getElementById('update-btn');
         const updatedPopup = document.getElementById('updated-popup');
         const updateClose = document.getElementById('updated-close-btn');
@@ -810,8 +814,7 @@
                 if (is24Hours === "yes") {
                     document.querySelector('input[name="is_24hours"]').checked = true;
                 } else if (is24Hours === "no") {
-                    // const timeSchedule = document.getElementById('timeSchedule');
-
+                    const timeSchedule = document.getElementById('timeSchedule');
                     timeSchedule.style.display = 'block';
 
                     document.querySelector('input[name="is_24hours"][value="no"]').checked = true;
@@ -827,19 +830,6 @@
                 console.log(err);
             })
         })
-
-        // Share Message functionality
-        const shareMsg = document.querySelector('.share-message');
-        const crossIcon = document.querySelector('.share-img i');
-        const blockBtn = document.querySelector('#share');
-
-        crossIcon.addEventListener('click', () => {
-            shareMsg.style.display = 'none';
-        });
-
-        blockBtn.addEventListener('click', () => {
-            shareMsg.style.display = 'block';
-        });
 
         // Preview functionality
         const previewBtn = document.getElementById('preview-button');
@@ -863,38 +853,6 @@
                 if (e.target === panadolpopup) {
                     panadolpopup.classList.add('d-none');
                 }
-            });
-        }
-
-        // Remote Care Dropdown functionality
-        const remoteCareDropdown = document.getElementById('m-remote-care-dropdown');
-        const remoteCareDropdownBtn = document.getElementById('remote-care-dropdown');
-        const remoteCareBtn = document.querySelectorAll('.remote-care-btn');
-        const pairDevicePopop = document.getElementById('paired-device-popup');
-        const pairedBackBtn = document.getElementById('paired-black-btn');
-        const pairedCloseBtn = document.getElementById('paired-close-btn');
-
-        // Share Profile functionality
-        const shareProfilePopup = document.getElementById('share-profile-popup');
-        const shareProfileBtn = document.getElementById('share-profile-btn');
-        const ProfileCloseBtn = document.getElementById('profile-close-btn');
-
-        if (remoteCareDropdownBtn) {
-            remoteCareDropdownBtn.addEventListener('click', () => {
-                remoteCareDropdown.classList.toggle('d-none');
-            });
-        }
-
-        if (ProfileCloseBtn) {
-            ProfileCloseBtn.addEventListener('click', () => {
-                shareProfilePopup.classList.toggle('d-none');
-            });
-        }
-
-        if (shareProfileBtn) {
-            shareProfileBtn.addEventListener('click', () => {
-                shareProfilePopup.classList.remove('d-none');
-                shareProfilePopup.classList.add('d-flex');
             });
         }
 
@@ -975,122 +933,124 @@
             });
         }
 
-    // Form functionality
-    document.addEventListener('DOMContentLoaded', function () {
-        // Get elements
-        const editButton = document.getElementById('editButton');
-        const form = document.getElementById('facilityForm');
-        const actionButtons = document.getElementById('actionButtons');
-        const cancelButton = document.getElementById('cancelButton');
-        const facilityType = document.getElementById('facilityType');
-        const otherFacilityType = document.getElementById('otherFacilityType');
-        const ownershipType = document.getElementById('ownershipType');
-        const otherOwnershipType = document.getElementById('otherOwnershipType');
-        const timeSchedule = document.getElementById('timeSchedule');
-        const is24HoursInputs = document.querySelectorAll('input[name="is_24hours"]');
+        document.addEventListener('DOMContentLoaded', function () {
+            const editButton = document.getElementById('editButton');
+            const form = document.getElementById('facilityForm');
+            const actionButtons = document.getElementById('actionButtons');
+            const cancelButton = document.getElementById('cancelButton');
+            const facilityType = document.getElementById('facilityType');
+            const otherFacilityType = document.getElementById('otherFacilityType');
+            const ownershipType = document.getElementById('ownershipType');
+            const otherOwnershipType = document.getElementById('otherOwnershipType');
+            const timeSchedule = document.getElementById('timeSchedule');
+            const is24HoursInputs = document.querySelectorAll('input[name="is_24hours"]');
 
-        // Create time slots
-        function createTimeSlots() {
-            const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-            const timeSlots = document.querySelector('.time-slots');
-            if (!timeSlots) return;
+            function createTimeSlots() {
+                const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+                const timeSlots = document.querySelector('.time-slots');
 
-            timeSlots.innerHTML = days.map(day => `
+                // Check if timeSlots container exists
+                if (!timeSlots) return;
+
+                timeSlots.innerHTML = days.map(day => `
             <div class="time-slot row align-items-center g-3 mb-2">
                 <div class="col-3">
                     <span class="day-label">${day}</span>
                 </div>
                 <div class="col-9">
                     <div class="d-flex align-items-center time-input-group">
-                        <input type="time" class="form-control form-control-sm" name="${day.toLowerCase()}_start" 
-                               value="09:00" disabled required>
+                        <input type="time" class="form-control form-control-sm" name="${day.toLowerCase()}_start" value="09:00" disabled required>
                         <span class="time-separator mx-2">to</span>
-                        <input type="time" class="form-control form-control-sm" name="${day.toLowerCase()}_end" 
-                               value="17:00" disabled required>
+                        <input type="time" class="form-control form-control-sm" name="${day.toLowerCase()}_end" value="17:00" disabled required>
                     </div>
                 </div>
             </div>
         `).join('');
-        }
+            }
 
-        // Initialize time slots
-        createTimeSlots();
+            // Initialize time slots
+            createTimeSlots();
 
-        if (editButton && form && actionButtons && cancelButton) {
-            // Store initial values
-            const allInputs = form.querySelectorAll('input, select, textarea');
-            const initialValues = {};
-            allInputs.forEach(input => {
-                if (input.type === 'radio') {
-                    if (input.checked) {
-                        initialValues[input.name] = input.value;
-                    }
-                } else {
-                    initialValues[input.name] = input.value;
-                }
-            });
+            if (editButton && form && actionButtons && cancelButton) {
+                const allInputs = form.querySelectorAll('input, select, textarea');
+                const initialValues = {};
 
-            // Edit button click handler
-            editButton.addEventListener('click', function () {
-                // Toggle edit mode
-                const currentlyDisabled = allInputs[0].disabled;  // Check current state
-
-                // Enable/disable inputs
-                allInputs.forEach(input => {
-                    input.disabled = !currentlyDisabled;  // Toggle the disabled state
-                });
-
-                // Show/hide action buttons
-                actionButtons.style.display = currentlyDisabled ? 'block' : 'none';
-            });
-
-            // Cancel button click handler
-            cancelButton.addEventListener('click', function () {
-                // Reset to initial values
                 allInputs.forEach(input => {
                     if (input.type === 'radio') {
-                        input.checked = input.value === initialValues[input.name];
+                        if (input.checked) {
+                            initialValues[input.name] = input.value;
+                        }
                     } else {
-                        input.value = initialValues[input.name] || '';
+                        initialValues[input.name] = input.value;
                     }
-                    input.disabled = true;
                 });
-                actionButtons.style.display = 'none';
-            });
 
-            // Form submit handler
-            form.addEventListener('submit', function (e) {
-                e.preventDefault();
-                allInputs.forEach(input => {
-                    input.disabled = true;
-                });
-                actionButtons.style.display = 'none';
-            });
-
-            // Facility type change handler
-            if (facilityType && otherFacilityType) {
-                facilityType.addEventListener('change', function () {
-                    otherFacilityType.style.display = this.value === 'other' ? 'block' : 'none';
-                });
-            }
-
-            // Ownership type change handler
-            if (ownershipType && otherOwnershipType) {
-                ownershipType.addEventListener('change', function () {
-                    otherOwnershipType.style.display = this.value === 'other' ? 'block' : 'none';
-                });
-            }
-
-            // 24 hours service change handler
-            if (timeSchedule && is24HoursInputs) {
                 is24HoursInputs.forEach(input => {
                     input.addEventListener('change', function () {
-                        timeSchedule.style.display = this.value === 'no' ? 'block' : 'none';
+                        if (this.value === 'no') {
+                            // timeSchedule.style.display = 'block';
+                            alert("a")
+                        } else {
+                            timeSchedule.style.display = 'none';
+                        }
                     });
                 });
+
+
+                editButton.addEventListener('click', function () {
+                    const currentlyDisabled = allInputs[0].disabled;
+                    allInputs.forEach(input => {
+                        input.disabled = !currentlyDisabled;
+                    });
+
+                    actionButtons.style.display = currentlyDisabled ? 'block' : 'none';
+                });
+
+                cancelButton.addEventListener('click', function () {
+                    allInputs.forEach(input => {
+                        if (input.type === 'radio') {
+                            input.checked = input.value === initialValues[input.name];
+                        } else {
+                            input.value = initialValues[input.name] || '';
+                        }
+                        input.disabled = true;
+                    });
+                    actionButtons.style.display = 'none';
+                });
+
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    allInputs.forEach(input => {
+                        input.disabled = true;
+                    });
+                    actionButtons.style.display = 'none';
+                });
+
+                if (facilityType && otherFacilityType) {
+                    facilityType.addEventListener('change', function () {
+                        otherFacilityType.style.display = this.value === 'other' ? 'block' : 'none';
+                    });
+                }
+
+                if (ownershipType && otherOwnershipType) {
+                    ownershipType.addEventListener('change', function () {
+                        otherOwnershipType.style.display = this.value === 'other' ? 'block' : 'none';
+                    });
+                }
+
+                if (timeSchedule && is24HoursInputs.length > 0) {
+                    is24HoursInputs.forEach(input => {
+                        input.addEventListener('change', function () {
+                            if (this.value === 'no') {
+                                timeSchedule.style.display = 'block';
+                            } else {
+                                timeSchedule.style.display = 'none';
+                            }
+                        });
+                    });
+                }
             }
-        }
-    });
+        });
 
         const countrySelect = document.getElementById('country');
         const stateSelect = document.getElementById('state');

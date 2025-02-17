@@ -91,7 +91,6 @@ li {
 
 .foms-container {
   width: 100%;
-  margin-top: 20px;
 }
 
 .auth-buttons {
@@ -152,6 +151,23 @@ li {
   border-radius: 10px;
   border: 1px solid #0b6fc0;
   outline: none;
+}
+
+.auth-container select {
+  width: 100%;
+  padding: 0 10px;
+  height: 45px;
+  font-size: 18px;
+  border-radius: 10px;
+  border: none;
+  border-right: 10px solid transparent !important;
+  outline: none;
+  outline: none;
+}
+
+.role {
+  border: 1px solid #0b6fc0;
+  border-radius: 10px;
 }
 
 .forget-pass {

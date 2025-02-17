@@ -658,9 +658,11 @@
             profileBtn.classList.remove('d-none');
             logoutBtnContainer.classList.remove('d-none');
         } else {
+            location.href= '/login.html';
             loginBtn.classList.remove('d-none');
             profileBtn.classList.add('d-none');
             logoutBtnContainer.classList.add('d-none');
+            
         }
 
         loginOut.addEventListener(('click'), () => {
@@ -716,14 +718,24 @@
             // Function to copy the start and end time of the first day to all other days
             function setAllTimes(event) {
                 event.preventDefault();
-                const firstDayStartTime = document.querySelector('.time-slot .start-time').value;
-                const firstDayEndTime = document.querySelector('.time-slot .end-time').value;
+                       // Get first available start and end time (assuming first row is reference)
+                let firstStartTime = document.querySelector(".start-time").value;
+                let firstEndTime = document.querySelector(".end-time").value;
 
-                const allStartInputs = document.querySelectorAll('.start-time');
-                const allEndInputs = document.querySelectorAll('.end-time');
+                if (!firstStartTime || !firstEndTime) {
+                    alert("Please set the first day's time before applying to all.");
+                    return;
+                }
 
-                allStartInputs.forEach(input => input.value = firstDayStartTime);
-                allEndInputs.forEach(input => input.value = firstDayEndTime);
+                // Apply to all days except Saturday & Sunday
+                document.querySelectorAll(".time-slot").forEach(slot => {
+                    let day = slot.querySelector(".day-label").textContent;
+
+                    if (day !== "Saturday" && day !== "Sunday") {
+                        slot.querySelector(".start-time").value = firstStartTime;
+                        slot.querySelector(".end-time").value = firstEndTime;
+                    }
+                });
             }
 
             // Event listener for the "Set All" button

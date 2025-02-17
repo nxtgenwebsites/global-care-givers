@@ -146,70 +146,34 @@
             </button>
 
             <!-- User Dropdown (visible on desktop) -->
-            <div class="dropdown d-none d-lg-block">
-                <div class="dropdown-toggle d-flex align-items-center gap-2" data-bs-toggle="dropdown"
-                    style="cursor: pointer;">
-                    <img src="assets/1.png" alt="" class="user-avatar">
-                    <span class="d-none d-lg-inline">Bohdan Peter</span>
-                </div>
-                <ul class="dropdown-menu shadow" style="width: 313px; padding: 16px; border-radius: 0px; border: none;">
-                    <li class="dropdown-header p-0 mb-3">
-                        <div class="d-flex gap-3 align-items-center">
-                            <img src="assets/1.png" alt="" style="width: 87px; height: 87px; border-radius: 50%;">
-                            <div>
-                                <h6 class="mb-0">Bohdan Peter</h6>
-                                <small class="text-muted">Preston, UK</small>
-                            </div>
+                <div class="d-flex ms-lg-auto" id="profile-btn">
+                    <div class="dropdown d-none d-lg-block">
+                        <div class="dropdown-toggle d-flex align-items-center gap-2 show" data-bs-toggle="dropdown"
+                            style="cursor: pointer;" aria-expanded="true">
+                            <img src="assets/1.png" alt="a" class="user-avatar">
+                            <span class=" d-inline user-name">Faheem Shafique</span>
                         </div>
-                    </li>
-                    <li><a class="dropdown-item py-2 d-flex align-items-center gap-3"
-                            href="/user-dashboard/user-profile.html">
-                            <i class="bi bi-person-circle text-muted" style="font-size: 20px;"></i>
-                            Profile
-                        </a></li>
-                    <li><a class="dropdown-item py-2 d-flex align-items-center gap-3"
-                            href="/user-dashboard/new-sponsorship.html">
-                            <i class="bi bi-star text-muted" style="font-size: 20px;"></i>
-                            Sponsorship
-                        </a></li>
-                    <li><a class="dropdown-item py-2 d-flex align-items-center gap-3"
-                            href="/user-dashboard/user-print.html">
-                            <i class="bi bi-printer text-muted" style="font-size: 20px;"></i>
-                            Print
-                        </a></li>
-                    <li><a class="dropdown-item py-2 d-flex align-items-center gap-3"
-                            href="/user-dashboard/user-change-pin.html">
-                            <i class="bi bi-key text-muted" style="font-size: 20px;"></i>
-                            Password & 2FA
-                        </a></li>
-                    <li><a class="dropdown-item py-2 d-flex align-items-center gap-3"
-                            href="/user-dashboard/remote-access.html">
-                            <i class="bi bi-shield-lock text-muted" style="font-size: 20px;"></i>
-                            Access Control
-                        </a></li>
-                    <li><a class="dropdown-item py-2 d-flex align-items-center gap-3"
-                            href="/user-dashboard/monitors.html">
-                            <i class="bi bi-display text-muted" style="font-size: 20px;"></i>
-                            System
-                        </a></li>
-                    <li><button class="dropdown-item py-2 d-flex align-items-center gap-3" id="share-profile-btn">
-                            <i class="bi bi-share text-muted" style="font-size: 20px;"></i>
-                            Share link
-                        </button></li>
-
-                    <li><a class="dropdown-item py-2 d-flex align-items-center gap-3"
-                            href="/user-dashboard/user-delete-acc.html">
-                            <i class="bi bi-trash text-muted" style="font-size: 20px;"></i>
-                            Delete Account
-                        </a></li>
-                    <li class="border-top mt-2 pt-2">
-                        <a class="dropdown-item py-2 text-primary fw-semibold"
-                            href="/user-dashboard/upgrade-to-dha.html">
-                            Upgrade to Community Edition
-                        </a>
-                    </li>
-                </ul>
-            </div>
+                        <ul class="dropdown-menu shadow"
+                            style="width: 313px; padding: 16px; border-radius: 0px; border: none; position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(0px, 42.2222px);"
+                            data-popper-placement="bottom-end">
+                            <li class="dropdown-header p-0 mb-3">
+                                <div class="d-flex gap-3 align-items-center">
+                                    <img src="assets/1.png" width="30" class="img-fluid" alt=""
+                                        style="width: 87px; height: 87px; border-radius: 50%;">
+                                    <div>
+                                        <h6 class="mb-0 user-name">Faheem Shafique</h6>
+                                        <small class="text-muted" id="user-role">Super Admin</small>
+                                    </div>
+                                </div>
+                            </li>
+                            <div class="border-top mt-2 pt-2">
+                                <button class="dropdown-item py-2 text-primary fw-semibold" id="logout-btn">
+                                    Logout
+                                </button>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
         </div>
     </header>
 
@@ -355,14 +319,14 @@
                 <div class="card-body p-4">
                     <div
                         class=" facilities-card d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
-                        <h5 class="heading-text card-title mb-0">Facilities Users</h5>
+                        <h5 class="heading-text card-title mb-0">Staff Members</h5>
 
-                        <div class="d-flex align-items-center">
+                        <div class="d-flex align-items-center seach-filter">
                             <div class="search-box">
                                 <input type="text" id="searchInput" class="form-control" placeholder="Search">
                             </div>
                             <div class="dropdown">
-                                <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                <button class="btn btn-outline-secondary dropdown-toggle" id="sort-filter" type="button"
                                     data-bs-toggle="dropdown">
                                     Sort by : <span style="font-weight: bold; color:black;">Newest</span>
                                 </button>
@@ -782,6 +746,55 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
 
+    // Remote Care functionality
+    const remoteCareDropdown = document.getElementById('m-remote-care-dropdown');
+    const remoteCareDropdownBtn = document.getElementById('remote-care-dropdown');
+    const remoteCareBtn = document.querySelectorAll('.remote-care-btn');
+    const pairDevicePopop = document.getElementById('paired-device-popup');
+    const pairedBackBtn = document.getElementById('paired-black-btn');
+    const pairedCloseBtn = document.getElementById('paired-close-btn');
+
+    // Share Profile functionality
+    const shareProfilePopup = document.getElementById('share-profile-popup');
+    const shareProfileBtn = document.getElementById('share-profile-btn');
+    const ProfileCloseBtn = document.getElementById('profile-close-btn');
+
+    // Add event listeners for remote care dropdown
+    remoteCareDropdownBtn.addEventListener('click', () => {
+        remoteCareDropdown.classList.toggle('d-none');
+    });
+
+    ProfileCloseBtn.addEventListener('click', () => {
+        shareProfilePopup.classList.toggle('d-none');
+    });
+
+
+    // Remote Care Button functionality
+    remoteCareBtn.forEach(btn => {
+        btn.addEventListener('click', () => {
+            pairDevicePopop.classList.remove('d-none');
+            pairDevicePopop.classList.add('d-flex');
+        });
+    });
+
+    pairedBackBtn.addEventListener('click', () => {
+        pairDevicePopop.classList.add('d-none');
+    });
+
+    pairedCloseBtn.addEventListener('click', () => {
+        pairDevicePopop.classList.add('d-none');
+    });
+
+
+
+     const loginOut = document.getElementById('logout-btn');
+
+    loginOut.addEventListener(('click'), () => {
+        localStorage.removeItem('login')
+        localStorage.removeItem('u_id')
+        location.href = '/';
+    })
+
         // Profile Copy Button functionality
         const closeButton = document.getElementById("prfile-copy-btn");
         const profileUrl = document.getElementById("profile-url");
@@ -983,6 +996,25 @@
         }
 
 
+        document.addEventListener("DOMContentLoaded", function () {
+            const sortNewest = document.getElementById("sortNewest");
+            const sortOldest = document.getElementById("sortOldest");
+            const sortLabel = document.getElementById("sort-filter");
+
+            // Newest click event
+            sortNewest.addEventListener("click", function () {
+                sortLabel.innerHTML = `Sort by: <span style="font-weight: bold; color:black;">Newest</span>`;
+
+                console.log(sortLabel);
+            });
+
+            // Oldest click event
+            sortOldest.addEventListener("click", function () {
+                sortLabel.innerHTML = `Sort by: <span style="font-weight: bold; color:black;">Oldest</span>`;
+                console.log(sortLabel);
+            });
+        });
+    
         // View Button
         const viewBtn = async (button) => {
             const id = button.getAttribute('data-id');

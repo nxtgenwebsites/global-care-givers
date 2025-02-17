@@ -147,70 +147,34 @@
             </button>
 
             <!-- User Dropdown (visible on desktop) -->
-            <div class="dropdown d-none d-lg-block">
-                <div class="dropdown-toggle d-flex align-items-center gap-2" data-bs-toggle="dropdown"
-                    style="cursor: pointer;">
-                    <img src="assets/1.png" alt="" class="user-avatar">
-                    <span class="d-none d-lg-inline">Bohdan Peter</span>
-                </div>
-                <ul class="dropdown-menu shadow" style="width: 313px; padding: 16px; border-radius: 0px; border: none;">
-                    <li class="dropdown-header p-0 mb-3">
-                        <div class="d-flex gap-3 align-items-center">
-                            <img src="assets/1.png" alt="" style="width: 87px; height: 87px; border-radius: 50%;">
-                            <div>
-                                <h6 class="mb-0">Bohdan Peter</h6>
-                                <small class="text-muted">Preston, UK</small>
-                            </div>
+                <div class="d-flex ms-lg-auto" id="profile-btn">
+                    <div class="dropdown d-none d-lg-block">
+                        <div class="dropdown-toggle d-flex align-items-center gap-2 show" data-bs-toggle="dropdown"
+                            style="cursor: pointer;" aria-expanded="true">
+                            <img src="assets/1.png" alt="a" class="user-avatar">
+                            <span class=" d-inline user-name">Faheem Shafique</span>
                         </div>
-                    </li>
-                    <li><a class="dropdown-item py-2 d-flex align-items-center gap-3"
-                            href="/user-dashboard/user-profile.html">
-                            <i class="bi bi-person-circle text-muted" style="font-size: 20px;"></i>
-                            Profile
-                        </a></li>
-                    <li><a class="dropdown-item py-2 d-flex align-items-center gap-3"
-                            href="/user-dashboard/new-sponsorship.html">
-                            <i class="bi bi-star text-muted" style="font-size: 20px;"></i>
-                            Sponsorship
-                        </a></li>
-                    <li><a class="dropdown-item py-2 d-flex align-items-center gap-3"
-                            href="/user-dashboard/user-print.html">
-                            <i class="bi bi-printer text-muted" style="font-size: 20px;"></i>
-                            Print
-                        </a></li>
-                    <li><a class="dropdown-item py-2 d-flex align-items-center gap-3"
-                            href="/user-dashboard/user-change-pin.html">
-                            <i class="bi bi-key text-muted" style="font-size: 20px;"></i>
-                            Password & 2FA
-                        </a></li>
-                    <li><a class="dropdown-item py-2 d-flex align-items-center gap-3"
-                            href="/user-dashboard/remote-access.html">
-                            <i class="bi bi-shield-lock text-muted" style="font-size: 20px;"></i>
-                            Access Control
-                        </a></li>
-                    <li><a class="dropdown-item py-2 d-flex align-items-center gap-3"
-                            href="/user-dashboard/monitors.html">
-                            <i class="bi bi-display text-muted" style="font-size: 20px;"></i>
-                            System
-                        </a></li>
-                    <li><button class="dropdown-item py-2 d-flex align-items-center gap-3" id="share-profile-btn">
-                            <i class="bi bi-share text-muted" style="font-size: 20px;"></i>
-                            Share link
-                        </button></li>
-
-                    <li><a class="dropdown-item py-2 d-flex align-items-center gap-3"
-                            href="/user-dashboard/user-delete-acc.html">
-                            <i class="bi bi-trash text-muted" style="font-size: 20px;"></i>
-                            Delete Account
-                        </a></li>
-                    <li class="border-top mt-2 pt-2">
-                        <a class="dropdown-item py-2 text-primary fw-semibold"
-                            href="/user-dashboard/upgrade-to-dha.html">
-                            Upgrade to Community Edition
-                        </a>
-                    </li>
-                </ul>
-            </div>
+                        <ul class="dropdown-menu shadow"
+                            style="width: 313px; padding: 16px; border-radius: 0px; border: none; position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(0px, 42.2222px);"
+                            data-popper-placement="bottom-end">
+                            <li class="dropdown-header p-0 mb-3">
+                                <div class="d-flex gap-3 align-items-center">
+                                    <img src="assets/1.png" width="30" class="img-fluid" alt=""
+                                        style="width: 87px; height: 87px; border-radius: 50%;">
+                                    <div>
+                                        <h6 class="mb-0 user-name">Faheem Shafique</h6>
+                                        <small class="text-muted" id="user-role">Super Admin</small>
+                                    </div>
+                                </div>
+                            </li>
+                            <div class="border-top mt-2 pt-2">
+                                <button class="dropdown-item py-2 text-primary fw-semibold" id="logout-btn">
+                                    Logout
+                                </button>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
         </div>
     </header>
 
@@ -349,9 +313,9 @@
         <!-- Main Content -->
         <div class="main-content p-4">
             <!-- Stats Cards Row -->
-            <div class="row g-4 mb-4">
+            <div class="row g-3 mb-4">
                 <!-- Total Users Card -->
-                <div class="col-md-3 col-12 col-sm-6">
+                <div class="col-md-3 col-6">
                     <div class="card border-0 shadow-sm total-card">
                         <div class="card-body p-4">
                             <div class="d-flex align-items-center total-card-content">
@@ -388,7 +352,7 @@
                 </div>
 
                 <!-- Registered Users Card -->
-                <div class="col-md-3 col-12 col-sm-6">
+                <div class="col-md-3 col-6">
                     <div class="card border-0 shadow-sm total-card">
                         <div class="card-body p-4">
                             <div class="d-flex align-items-center total-card-content">
@@ -413,7 +377,7 @@
                 </div>
 
                 <!-- DHA Users Card -->
-                <div class="col-md-3 col-12 col-sm-6">
+                <div class="col-md-3 col-6">
                     <div class="card border-0 shadow-sm total-card">
                         <div class="card-body p-4">
                             <div class="d-flex align-items-center  total-card-content">
@@ -436,7 +400,7 @@
                                 </div>
                                 <div>
                                     <h2 class="mb-0 fw-bold card-heading" id="total-medical-labs">0</h2>
-                                    <p class="text-muted mb-0 card-text">Medical Labs</p>
+                                    <p class="text-muted mb-0 card-text text-nowrap">Medical Labs</p>
                                 </div>
                             </div>
                         </div>
@@ -444,7 +408,7 @@
                 </div>
 
                 <!-- DHA Users Card -->
-                <div class="col-md-3 col-12 col-sm-6">
+                <div class="col-md-3 col-6">
                     <div class="card border-0 shadow-sm total-card">
                         <div class="card-body p-4">
                             <div class="d-flex align-items-center  total-card-content">
@@ -480,13 +444,13 @@
                 <div class="card-body p-4">
                     <div
                         class="facilities-card d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
-                        <h5 class="card-title mb-0 heading-text">Care Facilities</h5>
-                        <div class="d-flex align-items-center">
+                        <h5 class="card-title mb-0 heading-text">Health Care Facilities</h5>
+                        <div class="d-flex align-items-center seach-filter">
                             <div class="search-box">
                                 <input type="text" id="searchInput" class="form-control" placeholder="Search">
                             </div>
                             <div class="dropdown">
-                                <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                <button class="btn btn-outline-secondary dropdown-toggle" id="sort-filter" type="button"
                                     data-bs-toggle="dropdown">
                                     Sort by : <span style="font-weight: bold; color:black;">Newest</span>
                                 </button>
@@ -744,33 +708,11 @@
         const pairedBackBtn = document.getElementById('paired-black-btn');
         const pairedCloseBtn = document.getElementById('paired-close-btn');
 
-        // Share Profile functionality
-        const shareProfilePopup = document.getElementById('share-profile-popup');
-        const shareProfileBtn = document.getElementById('share-profile-btn');
-        const ProfileCloseBtn = document.getElementById('profile-close-btn');
-
-        // Add event listeners for remote care dropdown
+// Add event listeners for remote care dropdown
         remoteCareDropdownBtn.addEventListener('click', () => {
             remoteCareDropdown.classList.toggle('d-none');
         });
-
-        ProfileCloseBtn.addEventListener('click', () => {
-            shareProfilePopup.classList.toggle('d-none');
-        });
-
-        shareProfileBtn.addEventListener('click', () => {
-            shareProfilePopup.classList.remove('d-none');
-            shareProfilePopup.classList.add('d-flex');
-        });
-
-        // Remote Care Button functionality
-        remoteCareBtn.forEach(btn => {
-            btn.addEventListener('click', () => {
-                pairDevicePopop.classList.remove('d-none');
-                pairDevicePopop.classList.add('d-flex');
-            });
-        });
-
+        
         pairedBackBtn.addEventListener('click', () => {
             pairDevicePopop.classList.add('d-none');
         });
@@ -778,21 +720,6 @@
         pairedCloseBtn.addEventListener('click', () => {
             pairDevicePopop.classList.add('d-none');
         });
-
-        // Profile Copy Button functionality
-        const closeButton = document.getElementById("prfile-copy-btn");
-        const profileUrl = document.getElementById("profile-url");
-
-        closeButton.addEventListener("click", () => {
-            const tempInput = document.createElement("textarea");
-            tempInput.value = profileUrl.textContent;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand("copy");
-            document.body.removeChild(tempInput);
-            alert("Link copied to clipboard.");
-        });
-
 
         const deletePopup = `<div class="modal fade" id="deleteFacilityModal" tabindex="-1" aria-labelledby="deleteFacilityModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -960,7 +887,7 @@
                     button.addEventListener('click', (e) => {
                         e.preventDefault();
                         e.stopPropagation();
-                      deleteBtn(button)
+                        deleteBtn(button)
                     });
                 });
 
@@ -988,7 +915,7 @@
         }
 
         const viewBtn = async (button) => {
-                     const id = button.getAttribute('data-id');
+            const id = button.getAttribute('data-id');
             localStorage.setItem('facilityId', id)
 
             await axios.get('https://health-care-facilities-backend.vercel.app/api/get-report', {
@@ -997,6 +924,7 @@
                 }
             }).then((res) => {
                 console.log(res.data);
+                const link = res.data.data.google_maps_link;
                 document.querySelector('.facility-name').innerHTML = res.data.data.organisation_name;
                 document.querySelector('.facility-type').innerHTML = `${res.data.data.facility_type.charAt(0).toUpperCase() + res.data.data.facility_type.slice(1)} , ${res.data.data.city} , ${res.data.data.state} , ${res.data.data.country}`;
                 document.querySelector('.facility-email').innerHTML = `<a href="mailto:${res.data.data.email}">${res.data.data.email}</a>`;
@@ -1018,21 +946,23 @@
                 if (open24Hours === 'yes') {
                     document.querySelector('.timing-box').innerHTML = `<p class="hours-24 mb-1">Open 24 Hours</p>`;
                 } else {
-                    const timeSlots = res.data.data.time_slots
+                  const timeSlots = res.data.data.time_slots;
 
-                    function formatTime(time) {
-                        let [hours, minutes] = time.split(":").map(Number);
-                        let period = hours >= 12 ? "PM" : "AM";
-                        hours = hours % 12 || 12; // Convert to 12-hour format
-                        return `${hours}:${minutes.toString().padStart(2, "0")} ${period}`;
-                    }
+                    if (timeSlots && timeSlots.length > 0) {
+                        function formatTime(time) {
+                            let [hours, minutes] = time.split(":").map(Number);
+                            let period = hours >= 12 ? "PM" : "AM";
+                            hours = hours % 12 || 12; // Convert to 12-hour format
+                            return `${hours}:${minutes.toString().padStart(2, "0")} ${period}`;
+                        }
 
-                    const openingTime = formatTime(timeSlots[0].start_time);
-                    const closingTime = formatTime(timeSlots[0].end_time);
+                        const openingTime = formatTime(timeSlots[0].start_time);
+                        const closingTime = formatTime(timeSlots[0].end_time);
 
-                    document.querySelector('.timing-box').innerHTML = `
-        <p class="hours-normal mb-1">Opens ${openingTime} - Closes ${closingTime}</p>
-    `;
+                        document.querySelector('.timing-box').innerHTML = `
+                    <p class="hours-normal mb-1">Opens ${openingTime} - Closes ${closingTime}</p>
+                `;
+                    } 
                 }
 
                 if (facilityAE === 'yes') {
@@ -1047,25 +977,36 @@
                 console.log(err);
             })
             // Show modal
-            const modalInstance = new bootstrap.Modal(modal);
-            modalInstance.show();
+             const modalElement = document.getElementById('viewFacilityModal')
+            const modalInstance = new bootstrap.Modal(modalElement);
+
+             modalElement.addEventListener('hidden.bs.modal', () => {
+                document.querySelector('.facility-name').innerHTML = "";
+                document.querySelector('.facility-type').innerHTML = "";
+                document.querySelector('.facility-email').innerHTML = "";
+                document.querySelector('.facility-phone').innerHTML = "";
+                document.querySelector('.facility-address').innerHTML = "";
+                document.querySelector('.timing-box').innerHTML = "";
+                document.querySelector('.facility-box').innerHTML = "";
+            });
+
         }
 
         // Edit Button 
         const editBtn = (button) => {
-             const id = button.getAttribute('data-id');
+            const id = button.getAttribute('data-id');
             localStorage.setItem('facilityId', id)
             location.href = "/admin-dashboard/edit-facilities.html";
         }
 
-         // Edit Button Delete Button
-            const deleteBtn = async (button) => {
-                  const id = button.getAttribute('data-id');
-                deleteFacilityId = id
+        // Edit Button Delete Button
+        const deleteBtn = async (button) => {
+            const id = button.getAttribute('data-id');
+            deleteFacilityId = id
 
-                const modal = new bootstrap.Modal(document.getElementById('deleteFacilityModal'));
-                modal.show();
-            }
+            const modal = new bootstrap.Modal(document.getElementById('deleteFacilityModal'));
+            modal.show();
+        }
 
 
         //  Search Function
@@ -1142,7 +1083,7 @@
                                     </td>
                 </tr>`;
             });
-            
+
 
             // Initialize view buttons
             const viewButtons = document.querySelectorAll('.view-facility-btn');
@@ -1165,8 +1106,8 @@
                     deleteBtn(button)
                 });
             });
-            
-                     // Get all delete buttons
+
+            // Get all delete buttons
             const editButtons = document.querySelectorAll('.edit-facility-btn');
 
             // Initialize delete buttons click handlers
@@ -1177,6 +1118,26 @@
             });
 
         }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const sortNewest = document.getElementById("sortNewest");
+            const sortOldest = document.getElementById("sortOldest");
+            const sortLabel = document.getElementById("sort-filter");
+
+            // Newest click event
+            sortNewest.addEventListener("click", function () {
+                sortLabel.innerHTML = `Sort by: <span style="font-weight: bold; color:black;">Newest</span>`;
+
+                console.log(sortLabel);
+            });
+
+            // Oldest click event
+            sortOldest.addEventListener("click", function () {
+                sortLabel.innerHTML = `Sort by: <span style="font-weight: bold; color:black;">Oldest</span>`;
+                console.log(sortLabel);
+            });
+        });
+
 
         function renderPagination(total, pageSize, currentPage) {
             const pagination = document.getElementById("pagination");
