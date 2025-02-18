@@ -940,17 +940,17 @@
                 const open24Hours = res.data.data.is_24_hours;
  
 
-                // Assuming `start_time` and `end_time` are in decimal form
+                
                 const startTime = res.data.data.time_slots[0].start_time;
                 const endTime = res.data.data.time_slots[0].end_time;
 
-                // Function to convert decimal to time format
+            
                 function convertDecimalToTime(decimalString) {
-                    let decimal = parseFloat(decimalString); // Convert string to number
-                    let totalMinutes = Math.round(decimal * 24 * 60); // Convert days to minutes
-                    let hours = Math.floor(totalMinutes / 60); // Extract hours
-                    let minutes = totalMinutes % 60; // Extract minutes
-                    let ampm = hours >= 12 ? "PM" : "AM"; // Determine AM or PM
+                    let decimal = parseFloat(decimalString); 
+                    let totalMinutes = Math.round(decimal * 24 * 60);
+                    let hours = Math.floor(totalMinutes / 60); 
+                    let minutes = totalMinutes % 60; 
+                    let ampm = hours >= 12 ? "PM" : "AM";
 
                     // Convert 24-hour format to 12-hour format
                     hours = hours % 12 || 12;
