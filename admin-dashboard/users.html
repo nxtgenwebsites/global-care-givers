@@ -969,7 +969,7 @@
                       document.querySelector('.timing-box').innerHTML = `<p class="hours-24 mb-1">Open 24 Hours</p>`;
                     }else{
                      document.querySelector('.timing-box').innerHTML = `
-                    <p class="hours-normal mb-1">Opens ${openTime} - Closes ${openTime}</p>
+                    <p class="hours-normal mb-1">Opens ${openTime} - Closes ${closeTime}</p>
                 `;
                     }
                 }
@@ -992,6 +992,9 @@
 
                         const openingTime = formatTime(timeSlots[0].start_time);
                         const closingTime = formatTime(timeSlots[0].end_time);
+
+                        console.log(timeSlots[0].start_time);
+                        console.log(timeSlots[0].end_time);
 
                         document.querySelector('.timing-box').innerHTML = `
                     <p class="hours-normal mb-1">Opens ${openingTime} - Closes ${closingTime}</p>
