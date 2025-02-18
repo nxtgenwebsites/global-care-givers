@@ -623,7 +623,7 @@
 
 
     <script>
-
+        let time_slots  = [];
 
         const id = localStorage.getItem('u_id');
 
@@ -633,7 +633,6 @@
                 'id': id
             }
         }).then((res) => {
-            console.log(res.data.user);
             const userName = document.querySelectorAll('.user-name');
             const email = document.getElementById('user-role');
 
@@ -793,11 +792,10 @@
                     });
                 }
 
-                console.log("Submitting form data:", JSON.stringify(formData, null, 2)); // Debugging output
+                console.log("Submitting form data:", JSON.stringify(formData, null, 2));
 
                 try {
                     const response = await axios.post('https://health-care-facilities-backend.vercel.app/api/save', formData);
-                    console.log("Response:", response.data);
 
                     // Reload after submission
                     setTimeout(() => {
@@ -857,22 +855,25 @@
             });
 
             function uploadFile(file) {
-                const formData = new FormData();
+                 const formData = new FormData();
                 formData.append("file", file);
 
                 axios.post("https://health-care-facilities-backend.vercel.app/api/upload", formData, {
                     headers: { "Content-Type": "multipart/form-data" }
                 })
                     .then(response => {
-
                         if (!response.data.dropdownData || response.data.dropdownData.length < 2) {
                             throw new Error("Invalid API response format");
                         }
 
                         const [headers, ...rows] = response.data.dropdownData; // Extract headers and rows
 
-                        console.log("Extracted Headers:", headers);
-                        console.log("Extracted Rows:", rows);
+                        time_slots  = rows.map(item => ({
+                            day: 'all',
+                            start_time: `${item[13]}`,
+                            end_time: `${item[14]}`
+                        }));
+
 
                         if (!Array.isArray(headers) || headers.length === 0) {
                             throw new Error("Invalid headers format");
@@ -884,16 +885,21 @@
 
                         // Convert rows into an array of objects dynamically
                         data = rows.map((row, rowIndex) => {
-                            return headers.reduce((obj, key, colIndex) => {
+                            const obj = headers.reduce((obj, key, colIndex) => {
                                 obj[key] = row[colIndex] !== undefined ? row[colIndex] : null;
                                 return obj;
                             }, {});
+
+                            // Add time_slots  to each entry in the data array
+                            obj.time_slots  = time_slots [rowIndex];
+                            return obj;
                         });
+
                     })
                     .catch(error => {
                         console.error("File upload failed:", error.response?.data || error.message);
                         alert("Upload failed! " + (error.response?.data?.message || "Please try again."));
-                        location.reload()
+                        location.reload();
                     });
             }
         });
@@ -1034,6 +1040,7 @@
             }).catch((err) => {
                 console.log(err);
             })
+            // console.log(data);
             showThankYouMessage(true); // Pass true for bulk upload
         }
 
