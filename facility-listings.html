@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HealthCare Providers</title>
+    <link rel="shortcut icon" href="assets/icons/logo.svg" type="image/x-icon" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="admin-dashboard/css/main.css">
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/responsive-1.css" />
+    <link rel="stylesheet" href="css/facility.css" />
+</head>
+
+<body>
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand" href="/">
+                <img src="assets/images/logo.png" width="145" class="img-fluid" alt="logo">
+            </a>
+
+            <!-- Mobile Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul
+                    class="navbar-nav align-items-lg-center justify-content-lg-center flex-lg-grow-1 mb-2 mb-lg-0 mt-lg-0 mt-4">
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 text-primary" href="#">Emergency</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 text-primary" href="#">Community</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 text-primary" href="#" id="registerBtn">Register</a>
+                    </li>
+                    <li class="nav-item  d-lg-none" id="logout-btn-container">
+                        <button
+                            class="dropdown-item py-2 text-primary fw-semibold logout-btn nav-link mx-2 text-primary"
+                            id="logout-btn2">
+                            Logout
+                        </button>
+                    </li>
+                </ul>
+
+                <!-- Login Button -->
+                <div class="d-flex ms-lg-auto" id="login-btn">
+                    <a href="login.html" class="btn primary-btn">Login</a>
+                </div>
+
+                <div class="d-flex ms-lg-auto d-none" id="profile-btn">
+                    <div class="dropdown d-none d-lg-block">
+                        <div class="dropdown-toggle d-flex align-items-center gap-2 show" data-bs-toggle="dropdown"
+                            style="cursor: pointer;" aria-expanded="true">
+                            <img src="assets/1.png" alt="" class="user-avatar">
+                            <span class=" d-inline user-name"></span>
+                        </div>
+                        <ul class="dropdown-menu shadow"
+                            style="width: 313px; padding: 16px; border-radius: 0px; border: none; position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(0px, 42.2222px);"
+                            data-popper-placement="bottom-end">
+                            <li class="dropdown-header p-0 mb-3">
+                                <div class="d-flex gap-3 align-items-center">
+                                    <img src="assets/1.png" width="30" class="img-fluid" alt=""
+                                        style="width: 87px; height: 87px; border-radius: 50%;">
+                                    <div>
+                                        <h6 class="mb-0 user-name"></h6>
+                                        <small class="text-muted" id="user-role"></small>
+                                    </div>
+                                </div>
+                            </li>
+                            <div class="border-top mt-2 pt-2">
+                                <button class="dropdown-item py-2 text-primary fw-semibold" id="logout-btn">
+                                    Logout
+                                </button>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- Navbar End -->
+
+    <!-- Main Content Start -->
+    <div class="main-content">
+        <div class="container">
+            <!-- Search & Filter  -->
+            <div class="d-flex align-items-center justify-content-lg-between seach-filter">
+                <div class="search-box">
+                    <input type="text" id="searchInput" class="form-control" placeholder="Search">
+                </div>
+                <div class="dropdown sort-filter">
+                    <button class="btn btn-outline-secondary dropdown-toggle" id="sort-filter" type="button"
+                        data-bs-toggle="dropdown">
+                        Sort by : <span style="font-weight: bold; color:black;">Newest</span>
+                    </button>
+                    <ul class="dropdown-menu w-100">
+                        <li class="dropdown-item" id="sortNewest">Newest</li>
+                        <li class="dropdown-item" id="sortOldest">Oldest</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Facility Container  -->
+            <div class="facility-container mt-5">
+                <div class="row g-5" id="facility-container">
+
+                </div>
+            </div>
+            <!-- Pagination  -->
+            <div class="d-flex flex-column-reverse flex-sm-row justify-content-between align-items-center mt-5">
+                <div class="text-muted pagination-info">
+                    Showing data 1 to 4 of 500 entries
+                </div>
+                <div class="d-flex justify-content-center align-items-center gap-4">
+                    <nav>
+                        <ul class="pagination mb-0" id="pagination">
+                        </ul>
+                    </nav>
+                    <select id="pageSize" class="form-select w-auto" onchange="getData(1)">
+                        <option value="10" selected>10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  Main Content End -->
+    <!-- Share Popup  Start -->
+    <div class="popup d-none justify-content-center align-items-center" id="share-popup">
+        <div class="share-box bg-white rounded position-relative ">
+            <div>
+                <h4>Share</h4>
+            </div>
+            <div class="d-flex flex-column social-button">
+                <button>
+                    <img src="assets/images/facebook.png" alt="Facebook">
+                    <span class="mx-3">Facebook</span>
+                </button>
+                <button>
+                    <img src="assets/images/whats app.png" alt="WhatsApp">
+                    <span class="mx-3">WhatsApp</span>
+                </button>
+                <button>
+                    <img src="assets/images/x.png" alt="X">
+                    <span class="mx-3">X</span>
+                </button>
+                <button>
+                    <img src="assets/images/email.png" alt="Email">
+                    <span class="mx-3">Email</span>
+                </button>
+            </div>
+            <div class="close-btn">
+                <button class="btn border-0" type="submit" id="share-close"><img src="assets/icons/close.svg"
+                        alt="close"></button>
+            </div>
+        </div>
+    </div>
+    <!-- Share Popup  End -->
+    <!-- Footer start -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row row-gap-3">
+                <div class="col-lg-5 col-md-6 text-md-start text-center">
+                    <div class="footer-card">
+                        <div class="footer-img">
+                            <a href="">
+                                <img src="assets/images/logo.png" width="150" alt="" class="img-fluid">
+                            </a>
+                        </div>
+                        <div class="footer-content">
+                            <p class="mt-4 mb-3">Join our newsletter for latest updates <br>
+                                and features. You don't want to miss it!</p>
+                            <div class="footer-subscribe position-relative w-100">
+                                <input type="email" class="" placeholder="Enter your email here">
+                                <button type="submit" class="btn">Subscribe</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 text-md-start text-center">
+                    <ul class="navbar-nav">
+                        <h5 class="fw-bold footer-heading text-primary">Home</h5>
+                        <li class="nav-item"><a href="emergency.html" class="nav-link">Emergency</a></li>
+                        <li class="nav-item"><a href="login.html" class="nav-link">Symptoms</a></li>
+                        <li class="nav-item"><a href="login.html" class="nav-link">Remote Care</a></li>
+                        <li class="nav-item"><a href="login.html" class="nav-link">Monitors</a></li>
+                        <li class="nav-item"><a href="login.html" class="nav-link">Health Info</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Blogs</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 text-md-start text-center">
+                    <ul class="navbar-nav">
+                        <h5 class="fw-bold footer-heading text-primary">Communities</h5>
+                        <li class="nav-item"><a href="/user-dashboard/hospitals.html" class="nav-link">Hospitals</a>
+                        </li>
+                        <li class="nav-item"><a href="#" class="nav-link">Pharmacy</a></li>
+                        <li class="nav-item"><a href="/user-dashboard/Chemists.html" class="nav-link">Community Digital
+                                Health Assistants</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Tech Support</a></li>
+                        <li class="nav-item"><a href="/user-dashboard/complaints.html" class="nav-link">Complaints</a>
+                        </li>
+                        <li class="nav-item"><a href="/user-dashboard/reviews.html" class="nav-link">Reviews</a></li>
+                        <li class="nav-item"><a href="/user-dashboard/privacy-policy.html" class="nav-link">Privacy
+                                Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 text-md-start text-center">
+                    <ul class="navbar-nav">
+                        <h5 class="fw-bold footer-heading text-primary">Profile</h5>
+                        <li class="nav-item"><a href="login.html" class="nav-link">Sponsorship</a></li>
+                        <li class="nav-item"><a href="login.html" class="nav-link">Print</a></li>
+                        <li class="nav-item"><a href="login.html" class="nav-link">Password & Pin</a></li>
+                        <li class="nav-item"><a href="login.html" class="nav-link">Access Control</a></li>
+                        <li class="nav-item"><a href="login.html" class="nav-link">National Policies</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Share link</a></li>
+                        <li class="nav-item"><a href="login.html" class="nav-link">Delete Account</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <hr class="mt-5 mb-2">
+        <div class="copyright-section d-flex align-items-center">
+            <p class="font-size">© Copyright 2025 HealthMonitor. All rights reserved</p>
+            <p class="ms-md-auto me-3 font-size">Share on socials</p>
+            <div class="social-media">
+                <img src="assets/icons/X.svg" alt="img" class="">
+                <img src="assets/icons/Facebook.svg" alt="img" class="">
+                <img src="assets/icons/Instagram.svg" alt="img" class="">
+                <img src="assets/icons/Telegram.svg" alt="img" class="">
+            </div>
+        </div>
+
+    </footer>
+    <!-- Footer end -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.full.min.js"></script>
+    <script>
+        const facilityContainer = document.getElementById('facility-container');
+
+        let totalRecords = 0;
+        let currentPage = 1;
+        let allData = [];
+        let deleteFacilityId;
+
+        async function getData(page) {
+            const pageSize = document.getElementById("pageSize").value;
+            currentPage = page;
+
+
+            try {
+                const res = await axios.get('https://health-care-facilities-backend.vercel.app/api/get-reports');
+                allData = res.data.data;
+                totalRecords = allData.length;
+
+                console.log(allData);
+                renderCard(allData);
+
+                const start = (page - 1) * pageSize;
+                const end = start + parseInt(pageSize);
+                const paginatedData = allData.slice(start, end);
+
+                document.querySelector(".pagination-info").textContent = `Showing data ${start + 1} to ${end} of ${totalRecords} entries`;
+
+                renderPagination(totalRecords, pageSize, page);
+
+                facilityContainer.innerHTML = "";
+
+                paginatedData.forEach((item) => {
+                    console.log(item);
+                    let timingHTML = '';
+                    let facilityAEHTML = '';
+                    const timeSlots = item.time_slots;
+                    console.log(timeSlots);
+
+                    // Handle 24-hour timing
+                    const startTime = item.time_slots[0]?.start_time;
+                    const endTime = item.time_slots[0]?.end_time;
+
+                    function convertDecimalToTime(decimalString) {
+                        let decimal = parseFloat(decimalString);
+                        let totalMinutes = Math.round(decimal * 24 * 60);
+                        let hours = Math.floor(totalMinutes / 60);
+                        let minutes = totalMinutes % 60;
+                        let ampm = hours >= 12 ? "PM" : "AM";
+
+                        // Convert 24-hour format to 12-hour format
+                        hours = hours % 12 || 12;
+
+                        // Format time as HH:MM AM/PM
+                        return `${hours}:${minutes.toString().padStart(2, "0")} ${ampm}`;
+                    }
+
+                    // Convert `start_time` and `end_time` to time format
+                    let openTime = convertDecimalToTime(startTime);
+                    let closeTime = convertDecimalToTime(endTime);
+
+                    if (item.is_24_hours === 'no') {
+                        const timeSlots = item.time_slots;
+                        if (timeSlots && timeSlots.length > 0) {
+                            function formatTime(time) {
+                                let [hours, minutes] = time.split(":").map(Number);
+                                let period = hours >= 12 ? "PM" : "AM";
+                                hours = hours % 12 || 12; // Convert to 12-hour format
+                                return `${hours}:${minutes.toString().padStart(2, "0")} ${period}`;
+                            }
+
+                            const openingTime = formatTime(timeSlots[0].start_time);
+                            const closingTime = formatTime(timeSlots[0].end_time);
+
+                            console.log(timeSlots[0].start_time);
+                            console.log(timeSlots[0].end_time);
+
+                            timingHTML = `<p class="hours-normal mb-1">Opens ${openingTime} - Closes ${closingTime}</p>`;
+                        } else if (item.is_24_hours === 'no') {
+
+                        }
+                    } else {
+                        if (startTime) {
+                            if (startTime === '-') {
+                                timingHTML = `<p class="hours-24 mb-1">Open 24 Hours</p>`;
+                            }
+                            else {
+                                timingHTML = `<p class="hours-normal mb-1">Opens ${openTime} - Closes ${closeTime}</p>`;
+                            }
+                        } else {
+                            if (item.is_24_hours === 'yes') {
+                                timingHTML = `<p class="hours-24 mb-1">Open 24 Hours</p>`;
+                            }
+                        }
+                    }
+
+                    // Handle A&E facility
+                    if (item.facility_a_e === 'yes') {
+                        facilityAEHTML = `<p class="facility-ae mb-1">A&E Facility</p>`;
+                    }
+
+                    facilityContainer.innerHTML += `
+        <div class="col-12 p-0 col-sm-6 col-md-4 px-3 h-100">
+            <div class="facility-card p-4">
+                <div class="text-center mb-3">
+                    <h2 class="facility-name mb-1">${item.organisation_name}</h2>
+                    <p class="facility-type mb-3">${item.facility_type.charAt(0).toUpperCase() + item.facility_type.slice(1)} , ${item.city} , ${item.state} , ${item.country}</p>
+                </div>
+
+                <div class="d-flex justify-content-center gap-2 mb-4">
+                    <button class="btn btn-light px-3 py-1 rounded-pill share-btn">
+                        <i class="bi bi-share"></i> Share
+                    </button>
+                        <a href="${item.google_maps_link}" target="_blank">
+                <button class="btn btn-light px-3 py-1 rounded-pill directions-btn">
+                   <i class="bi bi-geo-alt"></i> Directions
+                   </button>
+                  </a>
+                </div>
+
+                <div class="text-center mb-3">
+                    <h6 class="address-label mb-2">Address</h6>
+                    <p class="facility-address mb-3">${item.address ? `${item.address}, ` : ""}
+                        ${item.zip_code ? `${item.zip_code}, ` : ""}
+                        ${item.city}, ${item.state}, ${item.country}</p>
+                </div>
+
+                <div class="text-center mb-3">
+                    <div class="facility-email mb-1"><a href="mailto:${item.email}">${item.email}</a></div>
+                    <div class="facility-phone"><a href="tel:${item.phone}">${item.phone}</a></div>
+                </div>
+
+                <div class="text-center mb-3 facility-box">
+                    ${facilityAEHTML}
+                </div>
+
+                <div class="text-center timing-box">
+                    ${timingHTML}
+                </div>
+            </div>
+        </div>
+    `;
+                    // Show Share Popup 
+                    const shareBtn = document.querySelectorAll('.share-btn');
+                    shareBtn.forEach((button) => {
+                        button.addEventListener(('click'), () => {
+                            shareFun()
+                        })
+                    })
+
+                });
+
+                // Get all delete buttons
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        }
+
+        //  Search Function
+        document.getElementById("searchInput").addEventListener("input", function () {
+            let query = this.value.toLowerCase();
+            let filteredData = allData.filter(item =>
+                item.organisation_name.toLowerCase().includes(query) ||
+                item.email.toLowerCase().includes(query)
+            );
+            renderCard(filteredData);
+        });
+
+        //  Sorting Function
+        document.getElementById("sortNewest").addEventListener("click", function () {
+            let sortedData = [...allData].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            renderCard(sortedData);
+        });
+
+        document.getElementById("sortOldest").addEventListener("click", function () {
+            let sortedData = [...allData].sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+            renderCard(sortedData);
+        });
+
+        //  Table Render Function
+        function renderCard(data) {
+            facilityContainer.innerHTML = ''
+            data.forEach((item) => {
+                console.log(item);
+                let timingHTML = '';
+                let facilityAEHTML = '';
+                const timeSlots = item.time_slots;
+
+                // Handle 24-hour timing
+                const startTime = item.time_slots[0]?.start_time;
+                const endTime = item.time_slots[0]?.end_time;
+
+                function convertDecimalToTime(decimalString) {
+                    let decimal = parseFloat(decimalString);
+                    let totalMinutes = Math.round(decimal * 24 * 60);
+                    let hours = Math.floor(totalMinutes / 60);
+                    let minutes = totalMinutes % 60;
+                    let ampm = hours >= 12 ? "PM" : "AM";
+
+                    // Convert 24-hour format to 12-hour format
+                    hours = hours % 12 || 12;
+
+                    // Format time as HH:MM AM/PM
+                    return `${hours}:${minutes.toString().padStart(2, "0")} ${ampm}`;
+                }
+
+                // Convert `start_time` and `end_time` to time format
+                let openTime = convertDecimalToTime(startTime);
+                let closeTime = convertDecimalToTime(endTime);
+
+                if (item.is_24_hours === 'no') {
+                    const timeSlots = item.time_slots;
+                    if (timeSlots && timeSlots.length > 0) {
+                        function formatTime(time) {
+                            let [hours, minutes] = time.split(":").map(Number);
+                            let period = hours >= 12 ? "PM" : "AM";
+                            hours = hours % 12 || 12; // Convert to 12-hour format
+                            return `${hours}:${minutes.toString().padStart(2, "0")} ${period}`;
+                        }
+
+                        const openingTime = formatTime(timeSlots[0].start_time);
+                        const closingTime = formatTime(timeSlots[0].end_time);
+
+                        console.log(timeSlots[0].start_time);
+                        console.log(timeSlots[0].end_time);
+
+                        timingHTML = `<p class="hours-normal mb-1">Opens ${openingTime} - Closes ${closingTime}</p>`;
+                    } else if (item.is_24_hours === 'no') {
+
+                    }
+                } else {
+                    if (startTime) {
+                        if (startTime === '-') {
+                            timingHTML = `<p class="hours-24 mb-1">Open 24 Hours</p>`;
+                        }
+                        else {
+                            timingHTML = `<p class="hours-normal mb-1">Opens ${openTime} - Closes ${closeTime}</p>`;
+                        }
+                    } else {
+                        if (item.is_24_hours === 'yes') {
+                            timingHTML = `<p class="hours-24 mb-1">Open 24 Hours</p>`;
+                        }
+                    }
+                }
+
+                // Handle A&E facility
+                if (item.facility_a_e === 'yes') {
+                    facilityAEHTML = `<p class="facility-ae mb-1">A&E Facility</p>`;
+                }
+
+                facilityContainer.innerHTML += `
+        <div class="col-12 p-0 col-sm-6 col-md-4 px-3 h-100">
+            <div class="facility-card p-4">
+                <div class="text-center mb-3">
+                    <h2 class="facility-name mb-1">${item.organisation_name}</h2>
+                    <p class="facility-type mb-3">${item.facility_type.charAt(0).toUpperCase() + item.facility_type.slice(1)} , ${item.city} , ${item.state} , ${item.country}</p>
+                </div>
+
+                <div class="d-flex justify-content-center gap-2 mb-4">
+                    <button class="btn btn-light px-3 py-1 rounded-pill share-btn">
+                        <i class="bi bi-share"></i> Share
+                    </button>
+                     <a href="${item.google_maps_link}" target="_blank">
+                <button class="btn btn-light px-3 py-1 rounded-pill directions-btn">
+                   <i class="bi bi-geo-alt"></i> Directions
+                   </button>
+                  </a>
+                </div>
+
+                <div class="text-center mb-3">
+                    <h6 class="address-label mb-2">Address</h6>
+                    <p class="facility-address mb-3">${item.address ? `${item.address}, ` : ""}
+                        ${item.zip_code ? `${item.zip_code}, ` : ""}
+                        ${item.city}, ${item.state}, ${item.country}</p>
+                </div>
+
+                <div class="text-center mb-3">
+                    <div class="facility-email mb-1"><a href="mailto:${item.email}">${item.email}</a></div>
+                    <div class="facility-phone"><a href="tel:${item.phone}">${item.phone}</a></div>
+                </div>
+
+                <div class="text-center mb-3 facility-box">
+                    ${facilityAEHTML}
+                </div>
+
+                <div class="text-center timing-box">
+                    ${timingHTML}
+                </div>
+            </div>
+        </div>
+    `;
+                // Show Share Popup 
+                const shareBtn = document.querySelectorAll('.share-btn');
+                shareBtn.forEach((button) => {
+                    button.addEventListener(('click'), () => {
+                        shareFun()
+                    })
+                })
+            });
+
+        }
+
+
+        const sharePopup = document.getElementById('share-popup');
+        const shareCloseBtn = document.getElementById('share-close');
+
+        shareCloseBtn.addEventListener(('click') , () => {
+                sharePopup.classList.add('d-none');
+        })
+
+        sharePopup.addEventListener(('click') , (e) => {
+            if (e.target === sharePopup) {
+                sharePopup.classList.add('d-none');
+            }
+        })
+
+        const shareFun = () => {
+            sharePopup.classList.remove('d-none');
+        }
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const sortNewest = document.getElementById("sortNewest");
+            const sortOldest = document.getElementById("sortOldest");
+            const sortLabel = document.getElementById("sort-filter");
+
+            // Newest click event
+            sortNewest.addEventListener("click", function () {
+                sortLabel.innerHTML = `Sort by: <span style="font-weight: bold; color:black;">Newest</span>`;
+            });
+
+            // Oldest click event
+            sortOldest.addEventListener("click", function () {
+                sortLabel.innerHTML = `Sort by: <span style="font-weight: bold; color:black;">Oldest</span>`;
+            });
+        });
+
+
+        function renderPagination(total, pageSize, currentPage) {
+            const pagination = document.getElementById("pagination");
+            pagination.innerHTML = "";
+
+            const totalPages = Math.ceil(total / pageSize);
+            if (totalPages <= 1) return;
+
+            // Previous button
+            pagination.innerHTML += `
+        <li class="page-item ${currentPage === 1 ? 'd-none' : ''}">
+            <a class="page-link" href="#" onclick="getData(${currentPage - 1})">Previous</a>
+        </li>
+    `;
+
+            // First page
+            pagination.innerHTML += createPageItem(1, currentPage);
+
+            if (totalPages > 4 && currentPage > 3) {
+                pagination.innerHTML += `<li class="page-item disabled"><span class="page-link">...</span></li>`;
+            }
+
+            let start = Math.max(2, currentPage - 1);
+            let end = Math.min(totalPages - 1, currentPage + 1);
+
+            for (let i = start; i <= end; i++) {
+                pagination.innerHTML += createPageItem(i, currentPage);
+            }
+
+            if (totalPages > 4 && currentPage < totalPages - 2) {
+                pagination.innerHTML += `<li class="page-item disabled"><span class="page-link">...</span></li>`;
+            }
+
+            if (totalPages > 1) {
+                pagination.innerHTML += createPageItem(totalPages, currentPage);
+            }
+
+            // Next button
+            pagination.innerHTML += `
+        <li class="page-item ${currentPage === totalPages ? 'd-none' : ''}">
+            <a class="page-link" href="#" onclick="getData(${currentPage + 1})">Next</a>
+        </li>
+    `;
+        }
+
+        function createPageItem(page, currentPage) {
+            return `
+        <li class="page-item ${page === currentPage ? 'active' : ''}">
+            <a class="page-link" href="#" onclick="getData(${page})">${page}</a>
+        </li>
+    `;
+        }
+
+        getData(1)
+
+    </script>
+</body>
+
+</html>

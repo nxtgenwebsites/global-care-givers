@@ -1909,3 +1909,20 @@ textarea.form-control {
     align-items: center;
     justify-content: center;
 }
+
+.password-container button{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+  background: transparent;
+  border: none !important;
+  padding: 2px 5px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #0959a3;
+}
+
+.password-container button:hover{
+  text-decoration: underline;
+}

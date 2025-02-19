@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HealthCare Providers</title>
     <link rel="shortcut icon" href="assets/icons/logo.svg" type="image/x-icon" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/25.2.1/build/css/intlTelInput.min.css"
+        integrity="sha512-X3pJz9m4oT4uHCYS6UjxVdWk1yxSJJIJOJMIkf7TjPpb1BzugjiFyHu7WsXQvMMMZTnGUA9Q/GyxxCWNDZpdHA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/swiper.css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="admin-dashboard/css/main.css">
@@ -47,8 +51,13 @@
                     <li class="nav-item">
                         <a class="nav-link mx-2 text-primary" href="#" id="registerBtn">Register</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 text-primary" href="facility-listings.html" id="registerBtn">Facility Listings</a>
+                    </li>
                     <li class="nav-item  d-lg-none" id="logout-btn-container">
-                        <button class="dropdown-item py-2 text-primary fw-semibold logout-btn nav-link mx-2 text-primary" id="logout-btn2">
+                        <button
+                            class="dropdown-item py-2 text-primary fw-semibold logout-btn nav-link mx-2 text-primary"
+                            id="logout-btn2">
                             Logout
                         </button>
                     </li>
@@ -97,7 +106,8 @@
         <div class="row mb-4">
             <div class="col-12 text-center heading-text">
                 <h2 class="page-head">HealthCare <span>Providers</span></h2>
-                <p class="heading-paraf">Register your healthcare facility using either bulk upload or step-by-step form</p>
+                <p class="heading-paraf">Register your healthcare facility using either bulk upload or step-by-step form
+                </p>
             </div>
         </div>
 
@@ -408,7 +418,7 @@
                                             placeholder="Email Address*" required>
                                     </div>
                                     <div class="mb-3">
-                                        <input type="tel" class="form-control" name="phone_number"
+                                        <input type="tel" id="phone" class="form-control" name="phone_number"
                                             placeholder="Phone Number*" required>
                                     </div>
                                     <div class="text-end">
@@ -525,7 +535,7 @@
                 <i class="fas fa-check-circle text-success" style="font-size: 48px;"></i>
             </div>
             <h3 class="text-success mb-3">Thank You!</h3>
-            <p class="text-muted">Your information has been successfully submitted.</p>
+            <p class="text-muted">We have successfully registered your Health Care Facility into our system.</p>
             <button class="btn btn-primary mt-3 uploadbtn" id="submit-another">Submit Another</button>
         </div>
     </div>
@@ -616,23 +626,37 @@
         </div>
     </div> -->
     <!-- Demo Video End -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/25.2.1/build/js/intlTelInput.min.js"
+        integrity="sha512-IkaM8IicdlJR0eLhPoAHBeDXxQ8QTjVfo7O9hwowr8gTmxZOlV0Z51HFYIDmftcLmdejUlGam6uYVU3k7xP/4A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.full.min.js"></script>
-
-
     <script>
-        let time_slots  = [];
+        let user = '';
 
+        const input = document.querySelector("#phone");
+        const iti = window.intlTelInput(input, {
+            initialCountry: "auto",
+            geoIpLookup: callback => {
+                fetch('https://ipapi.co/json')
+                    .then(res => res.json())
+                    .then(data => callback(data.country_code))
+                    .catch(() => callback('us'));
+            },
+            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.19/build/js/utils.js",
+        });
+
+        let time_slots = [];
         const id = localStorage.getItem('u_id');
-
         console.log(id);
         axios.get('https://health-care-facilities-backend.vercel.app/api/get-user', {
             headers: {
                 'id': id
             }
         }).then((res) => {
+            user = res.data.user.name;
             const userName = document.querySelectorAll('.user-name');
             const email = document.getElementById('user-role');
 
@@ -657,11 +681,11 @@
             profileBtn.classList.remove('d-none');
             logoutBtnContainer.classList.remove('d-none');
         } else {
-            location.href= '/login.html';
+            location.href = '/login.html';
             loginBtn.classList.remove('d-none');
             profileBtn.classList.add('d-none');
             logoutBtnContainer.classList.add('d-none');
-            
+
         }
 
         loginOut.addEventListener(('click'), () => {
@@ -717,7 +741,7 @@
             // Function to copy the start and end time of the first day to all other days
             function setAllTimes(event) {
                 event.preventDefault();
-                       // Get first available start and end time (assuming first row is reference)
+                // Get first available start and end time (assuming first row is reference)
                 let firstStartTime = document.querySelector(".start-time").value;
                 let firstEndTime = document.querySelector(".end-time").value;
 
@@ -776,8 +800,10 @@
                     google_maps_link: document.querySelector('input[name="google_map_link"]').value,
                     is_24_hours: document.querySelector('input[name="is_24hours"]:checked').value,
                     facility_a_e: document.querySelector('input[name="ae_available"]:checked').value,
+                    user: user,
                     time_slots: []
                 };
+
 
                 // Only add time slots if the facility is NOT 24 hours
                 if (formData.is_24_hours === 'no') {
@@ -855,8 +881,9 @@
             });
 
             function uploadFile(file) {
-                 const formData = new FormData();
+                const formData = new FormData();
                 formData.append("file", file);
+                formData.append("user", user);
 
                 axios.post("https://health-care-facilities-backend.vercel.app/api/upload", formData, {
                     headers: { "Content-Type": "multipart/form-data" }
@@ -868,7 +895,7 @@
 
                         const [headers, ...rows] = response.data.dropdownData; // Extract headers and rows
 
-                        time_slots  = rows.map(item => ({
+                        time_slots = rows.map(item => ({
                             day: 'all',
                             start_time: `${item[13]}`,
                             end_time: `${item[14]}`
@@ -883,15 +910,18 @@
                             throw new Error("No data rows found");
                         }
 
-                        // Convert rows into an array of objects dynamically
                         data = rows.map((row, rowIndex) => {
                             const obj = headers.reduce((obj, key, colIndex) => {
                                 obj[key] = row[colIndex] !== undefined ? row[colIndex] : null;
                                 return obj;
                             }, {});
 
-                            // Add time_slots  to each entry in the data array
-                            obj.time_slots  = time_slots [rowIndex];
+                            // Add time_slots to each entry in the data array
+                            obj.time_slots = time_slots[rowIndex];
+
+                            // Add the user field to each object
+                            obj.user = user;
+
                             return obj;
                         });
 
@@ -938,7 +968,7 @@
         }
 
         function updateFilePreview(file) {
-            const fileSize = (file.size / (1024 * 1024)).toFixed(2); 
+            const fileSize = (file.size / (1024 * 1024)).toFixed(2);
             dragArea.innerHTML = `
         <div class="text-center py-3">
             <div class="mb-2">
@@ -1040,7 +1070,6 @@
             }).catch((err) => {
                 console.log(err);
             })
-            // console.log(data);
             showThankYouMessage(true); // Pass true for bulk upload
         }
 

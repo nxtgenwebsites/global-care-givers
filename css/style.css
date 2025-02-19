@@ -520,3 +520,15 @@ footer a{
   color: #9197B3 !important;
 }
 /* Footer end */
+
+#phone {
+  width: 100% !important;
+}
+
+.iti--inline-dropdown {
+    width: 100% !important;
+}
+
+.iti__search-input {
+  display: none !important;
+}
