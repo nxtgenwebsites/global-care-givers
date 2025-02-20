@@ -391,18 +391,24 @@ th {
 
 .facilities-table th:nth-child(3),
 .facilities-table td:nth-child(3) {
-    width: 20% !important;
+    width: 18% !important;
     text-align: center;
 }
 
 .facilities-table th:nth-child(4),
 .facilities-table td:nth-child(4) {
-    width: 30%;
+    width: 25%;
     padding-left: 24px;
 }
 
 .facilities-table th:nth-child(5),
 .facilities-table td:nth-child(5) {
+    width: 15%;
+    padding-left: 24px;
+}
+
+.facilities-table th:nth-child(6),
+.facilities-table td:nth-child(6) {
     width: 20%;
     text-align: center;
 }
