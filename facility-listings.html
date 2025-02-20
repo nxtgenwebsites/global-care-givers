@@ -21,7 +21,7 @@
         <div class="container">
             <!-- Logo -->
             <a class="navbar-brand" href="/">
-                <img src="assets/images/logo.png" width="145" class="img-fluid" alt="logo">
+                <img src="assets/images/logo.png" width="145" class="img-fluid logo" alt="logo">
             </a>
 
             <!-- Mobile Toggle Button -->
@@ -43,6 +43,9 @@
                     <li class="nav-item">
                         <a class="nav-link mx-2 text-primary" href="#" id="registerBtn">Register</a>
                     </li>
+                                <li class="nav-item">
+                                    <a class="nav-link mx-2 text-primary" href="facility-listings.html" id="registerBtn">Facility Listings</a>
+                                </li>
                     <li class="nav-item  d-lg-none" id="logout-btn-container">
                         <button
                             class="dropdown-item py-2 text-primary fw-semibold logout-btn nav-link mx-2 text-primary"
@@ -177,7 +180,7 @@
                     <div class="footer-card">
                         <div class="footer-img">
                             <a href="">
-                                <img src="assets/images/logo.png" width="150" alt="" class="img-fluid">
+                                <img src="assets/images/logo.png" width="150" alt="" class="img-fluid logo">
                             </a>
                         </div>
                         <div class="footer-content">
@@ -250,6 +253,59 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.full.min.js"></script>
     <script>
+
+            let time_slots = [];
+            const id = localStorage.getItem('u_id');
+            console.log(id);
+            axios.get('https://health-care-facilities-backend.vercel.app/api/get-user', {
+                headers: {
+                    'id': id
+                }
+            }).then((res) => {
+                user = res.data.user.name;
+                const userName = document.querySelectorAll('.user-name');
+                const email = document.getElementById('user-role');
+
+                userName.forEach((name) => {
+                    name.innerHTML = `${res.data.user.name} ${res.data.user.last_name}`;
+                })
+
+                email.innerHTML = res.data.user.role
+
+            }).catch((err) => {
+                console.log(err);
+            })
+
+            const isLoginIn = localStorage.getItem('login');
+            const loginBtn = document.getElementById('login-btn');
+            const loginOut = document.getElementById('logout-btn');
+            const loginOut2 = document.getElementById('logout-btn2');
+            const profileBtn = document.getElementById('profile-btn');
+            const logoutBtnContainer = document.getElementById('logout-btn-container');
+
+            if (isLoginIn === 'true') {
+                loginBtn.classList.add('d-none');
+                profileBtn.classList.remove('d-none');
+                logoutBtnContainer.classList.remove('d-none');
+            } else {
+                location.href = '/login.html';
+                loginBtn.classList.remove('d-none');
+                profileBtn.classList.add('d-none');
+                logoutBtnContainer.classList.add('d-none');
+
+            }
+
+            loginOut.addEventListener(('click'), () => {
+                localStorage.removeItem('login')
+                localStorage.removeItem('u_id')
+                location.reload()
+            })
+            loginOut2.addEventListener(('click'), () => {
+                localStorage.removeItem('login')
+                localStorage.removeItem('userId')
+                location.reload()
+            })
+
         const facilityContainer = document.getElementById('facility-container');
 
         let totalRecords = 0;

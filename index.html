@@ -29,7 +29,7 @@
         <div class="container">
             <!-- Logo -->
             <a class="navbar-brand" href="/">
-                <img src="assets/images/logo.png" width="145" class="img-fluid" alt="logo">
+                <img src="assets/images/logo.png" width="145" class="img-fluid logo" alt="logo">
             </a>
 
             <!-- Mobile Toggle Button -->
@@ -550,7 +550,7 @@
                     <div class="footer-card">
                         <div class="footer-img">
                             <a href="">
-                                <img src="assets/images/logo.png" width="150" alt="" class="img-fluid">
+                                <img src="assets/images/logo.png" width="150" alt="" class="img-fluid logo">
                             </a>
                         </div>
                         <div class="footer-content">
@@ -676,6 +676,7 @@
         const loginOut2 = document.getElementById('logout-btn2');
         const profileBtn = document.getElementById('profile-btn');
         const logoutBtnContainer = document.getElementById('logout-btn-container');
+        
         if (isLoginIn === 'true') {
             loginBtn.classList.add('d-none');
             profileBtn.classList.remove('d-none');

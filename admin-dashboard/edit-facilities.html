@@ -451,7 +451,7 @@
                         <div id="actionButtons" class="col-12 mt-4">
                             <div class="d-flex gap-3">
                                 <button type="submit" id="update-btn" class="btn btn-primary text-white">Update</button>
-                                <a href="users.html">
+                                <a href="/admin-dashboard/health-facilities.html">
                                     <button type="button" class="btn btn-primary text-white"
                                         id="cancelButton">Cancel</button>
                                 </a>
@@ -767,7 +767,7 @@
                 email: document.querySelector('input[name="email_address"]').value,
                 phone: document.querySelector('input[name="phone_number"]').value,
                 google_maps_link: document.querySelector('input[name="google_map_link"]').value,
-                is_24_hours: document.querySelector('input[name="is_24hours"]:checked').value,
+                is_24_hours: document.querySelector('input[name="is_24hours"]:checked')?.value,
                 facility_a_e: document.querySelector('input[name="ae_available"]:checked')?.value || "",
             };
             await axios.put('https://health-care-facilities-backend.vercel.app/api/edit', formData, {
@@ -816,7 +816,6 @@
                 } else if (is24Hours === "no") {
                     const timeSchedule = document.getElementById('timeSchedule');
                     timeSchedule.style.display = 'block';
-
                     document.querySelector('input[name="is_24hours"][value="no"]').checked = true;
 
                 }
