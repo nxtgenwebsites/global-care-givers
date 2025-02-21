@@ -481,31 +481,26 @@ th {
     background: #F9FAFB;
     border: none;
     border-radius: 8px;
-    padding: 8px 12px 8px 32px;
+    padding: 8px 12px;
     width: 180px;
     font-size: 14px;
     color: #667085;
+    outline: none !important;
+}
+
+.search-box .form-control:focus{
+    box-shadow: none !important;
 }
 
 .search-box .form-control::placeholder {
     color: #667085;
 }
 
-.search-box::before {
-    content: "";
-    position: absolute;
-    width: 16px;
-    height: 16px;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M14.6667 14.6667L10.6667 10.6667M12 6.66667C12 9.61334 9.61334 12 6.66667 12C3.72 12 1.33334 9.61334 1.33334 6.66667C1.33334 3.72 3.72 1.33334 6.66667 1.33334C9.61334 1.33334 12 3.72 12 6.66667Z' stroke='%23667085' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-}
-
 /* Sort dropdown styles */
 .dropdown .btn-outline-secondary {
+    width: 300px;
     display: flex;
+    justify-content: center;
     align-items: center;
     gap: 4px;
     border: none;
@@ -514,6 +509,11 @@ th {
     border-radius: 8px;
     font-size: 14px;
     color: #667085 !important;
+}
+
+.dropdown li{
+    cursor: pointer !important;
+    /* display: none; */
 }
 
 .dropdown .btn-outline-secondary::after {
@@ -941,4 +941,8 @@ line-height: normal;
 
 .table-text {
     text-align: left !important;
+}
+
+.total-card {
+    cursor: pointer;
 }

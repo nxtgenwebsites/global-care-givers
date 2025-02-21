@@ -26,119 +26,8 @@
             <img src="assets/trustpilot.png" alt="Trustpilot" class="trustpilot d-none d-lg-block">
         </div>
 
-        <!-- Center navigation (visible on desktop only) -->
-        <div class="nav-center d-none d-lg-flex align-items-center gap-4">
-            <a href="/user-dashboard/emergency.html" class="nav-link d-flex align-items-center gap-2">
-                <img src="assets/Group.svg" alt="" style="width: 20px;">
-                Emergency
-            </a>
-            <a href="/user-dashboard/monitors.html" class="nav-link d-flex align-items-center gap-2">
-                <img src="assets/monitor-alt-1-svgrepo-com 1 (1).svg" alt="" style="width: 20px;">
-                Monitors
-            </a>
-            <a href="/user-dashboard/remote-care.html" class="nav-link d-flex align-items-center gap-2">
-                <img src="assets/watch-smartwatch-health-svgrepo-com.png" alt="" style="width: 20px;">
-                Remote Care
-            </a>
-        </div>
         <!-- Right side with toggle button, notification and user -->
         <div class="d-flex align-items-center gap-3">
-            <!-- Notification -->
-            <div class="position-relative d-none d-lg-block dropdown">
-                <a href="#" class="dropdown-toggle-custom text-white text-decoration-none" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    <img src="assets/notification-svgrepo-com 1.png" alt="" style="width: 24px; height: 24px;">
-                    <span class="notification-badge">5</span>
-                </a>
-
-                <!-- Notification Dropdown Menu -->
-                <div class="dropdown-menu notification-dropdown p-3" style="width: 320px;">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span class="text-muted" style="font-size: 12px;">
-                            You have <strong class="text-muted">5 new</strong> notifications
-                        </span>
-                        <a href="#" class="text-decoration-none text-primary" style="font-size: 12px;">Mark As Read</a>
-                    </div>
-                    <hr class="dropdown-divider my-2">
-
-                    <!-- Notification Items -->
-                    <div class="notification-item d-flex gap-2 p-2">
-                        <div class="notification-icon">
-                            <div class="icon-circle">
-                                <img src="assets/notification-icon-logo.png" width="35" height="42" alt="">
-                            </div>
-                        </div>
-                        <div class="notification-content">
-                            <div class="text-dark" style="font-size: 14px;">New reports have been updated</div>
-                            <small class="text-muted d-block">15 mins ago</small>
-                        </div>
-                    </div>
-
-                    <hr class="dropdown-divider my-2">
-
-                    <div class="notification-item d-flex gap-2 p-2">
-                        <div class="notification-icon">
-                            <div class="icon-circle">
-                                <img src="assets/notification-icon-logo.png" width="35" height="42" alt="">
-                            </div>
-                        </div>
-                        <div class="notification-content">
-                            <div class="text-dark" style="font-size: 14px;">Your profile was successfully updated</div>
-                            <small class="text-muted d-block">1 hr ago</small>
-                        </div>
-                    </div>
-
-                    <hr class="dropdown-divider my-2">
-
-                    <div class="notification-item d-flex gap-2 p-2">
-                        <div class="notification-icon">
-                            <div class="icon-circle">
-                                <img src="assets/notification-icon-logo.png" width="35" height="42" alt="">
-                            </div>
-                        </div>
-                        <div class="notification-content">
-                            <div class="text-dark" style="font-size: 14px;">ABC commented on your post</div>
-                            <small class="text-muted d-block">8 hr ago</small>
-                        </div>
-                    </div>
-
-                    <hr class="dropdown-divider my-2">
-
-                    <div class="notification-item d-flex gap-2 p-2">
-                        <div class="notification-icon">
-                            <div class="icon-circle">
-                                <img src="assets/notification-icon-logo.png" width="35" height="42" alt="">
-                            </div>
-                        </div>
-                        <div class="notification-content">
-                            <div class="text-dark" style="font-size: 14px;">More hospitals have been added</div>
-                            <small class="text-muted d-block">Yesterday</small>
-                        </div>
-                    </div>
-
-                    <hr class="dropdown-divider my-2">
-
-                    <div class="notification-item d-flex gap-2 p-2">
-                        <div class="notification-icon">
-                            <div class="icon-circle">
-                                <img src="assets/notification-icon-logo.png" width="35" height="42" alt="">
-                            </div>
-                        </div>
-                        <div class="notification-content">
-                            <div class="text-dark" style="font-size: 14px;">Your downloads are pending</div>
-                            <small class="text-muted d-block">Yesterday</small>
-                        </div>
-                    </div>
-
-                    <hr class="dropdown-divider my-2">
-
-                    <div class="text-center mt-2">
-                        <a href="#" class="text-primary text-decoration-none" style="font-size: 14px;">See all
-                            notifications</a>
-                    </div>
-                </div>
-            </div>
-
             <!-- Mobile Toggle Button -->
             <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas"
                 data-bs-target="#mobileMenu">
@@ -316,7 +205,7 @@
             <!-- Stats Cards Row -->
             <div class="row g-3 mb-4">
                 <!-- Total Users Card -->
-                <div class="col-md-3 col-6"  id="hospitals-card">
+                <div class="col-md-3 col-6" id="hospitals-card">
                     <div class="card border-0 shadow-sm total-card">
                         <div class="card-body p-4">
                             <div class="d-flex align-items-center total-card-content">
@@ -338,7 +227,7 @@
                         <div class="card-body p-4">
                             <div class="d-flex align-items-center total-card-content">
                                 <div class="icon-circle me-3">
-                                <img src="assets/siren.png" width="50" alt="Emergency">
+                                    <img src="assets/siren.png" width="50" alt="Emergency">
                                 </div>
                                 <div>
                                     <h2 class="mb-0 fw-bold card-heading" id="total-emergency">0</h2>
@@ -350,7 +239,7 @@
                 </div>
 
                 <!-- DHA Users Card -->
-                <div class="col-md-3 col-6"id="medical-card">
+                <div class="col-md-3 col-6" id="medical-card">
                     <div class="card border-0 shadow-sm total-card">
                         <div class="card-body p-4">
                             <div class="d-flex align-items-center  total-card-content">
@@ -391,28 +280,28 @@
                         class="facilities-card d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
                         <h5 class="card-title mb-0 heading-text">Health Care Facilities</h5>
                         <div class="d-flex align-items-center seach-filter">
-                            <div class="search-box">
-                                <input type="text" id="searchInput" class="form-control" placeholder="Search">
-                            </div>
+
                             <div class="dropdown">
                                 <button class="btn btn-outline-secondary dropdown-toggle" id="sort-filter" type="button"
                                     data-bs-toggle="dropdown">
                                     Sort by : <span style="font-weight: bold; color:black;">Newest</span>
                                 </button>
-                                <ul class="dropdown-menu">
-                                    <li class="dropdown-item" id="sortNewest">Newest</li>
+                                <ul class="dropdown-menu w-100">
+                                    <li>
+                                        <div class="search-box px-2">
+                                            <input type="text" id="searchInput" class="form-control"
+                                                placeholder="Search">
+                                        </div>
+                                    </li>
+                                    <li class="dropdown-item mt-2" id="sortNewest">Newest</li>
                                     <li class="dropdown-item" id="sortOldest">Oldest</li>
+                                    <div id="userList"></div>
                                 </ul>
                             </div>
                             <a class="btn btn-primary ms-3 add-icon text-black" href="\">
                                 <i class="bi bi-plus"></i>
                             </a>
                         </div>
-                    </div>
-                    <div class="d-flex justify-content-end mb-4">
-                            <div class="search-user">
-                                <input type="text" id="search-user" class="form-control" placeholder="Search">
-                            </div>
                     </div>
 
                     <div class="facilities-table">
@@ -424,7 +313,7 @@
                                         <th>Joined</th>
                                         <th>Country</th>
                                         <th>Email</th>
-                                        <th>User</th>
+                                        <th>Inputter</th>
                                         <th class="action">Actions</th>
                                     </tr>
                                 </thead>
@@ -716,15 +605,34 @@
         async function getData(page) {
             const pageSize = document.getElementById("pageSize").value;
             currentPage = page;
-
+            const addedUsers = new Set();
 
             try {
                 const res = await axios.get('https://health-care-facilities-backend.vercel.app/api/get-reports');
                 const facilityCounts = { hospital: 0, emergency: 0, chemists: 0, "medical labs": 0 };
 
-
                 allData = res.data.data;
                 totalRecords = allData.length;
+
+
+                allData.forEach(item => {
+                    if (!addedUsers.has(item.user)) {
+                        addedUsers.add(item.user);
+
+                        const li = document.createElement("li");
+                        li.classList.add("dropdown-item");
+                        li.textContent = item.user; // Assuming "user" is the field name
+
+                        // Click event to filter by user name
+                        li.addEventListener("click", function () {
+                            filterByUser(item.user);
+                        });
+
+                        userList.appendChild(li);
+                    }
+                });
+
+
 
                 allData.forEach((item) => {
                     const facilityType = item.facility_type.toLowerCase();
@@ -1020,6 +928,13 @@
         }
 
 
+        // Function to filter data by user name
+        function filterByUser(userName) {
+            let filteredData = allData.filter(item => item.user.toLowerCase() === userName.toLowerCase());
+            renderTable(filteredData); // Table update karo filtered data se
+        }
+
+
         //  Chemists Filter
         document.getElementById("medical-card").addEventListener("click", function () {
             let query = 'medical labs';
@@ -1052,15 +967,6 @@
             let query = 'chemists';
             let filteredData = allData.filter(item =>
                 item.facility_type.toLowerCase().includes(query)
-            );
-            renderTable(filteredData);
-        });
-
-        //  Search Function
-        document.getElementById("search-user").addEventListener("input", function () {
-            let query = this.value.toLowerCase();
-            let filteredData = allData.filter(item =>
-                item.user.toLowerCase().includes(query)
             );
             renderTable(filteredData);
         });

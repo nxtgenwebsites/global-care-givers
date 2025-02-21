@@ -26,120 +26,8 @@
             </div>
             <img src="assets/trustpilot.png" alt="Trustpilot" class="trustpilot d-none d-lg-block">
         </div>
-
-        <!-- Center navigation (visible on desktop only) -->
-        <div class="nav-center d-none d-lg-flex align-items-center gap-4">
-            <a href="/user-dashboard/emergency.html" class="nav-link d-flex align-items-center gap-2">
-                <img src="assets/Group.svg" alt="" style="width: 20px;">
-                Emergency
-            </a>
-            <a href="/user-dashboard/monitors.html" class="nav-link d-flex align-items-center gap-2">
-                <img src="assets/monitor-alt-1-svgrepo-com 1 (1).svg" alt="" style="width: 20px;">
-                Monitors
-            </a>
-            <a href="/user-dashboard/remote-care.html" class="nav-link d-flex align-items-center gap-2">
-                <img src="assets/watch-smartwatch-health-svgrepo-com.png" alt="" style="width: 20px;">
-                Remote Care
-            </a>
-        </div>
         <!-- Right side with toggle button, notification and user -->
         <div class="d-flex align-items-center gap-3">
-            <!-- Notification -->
-            <div class="position-relative d-none d-lg-block dropdown">
-                <a href="#" class="dropdown-toggle-custom text-white text-decoration-none" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    <img src="assets/notification-svgrepo-com 1.png" alt="" style="width: 24px; height: 24px;">
-                    <span class="notification-badge">5</span>
-                </a>
-
-                <!-- Notification Dropdown Menu -->
-                <div class="dropdown-menu notification-dropdown p-3" style="width: 320px;">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span class="text-muted" style="font-size: 12px;">
-                            You have <strong class="text-muted">5 new</strong> notifications
-                        </span>
-                        <a href="#" class="text-decoration-none text-primary" style="font-size: 12px;">Mark As Read</a>
-                    </div>
-                    <hr class="dropdown-divider my-2">
-
-                    <!-- Notification Items -->
-                    <div class="notification-item d-flex gap-2 p-2">
-                        <div class="notification-icon">
-                            <div class="icon-circle">
-                                <img src="assets/notification-icon-logo.png" width="35" height="42" alt="">
-                            </div>
-                        </div>
-                        <div class="notification-content">
-                            <div class="text-dark" style="font-size: 14px;">New reports have been updated</div>
-                            <small class="text-muted d-block">15 mins ago</small>
-                        </div>
-                    </div>
-
-                    <hr class="dropdown-divider my-2">
-
-                    <div class="notification-item d-flex gap-2 p-2">
-                        <div class="notification-icon">
-                            <div class="icon-circle">
-                                <img src="assets/notification-icon-logo.png" width="35" height="42" alt="">
-                            </div>
-                        </div>
-                        <div class="notification-content">
-                            <div class="text-dark" style="font-size: 14px;">Your profile was successfully updated</div>
-                            <small class="text-muted d-block">1 hr ago</small>
-                        </div>
-                    </div>
-
-                    <hr class="dropdown-divider my-2">
-
-                    <div class="notification-item d-flex gap-2 p-2">
-                        <div class="notification-icon">
-                            <div class="icon-circle">
-                                <img src="assets/notification-icon-logo.png" width="35" height="42" alt="">
-                            </div>
-                        </div>
-                        <div class="notification-content">
-                            <div class="text-dark" style="font-size: 14px;">ABC commented on your post</div>
-                            <small class="text-muted d-block">8 hr ago</small>
-                        </div>
-                    </div>
-
-                    <hr class="dropdown-divider my-2">
-
-                    <div class="notification-item d-flex gap-2 p-2">
-                        <div class="notification-icon">
-                            <div class="icon-circle">
-                                <img src="assets/notification-icon-logo.png" width="35" height="42" alt="">
-                            </div>
-                        </div>
-                        <div class="notification-content">
-                            <div class="text-dark" style="font-size: 14px;">More hospitals have been added</div>
-                            <small class="text-muted d-block">Yesterday</small>
-                        </div>
-                    </div>
-
-                    <hr class="dropdown-divider my-2">
-
-                    <div class="notification-item d-flex gap-2 p-2">
-                        <div class="notification-icon">
-                            <div class="icon-circle">
-                                <img src="assets/notification-icon-logo.png" width="35" height="42" alt="">
-                            </div>
-                        </div>
-                        <div class="notification-content">
-                            <div class="text-dark" style="font-size: 14px;">Your downloads are pending</div>
-                            <small class="text-muted d-block">Yesterday</small>
-                        </div>
-                    </div>
-
-                    <hr class="dropdown-divider my-2">
-
-                    <div class="text-center mt-2">
-                        <a href="#" class="text-primary text-decoration-none" style="font-size: 14px;">See all
-                            notifications</a>
-                    </div>
-                </div>
-            </div>
-
             <!-- Mobile Toggle Button -->
             <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas"
                 data-bs-target="#mobileMenu">
@@ -323,16 +211,18 @@
                         <h5 class="heading-text card-title mb-0">Staff Members</h5>
 
                         <div class="d-flex align-items-center seach-filter">
-                            <div class="search-box">
-                                <input type="text" id="searchInput" class="form-control" placeholder="Search">
-                            </div>
                             <div class="dropdown">
                                 <button class="btn btn-outline-secondary dropdown-toggle" id="sort-filter" type="button"
                                     data-bs-toggle="dropdown">
                                     Sort by : <span style="font-weight: bold; color:black;">Newest</span>
                                 </button>
-                                <ul class="dropdown-menu">
-                                    <li class="dropdown-item" id="sortNewest">Newest</li>
+                                <ul class="dropdown-menu w-100">
+                                    <li class="px-3">
+                                                                <div class="search-box">
+                                                                    <input type="text" id="searchInput" class="form-control" placeholder="Search">
+                                                                </div>
+                                    </li>
+                                    <li class="dropdown-item mt-2" id="sortNewest">Newest</li>
                                     <li class="dropdown-item" id="sortOldest">Oldest</li>
                                 </ul>
                             </div>

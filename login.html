@@ -15,31 +15,82 @@
 
 <body>
   <!-- Navbar Start -->
-  <nav class="navbar navbar-expand-lg">
+  <nav class="navbar navbar-expand-lg bg-light">
     <div class="container">
-      <a class="navbar-brand" href="/"><img src="assets/images/logo.png" width="145" class="img-fluid logo" alt="logo"></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <!-- Logo -->
+      <a class="navbar-brand" href="/">
+        <img src="assets/images/logo.png" width="145" class="img-fluid logo" alt="logo">
+      </a>
+
+      <!-- Mobile Toggle Button -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav align-items-lg-center justify-content-lg-center flex-lg-grow-1 mb-2 mb-lg-0 mt-lg-0 mt-4">
+
+      <!-- Navbar Links -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul
+          class="navbar-nav align-items-lg-center justify-content-lg-center flex-lg-grow-1 mb-2 mb-lg-0 mt-lg-0 mt-4 d-lg-none">
+          <!-- <li class="nav-item">
+                                <a class="nav-link mx-2 text-primary" href="#">Emergency</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link mx-2 text-primary" href="#">Community</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link mx-2 text-primary" href="#" id="registerBtn">Register</a>
+                            </li> -->
           <li class="nav-item">
-            <a class="nav-link mx-2 text-primary" href="emergency.html">Emergency</a>
+            <a class="nav-link mx-2 text-primary" href="facility-listings.html" id="registerBtn">Facility
+              Listings</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link mx-2 text-primary" href="community.html">Community</a>
+          <li class="nav-item  d-lg-none" id="logout-btn-container">
+            <button class="dropdown-item py-2 text-primary fw-semibold logout-btn nav-link mx-2 text-primary"
+              id="logout-btn2">
+              Logout
+            </button>
           </li>
-          <li class="nav-item">
-            <a class="nav-link mx-2 text-primary" href="signup.html">Register</a>
-          </li>
-                      <li class="nav-item">
-                        <a class="nav-link mx-2 text-primary" href="facility-listings.html" id="registerBtn">Facility Listings</a>
-                      </li>
         </ul>
-        <div class="login-btn">
-          <a href="login.html"><button class="btn primary-btn">Login</button></a>
+
+        <!-- Login Button -->
+        <div class="d-flex ms-lg-auto" id="login-btn">
+          <a href="login.html" class="btn primary-btn">Login</a>
         </div>
+
+        <div class="d-flex ms-lg-auto d-none" id="profile-btn">
+          <div class="dropdown d-none d-lg-block">
+            <div class="dropdown-toggle d-flex align-items-center gap-2 show" data-bs-toggle="dropdown"
+              style="cursor: pointer;" aria-expanded="true">
+              <img src="assets/1.png" alt="" class="user-avatar">
+              <span class=" d-inline user-name"></span>
+            </div>
+            <ul class="dropdown-menu shadow"
+              style="width: 313px; padding: 16px; border-radius: 0px; border: none; position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(0px, 42.2222px);"
+              data-popper-placement="bottom-end">
+              <li class="dropdown-header p-0 mb-3">
+                <div class="d-flex gap-3 align-items-center">
+                  <img src="assets/1.png" width="30" class="img-fluid" alt=""
+                    style="width: 87px; height: 87px; border-radius: 50%;">
+                  <div>
+                    <h6 class="mb-0 user-name"></h6>
+                    <small class="text-muted" id="user-role"></small>
+                  </div>
+                </div>
+              </li>
+              <li><a class="dropdown-item py-2 d-flex align-items-center gap-3" href="/facility-listings.html">
+                  <img src="assets/images/hospital-facility.png" width="25" alt="">
+                  Facility Listings
+                </a></li>
+              <div class="border-top mt-2 pt-2">
+                <button class="dropdown-item py-2 text-primary fw-semibold" id="logout-btn">
+                  Logout
+                </button>
+              </div>
+            </ul>
+          </div>
+        </div>
+
       </div>
     </div>
   </nav>
@@ -85,87 +136,27 @@
   <!-- Footer start -->
   <footer class="footer-section">
     <div class="container">
-      <div class="row row-gap-3">
-        <div class="col-lg-5 col-md-6 text-md-start text-center">
-          <div class="footer-card">
-            <div class="footer-img">
-              <a href="">
-                <img src="assets/images/logo.png" width="150" alt="" class="img-fluid logo">
-              </a>
-            </div>
-            <div class="footer-content">
-              <p class="mt-4 mb-3">Join our newsletter for latest updates <br>
-                and features. You don't want to miss it!</p>
-              <div class="footer-subscribe position-relative w-100">
-                <input type="email" class="" placeholder="Enter your email here">
-                <button type="submit" class="btn">Subscribe</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-6 text-md-start text-center">
-          <ul class="navbar-nav">
-            <h5 class="fw-bold footer-heading text-primary">Home</h5>
-            <li class="nav-item"><a href="emergency.html" class="nav-link">Emergency</a></li>
-            <li class="nav-item"><a href="login.html" class="nav-link">Symptoms</a></li>
-            <li class="nav-item"><a href="login.html" class="nav-link">Remote Care</a></li>
-            <li class="nav-item"><a href="login.html" class="nav-link">Monitors</a></li>
-            <li class="nav-item"><a href="login.html" class="nav-link">Health Info</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Blogs</a></li>
-          </ul>
-        </div>
-        <div class="col-lg-2 col-md-6 text-md-start text-center">
-          <ul class="navbar-nav">
-            <h5 class="fw-bold footer-heading text-primary">Communities</h5>
-            <li class="nav-item"><a href="/user-dashboard/hospitals.html" class="nav-link">Hospitals</a>
-            </li>
-            <li class="nav-item"><a href="#" class="nav-link">Pharmacy</a></li>
-            <li class="nav-item"><a href="/user-dashboard/Chemists.html" class="nav-link">Community Digital
-                Health Assistants</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Tech Support</a></li>
-            <li class="nav-item"><a href="/user-dashboard/complaints.html" class="nav-link">Complaints</a>
-            </li>
-            <li class="nav-item"><a href="/user-dashboard/reviews.html" class="nav-link">Reviews</a></li>
-            <li class="nav-item"><a href="/user-dashboard/privacy-policy.html" class="nav-link">Privacy
-                Policy</a></li>
-          </ul>
-        </div>
-        <div class="col-lg-2 col-md-6 text-md-start text-center">
-          <ul class="navbar-nav">
-            <h5 class="fw-bold footer-heading text-primary">User Dashboard</h5>
-            <li class="nav-item"><a href="login.html" class="nav-link">Sponsorship</a></li>
-            <li class="nav-item"><a href="login.html" class="nav-link">Print</a></li>
-            <li class="nav-item"><a href="login.html" class="nav-link">Password & 2FA</a></li>
-            <li class="nav-item"><a href="login.html" class="nav-link">Access Control</a></li>
-            <li class="nav-item"><a href="login.html" class="nav-link">National Policies</a></li>
-            <li class="nav-item"><a href="login.html" class="nav-link">Delete Account</a></li>
-            <li class="nav-item"><a href="login.html" class="nav-link">Upgrade to Community Edition</a></li>
-          </ul>
+      <div class="footer-card">
+        <div class="footer-img text-center">
+          <a href="/">
+            <img src="assets/images/logo.png" width="150" alt="" class="img-fluid logo">
+          </a>
         </div>
       </div>
     </div>
-    <hr class="mt-5 mb-2">
+    <hr class="mt-4 mb-2">
     <div class="copyright-section d-flex align-items-center">
       <p class="font-size">© Copyright 2025 HealthMonitor. All rights reserved</p>
       <p class="ms-md-auto me-3 font-size">Share on socials</p>
       <div class="social-media">
-        <button id="x-share-btn" class="btn p-0 border-0">
-          <img src="assets/icons/X.svg" alt="img" class="">
-        </button>
-        <button id="fb-share-btn" class="btn p-0 border-0">
-          <img src="assets/icons/Facebook.svg" alt="img" class="">
-        </button>
-        <a href="https://www.instagram.com/" target="">
-          <button id="Instagram-share-btn" class="btn p-0 border-0">
-            <img src="assets/icons/Instagram.svg" alt="img" class="">
-          </button>
+        <img src="assets/icons/X.svg" alt="img" id="x-share-btn">
+        <img src="assets/icons/Facebook.svg" alt="img" id="fb-share-btn">
+        <a href="https://www.instagram.com/">
+          <img src="assets/icons/Instagram.svg" alt="img" class="">
         </a>
-        <button id="linkedin-share-btn" class="btn p-0 border-0">
-          <img src="assets/icons/linkedin.svg" alt="img" class="">
-        </button>
+        <img src="assets/icons/linkedin.svg" alt="img" id="linkedin-share-btn">
       </div>
     </div>
-
   </footer>
   <!-- Footer end -->
 
@@ -175,10 +166,11 @@
     integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="js/toastr.min.js"></script>
+  <script src="js/share.js"></script>
   <script src="js/auth.js"></script>
   <script>
     document.getElementById("login-form").addEventListener("submit", async function (e) {
-      e.preventDefault(); 
+      e.preventDefault();
 
       const email = document.getElementById("login-email").value;
       const password = document.getElementById("login-password").value;
@@ -211,7 +203,7 @@
         }
       } catch (error) {
         console.error("Login error:", error);
-        toastr.error(`${ error.response?.data?.message || 'Something went wrong.' }`, "Error", {
+        toastr.error(`${error.response?.data?.message || 'Something went wrong.'}`, "Error", {
           "closeButton": true,
           "progressBar": true,
           "showDuration": "300",

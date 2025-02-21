@@ -505,6 +505,7 @@ select.form-select:not(:invalid) {
 
 /* Facility Card */
 .facility-card {
+  height: 400px !important;
   background: white;
   border-radius: 15px;
   box-shadow: 0 5px 8px rgba(32, 32, 32, 0.1);
