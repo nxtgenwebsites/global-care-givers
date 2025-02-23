@@ -79,7 +79,7 @@
   }
   .search-box .form-control {
     padding: 6px 5px 8px 32px;
-    width: 150px;
+    width: 100%;
     font-size: 12px !important;
   }
   .dropdown .btn-outline-secondary {
@@ -97,10 +97,7 @@
   .seach-filter {
     gap: 5px !important;
   }
-}
-
-@media (max-width: 420px) {
-  .search-box .form-control {
-    width: 120px;
+  .dropdown .btn-outline-secondary {
+    width: 200px;
   }
 }

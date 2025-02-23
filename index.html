@@ -600,7 +600,56 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.full.min.js"></script>
     <script src="js/share.js"></script>
+    <script src="js/country-states.js"></script>
     <script>
+   var user_country_code = ""; // Default me koi country selected nahi
+
+    (() => {
+        const country_list = country_and_states.country;
+        const state_list = country_and_states.states;
+
+        const id_state_option = document.getElementById("state-drop-down");
+        const id_country_option = document.getElementById("country");
+
+        // Initially disable the state dropdown
+        id_state_option.innerHTML = '<option>select state</option>';
+        id_state_option.setAttribute("disabled", "disabled");
+
+        const create_country_selection = () => {
+            let option = '<option value="" selected disabled>Select Country</option>'; // Placeholder option
+            for (const country_code in country_list) {
+                option += '<option value="' + country_code + '">' + country_list[country_code] + '</option>';
+            }
+            id_country_option.innerHTML = option;
+        };
+
+        const create_states_selection = () => {
+            let selected_country_code = id_country_option.value;
+            let state_names = state_list[selected_country_code];
+
+            if (!state_names) {
+                id_state_option.innerHTML = '<option>select state</option>';
+                id_state_option.setAttribute("disabled", "disabled");
+                return;
+            }
+
+            let option = '<option>select state</option>';
+            state_names.forEach(state => {
+                option += '<option value="' + state.code + '">' + state.name + '</option>';
+            });
+
+            id_state_option.innerHTML = option;
+            id_state_option.removeAttribute("disabled"); // Enable dropdown when country is selected
+        };
+
+        // Country select change event update state dropdown
+        id_country_option.addEventListener('change', create_states_selection);
+
+        // Initialize country dropdown with placeholder
+        create_country_selection();
+    })();
+
+
         let user = '';
 
         const input = document.querySelector("#phone");
@@ -685,13 +734,13 @@
             })
         })
 
-        document.getElementById("registerBtn").addEventListener("click", function () {
-            // Find the form-tab button
-            var formTab = document.getElementById("form-tab");
+        // document.getElementById("registerBtn").addEventListener("click", function () {
+        //     // Find the form-tab button
+        //     var formTab = document.getElementById("form-tab");
 
-            // Trigger click event on form-tab button
-            formTab.click();
-        });
+        //     // Trigger click event on form-tab button
+        //     formTab.click();
+        // });
 
         document.addEventListener('DOMContentLoaded', function () {
             const timeScheduleDiv = document.getElementById('timeSchedule');
@@ -739,14 +788,14 @@
                 });
             }
 
-            // Event listener for the "Set All" button
+         
             setAllButton.addEventListener('click', setAllTimes);
 
-            // Handle 24-hour facility toggle
+           
             document.querySelectorAll('input[name="is_24hours"]').forEach(radio => {
                 radio.addEventListener('change', function () {
                     if (this.value === 'no') {
-                        createTimeSlots(); // Generate the time slots when shown
+                        createTimeSlots(); 
                         timeScheduleDiv.style.display = 'block';
                     } else {
                         timeScheduleDiv.style.display = 'none';
@@ -768,7 +817,7 @@
                     organisation_name: document.querySelector('input[name="org_name"]').value,
                     facility_type: document.querySelector('select[name="facility_type"]').value,
                     ownership: document.querySelector('select[name="ownership_type"]').value,
-                    state: document.querySelector('.select-state').value,
+                    state: document.querySelector('.select-state option:checked')?.innerText,
                     country: document.querySelector('.country-drop-down option:checked')?.innerText,
                     city: document.querySelector('input[name="city"]').value,
                     address: document.querySelector('input[name="street-address"]').value,
@@ -1175,93 +1224,94 @@
         //         radio.required = true;
         //     });
         // });
-        const countryDropdown = $('#country');
-        const stateDropdown = $('#state-drop-down');
-        const cityDropdown = $('#city');
+        // const countryDropdown = $('#country');
+        // const stateDropdown = $('#state-drop-down');
+        // const cityDropdown = $('#city');
 
-        // Step 1: Load Countries
-        function loadCountries() {
-            $.ajax({
-                url: 'https://restcountries.com/v3.1/all',
-                method: 'GET',
-                success: function (data) {
-                    // Sort countries alphabetically
-                    const sortedCountries = data.sort((a, b) =>
-                        a.name.common.localeCompare(b.name.common)
-                    );
+        // // Step 1: Load Countries
+        // function loadCountries() {
+        //     $.ajax({
+        //         url: 'https://restcountries.com/v3.1/all',
+        //         method: 'GET',
+        //         success: function (data) {
+        //             // Sort countries alphabetically
+        //             const sortedCountries = data.sort((a, b) =>
+        //                 a.name.common.localeCompare(b.name.common)
+        //             );
 
-                    // Populate the country dropdown
-                    countryDropdown.empty().append('<option value="">Select Country</option>');
-                    sortedCountries.forEach(country => {
-                        countryDropdown.append(new Option(country.name.common, country.cca2)); // ISO code as value
-                    });
-                },
-                error: function () {
-                    alert('Failed to load countries. Try again later.');
-                }
-            });
-        }
+        //             // Populate the country dropdown
+        //             countryDropdown.empty().append('<option value="">Select Country</option>');
+        //             sortedCountries.forEach(country => {
+        //                 countryDropdown.append(new Option(country.name.common, country.cca2)); // ISO code as value
+        //             });
+        //         },
+        //         error: function () {
+        //             alert('Failed to load countries. Try again later.');
+        //         }
+        //     });
+        // }
 
-        // Step 2: Load States
-        function loadStates(countryCode) {
-            console.log('Fetching states for country code:', countryCode); // Debugging log
-            $.ajax({
-                url: `https://wft-geo-db.p.rapidapi.com/v1/geo/countries/${countryCode}/regions`,
-                method: 'GET',
-                headers: {
-                    'x-rapidapi-host': 'wft-geo-db.p.rapidapi.com',
-                    'x-rapidapi-key': 'b83f74efaamshb4574179b332748p156dadjsn907ed0ab88f9' // Replace with your actual API key
-                },
-                success: function (data) {
-                    console.log('States fetched successfully:', data); // Debugging log
-                    stateDropdown.empty().append('<option value="">Select State</option>');
-                    if (data.data && data.data.length > 0) {
-                        data.data.forEach(state => {
-                            stateDropdown.append(new Option(state.name, state.code));
-                        });
-                        stateDropdown.prop('disabled', false);
+        // // Step 2: Load States
+        // function loadStates(countryCode) {
+        //     console.log('Fetching states for country code:', countryCode); // Debugging log
+        //     $.ajax({
+        //         url: `https://wft-geo-db.p.rapidapi.com/v1/geo/countries/${countryCode}/regions`,
+        //         method: 'GET',
+        //         headers: {
+        //             'x-rapidapi-host': 'wft-geo-db.p.rapidapi.com',
+        //             'x-rapidapi-key': 'b83f74efaamshb4574179b332748p156dadjsn907ed0ab88f9' // Replace with your actual API key
+        //         },
+        //         success: function (data) {
+        //             console.log('States fetched successfully:', data); // Debugging log
+        //             stateDropdown.empty().append('<option value="">Select State</option>');
+        //             if (data.data && data.data.length > 0) {
+        //                 data.data.forEach(state => {
+        //                     stateDropdown.append(new Option(state.name, state.code));
+        //                 });
+        //                 stateDropdown.prop('disabled', false);
 
-                    } else {
-                        alert('No states found for the selected country.');
-                    }
-                },
-                error: function (xhr, status, error) {
-                    console.error('Error fetching states:', error); // Debugging log
-                    alert('Failed to load states. Please try again later.');
-                }
-            });
-        }
+        //             } else {
+        //                 alert('No states found for the selected country.');
+        //             }
+        //         },
+        //         error: function (xhr, status, error) {
+        //             console.error('Error fetching states:', error); // Debugging log
+        //             alert('Failed to load states. Please try again later.');
+        //         }
+        //     });
+        // }
 
-        // Step 3: Load Cities
+        // // Step 3: Load Cities
 
-        // Step 4: Event Listeners
-        $(document).ready(function () {
-            // Load countries on page load
-            loadCountries();
+        // // Step 4: Event Listeners
+        // $(document).ready(function () {
+        //     // Load countries on page load
+        //     loadCountries();
 
-            // When a country is selected, load states
-            countryDropdown.on('change', function () {
-                const countryCode = $(this).val();
-                if (countryCode) {
-                    loadStates(countryCode);
-                    cityDropdown.prop('disabled', true).empty().append('<option value="">Select City</option>');
-                } else {
-                    stateDropdown.prop('disabled', true).empty().append('<option value="">Select State</option>');
-                    cityDropdown.prop('disabled', true).empty().append('<option value="">Select City</option>');
-                }
-            });
+        //     // When a country is selected, load states
+        //     countryDropdown.on('change', function () {
+        //         const countryCode = $(this).val();
+        //         if (countryCode) {
+        //             loadStates(countryCode);
+        //             cityDropdown.prop('disabled', true).empty().append('<option value="">Select City</option>');
+        //         } else {
+        //             stateDropdown.prop('disabled', true).empty().append('<option value="">Select State</option>');
+        //             cityDropdown.prop('disabled', true).empty().append('<option value="">Select City</option>');
+        //         }
+        //     });
 
-            // When a state is selected, load cities
-            stateDropdown.on('change', function () {
-                const stateCode = $(this).val();
-                const countryCode = countryDropdown.val();
-                if (stateCode && countryCode) {
-                    loadCities(stateCode, countryCode);
-                } else {
-                    cityDropdown.prop('disabled', true).empty().append('<option value="">Select City</option>');
-                }
-            });
-        });
+        //     // When a state is selected, load cities
+        //     stateDropdown.on('change', function () {
+        //         const stateCode = $(this).val();
+        //         const countryCode = countryDropdown.val();
+        //         if (stateCode && countryCode) {
+        //             loadCities(stateCode, countryCode);
+        //         } else {
+        //             cityDropdown.prop('disabled', true).empty().append('<option value="">Select City</option>');
+        //         }
+        //     });
+        // });
+
         function resetForm() {
             selectedFile = null;
             // Reset file upload area

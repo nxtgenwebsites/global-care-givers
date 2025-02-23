@@ -651,6 +651,14 @@ select.form-select:not(:invalid) {
   justify-content: center;
 }
 
+.iti__country-name{
+  font-weight: 400 !important;
+}
+
+.iti__dial-code{
+  font-weight: 400 !important;
+}
+
 @media (max-width: 768px) {
   .right-column {
     padding-left: 6px;
