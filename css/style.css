@@ -535,3 +535,7 @@ footer a{
 .iti__search-input {
   display: none !important;
 }
+
+footer .social-media img{
+  cursor: pointer;
+}

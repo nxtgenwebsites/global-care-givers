@@ -696,7 +696,7 @@
 
             console.log(formData);
 
-            await axios.put('https://web-search-frontent.vercel.app/api/edit', formData, {
+            await axios.put('https://health-care-facilities-backend.vercel.app/api/edit', formData, {
                 headers: {
                     'id': id
                 }
@@ -751,10 +751,24 @@
 
 
 
-                    // console.log(res.data.data.time_slots[0].day);
-                    // if (res.data.data.time_slots[0].day === 'all') {
-
-                    // }
+                    console.log(res.data.data.time_slots[0].day);
+                    if (res.data.data.time_slots[0].day === 'all') {
+                        const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+                        const timeSlots = document.querySelector('.time-slots');
+                        timeSlots.innerHTML = days.map(day => `
+                        <div class="time-slot row align-items-center g-3 mb-2">
+                            <div class="col-3">
+                                <span class="day-label">${day}</span>
+                            </div>
+                            <div class="col-9">
+                                <div class="d-flex align-items-center time-input-group">
+                                    <input type="time" class="form-control form-control-sm start-time" name="${day.toLowerCase()}_start" value="09:00" required>
+                                    <span class="time-separator mx-2">to</span>
+                                    <input type="time" class="form-control form-control-sm end-time" name="${day.toLowerCase()}_end" value="17:00" required>
+                                </div>
+                            </div>
+                        </div>`)
+                    }
 
                     timeSlotsData = res.data.data.time_slots;
 
