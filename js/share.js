@@ -15,7 +15,7 @@ linkedinBtn.map((button) => {
         const params = new URLSearchParams({
             url: "https://health-monitor-sa.vercel.app/",
             title: "Health Monitor",
-            summary: "A smarter way to track and manage your health with our intuitive dashboard. Gain complete control over your well-being, all in one place", // Summary text
+            summary: "The Health Care Facilities Database allows hospitals, emergency centers, pharmacies, and other medical services to list their information, making it easily searchable by users worldwide to find reliable care nearby.", // Summary text
             source: "Health Monitor"
         }).toString();
 
@@ -29,7 +29,7 @@ facebookBtn.map((button) => {
         const fbShareUrl = "https://www.facebook.com/sharer/sharer.php";
         const params = new URLSearchParams({
             u: "https://health-monitor-sa.vercel.app/", // Your website URL
-            quote: "A smarter way to track and manage your health with our intuitive dashboard. Gain complete control over your well-being, all in one place", // Text to share
+            quote: "The Health Care Facilities Database allows hospitals, emergency centers, pharmacies, and other medical services to list their information, making it easily searchable by users worldwide to find reliable care nearby.", // Text to share
             hashtag: "#healthMonitor", // Optional hashtag
         }).toString();
 
@@ -44,7 +44,7 @@ facebookBtn.map((button) => {
         const fbShareUrl = "https://www.facebook.com/sharer/sharer.php";
         const params = new URLSearchParams({
             u: "https://health-monitor-sa.vercel.app/", // Your website URL
-            quote: "A smarter way to track and manage your health with our intuitive dashboard. Gain complete control over your well-being, all in one place", // Text to share
+            quote: "The Health Care Facilities Database allows hospitals, emergency centers, pharmacies, and other medical services to list their information, making it easily searchable by users worldwide to find reliable care nearby.", // Text to share
             hashtag: "#healthMonitor", // Optional hashtag
         }).toString();
 
@@ -55,7 +55,7 @@ facebookBtn.map((button) => {
 
 xBtn.map((button) => {
     button.addEventListener(('click'), () => {
-        const tweetText = encodeURIComponent("A smarter way to track and manage your health with our intuitive dashboard. Gain complete control over your well-being, all in one place: https://health-monitor-sa.vercel.app/ #healthMonitor");
+        const tweetText = encodeURIComponent("The Health Care Facilities Database allows hospitals, emergency centers, pharmacies, and other medical services to list their information, making it easily searchable by users worldwide to find reliable care nearby. : https://health-monitor-sa.vercel.app/ #healthMonitor");
         const tweetUrl = `https://twitter.com/intent/tweet?text=${tweetText}`;
         window.open(tweetUrl, "_blank", "width=600,height=400");
     })
@@ -65,7 +65,7 @@ whatsappBtn.map((button) => {
     button.addEventListener(('click'), () => {
         const whatsappShareUrl = "https://api.whatsapp.com/send";
         const params = new URLSearchParams({
-            text: "A smarter way to track and manage your health with our intuitive dashboard. Gain complete control over your well-being, all in one place: https://health-monitor-sa.vercel.app/"
+            text: "The Health Care Facilities Database allows hospitals, emergency centers, pharmacies, and other medical services to list their information, making it easily searchable by users worldwide to find reliable care nearby: https://health-monitor-sa.vercel.app/"
         }).toString();
 
         const shareUrl = `${whatsappShareUrl}?${params}`;
@@ -78,7 +78,7 @@ emailBtn.map((button) => {
         const emailShareUrl = "mailto:";
         const params = new URLSearchParams({
             subject: "Check out Health Monitor!",
-            body: "A smarter way to track and manage your health with our intuitive dashboard. Gain complete control over your well-being, all in one place: https://health-monitor-sa.vercel.app/"
+            body: "The Health Care Facilities Database allows hospitals, emergency centers, pharmacies, and other medical services to list their information, making it easily searchable by users worldwide to find reliable care nearby.: https://health-monitor-sa.vercel.app/"
         }).toString();
 
         const shareUrl = `${emailShareUrl}?${params.replace(/&/g, '%0A')}`; // Replace '&' with newline
