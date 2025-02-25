@@ -928,7 +928,7 @@
 
                 document.getElementById('confirmBlock')?.addEventListener('click', async () => {
                     try {
-                        await axios.put('http://localhost:3000/api/block-user',  {}, {
+                        await axios.put('https://health-care-facilities-backend.vercel.app/api/block-user',  {}, {
                             headers: {
                                 id: blockFacilityId
                             }

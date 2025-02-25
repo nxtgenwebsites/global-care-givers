@@ -696,16 +696,16 @@
 
             console.log(formData);
 
-            await axios.put('https://health-care-facilities-backend.vercel.app/api/edit', formData, {
-                headers: {
-                    'id': id
-                }
-            }).then((res) => {
-                console.log(res.data);
-                updatedPopup.classList.remove('d-none');
-            }).catch((err) => {
-                console.log(err);
-            })
+               await axios.put('https://health-care-facilities-backend.vercel.app/api/edit', formData, {
+                    headers: {
+                        'id': id
+                    }
+                }).then((res) => {
+                    console.log(res.data);
+                    updatedPopup.classList.remove('d-none');
+                }).catch((err) => {
+                    console.log(err);
+                }) 
         })
 
         document.addEventListener("DOMContentLoaded", async function () {
@@ -750,12 +750,12 @@
                 document.querySelector('.google-map-link').value = data.google_maps_link;
 
 
+                timeSlotsData = res.data.data.time_slots;
 
-                    console.log(res.data.data.time_slots[0].day);
-                    if (res.data.data.time_slots[0].day === 'all') {
-                        const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-                        const timeSlots = document.querySelector('.time-slots');
-                        timeSlots.innerHTML = days.map(day => `
+                if (res.data.data.time_slots[0].day === 'all') {
+                    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+                    const timeSlots = document.querySelector('.time-slots');
+                    timeSlots.innerHTML = days.map(day => `
                         <div class="time-slot row align-items-center g-3 mb-2">
                             <div class="col-3">
                                 <span class="day-label">${day}</span>
@@ -768,9 +768,26 @@
                                 </div>
                             </div>
                         </div>`)
-                    }
+                } else {
+                    const timeSlots = document.querySelector('.time-slots');
+                    console.log(timeSlotsData);
+                    timeSlotsData.map((item) => {
+                        timeSlots.innerHTML += `
+                         <div class="time-slot row align-items-center g-3 mb-2">
+                             <div class="col-3">
+                                 <span class="day-label">${item.day}</span>
+                             </div>
+                             <div class="col-9">
+                                 <div class="d-flex align-items-center time-input-group">
+                                     <input type="time" class="form-control form-control-sm start-time" name="${item.day.toLowerCase()}_start" value="${item.start_time}" required>
+                                     <span class="time-separator mx-2">to</span>
+                                     <input type="time" class="form-control form-control-sm end-time" name="${item.day.toLowerCase()}_end" value="${item.end_time}" required>
+                                 </div>
+                             </div>
+                         </div>`
+                    })
+                }
 
-                    timeSlotsData = res.data.data.time_slots;
 
                 if (timeSlotsData.length === 0) {
                     const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -790,11 +807,8 @@
                         </div>`)
                 }
 
-                createTimeSlots()
-
                 const facilityAE = res.data.data.facility_a_e;
                 const is24Hours = res.data.data.is_24_hours;
-                console.log(res.data.data.address);
 
                 if (res.data.data.address) {
                     document.querySelector('input[name="street_address"]').value = res.data.data.address;
@@ -821,27 +835,6 @@
                 console.log(err);
             })
         })
-
-        const createTimeSlots = () => {
-            const timeSlots = document.querySelector('.time-slots');
-
-            timeSlotsData.map((item) => {
-                timeSlots.innerHTML += `
-                         <div class="time-slot row align-items-center g-3 mb-2">
-                             <div class="col-3">
-                                 <span class="day-label">${item.day}</span>
-                             </div>
-                             <div class="col-9">
-                                 <div class="d-flex align-items-center time-input-group">
-                                     <input type="time" class="form-control form-control-sm start-time" name="${item.day.toLowerCase()}_start" value="${item.start_time}" required>
-                                     <span class="time-separator mx-2">to</span>
-                                     <input type="time" class="form-control form-control-sm end-time" name="${item.day.toLowerCase()}_end" value="${item.end_time}" required>
-                                 </div>
-                             </div>
-                         </div>`
-            })
-            console.log(timeSlots);
-        }
 
         // Preview functionality
         const previewBtn = document.getElementById('preview-button');
@@ -957,13 +950,6 @@
             const timeSchedule = document.getElementById('timeSchedule');
             const is24HoursInputs = document.querySelectorAll('input[name="is_24hours"]');
 
-            //     function createTimeSlots() {
-            //       
-            // `).join('');
-            //     }
-
-            //     // Initialize time slots
-            //     createTimeSlots();
 
             if (editButton && form && actionButtons && cancelButton) {
                 const allInputs = form.querySelectorAll('input, select, textarea');
