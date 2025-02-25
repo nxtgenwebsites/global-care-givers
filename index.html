@@ -93,7 +93,8 @@
                                     </div>
                                 </div>
                             </li>
-                            <li id="admin-dashboard" class="d-none"><a class="dropdown-item py-2 d-flex align-items-center gap-3"
+                            <li id="admin-dashboard" class="d-none"><a
+                                    class="dropdown-item py-2 d-flex align-items-center gap-3"
                                     href="/admin-dashboard/health-facilities.html">
                                     <img src="assets/images/user.png" width="25" alt="">
                                     Admin Dashboard
@@ -679,6 +680,13 @@
                 'id': id
             }
         }).then((res) => {
+
+            if (res.data.user.isBlocked === true) {
+                localStorage.clear();
+                window.location.href = '/';
+                window.location.reload(true);
+            }
+
             user = res.data.user.name;
 
             const userName = document.querySelectorAll('.user-name');
@@ -698,16 +706,10 @@
                 document.getElementById('admin-dashboard').classList.add('d-none');
                 document.getElementById('nav-admin-dashboard').classList.add('d-none');
             }
-
-            console.log(res.data.user.isBlocked);
-
-            if (res.data.user.isBlocked === true) {
-                localStorage.clear()
-            }
-
         }).catch((err) => {
             if (err.response.data.error === 'User not found') {
                 localStorage.clear()
+                location.reload();
             }
             console.log(err);
         })
