@@ -8,7 +8,6 @@
     <link rel="shortcut icon" href="assets/logo.svg" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/toastr.min.css">
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/share.css">
     <link rel="stylesheet" href="css/users.css">
@@ -26,6 +25,7 @@
             </div>
             <img src="assets/trustpilot.png" alt="Trustpilot" class="trustpilot d-none d-lg-block">
         </div>
+
         <!-- Right side with toggle button, notification and user -->
         <div class="d-flex align-items-center gap-3">
             <!-- Mobile Toggle Button -->
@@ -98,8 +98,7 @@
                         <div class="dropdown-toggle"></div>
                     </button>
                     <ul class="d-none m-remote-care-dropdown" id="m-remote-care-dropdown"">
-                            <li><a href=" /admin-dashboard/add-user.html" class="dropdown-item  text-black active">Add
-                        New
+                        <li><a href=" /admin-dashboard/add-user.html" class="dropdown-item  text-black active">Add New
                         User</a></li>
                         <li><a href="/admin-dashboard/manage-users.html" class="dropdown-item text-black ">Staff
                                 Members</a></li>
@@ -163,35 +162,36 @@
 
             <!-- Menu Items -->
 
-            <a href="/admin-dashboard/health-facilities.html">
-                <div class="menu-item">
+            <a href="/my-account/health-facilities.html">
+                <div class="menu-item active">
                     <svg class="icon sidebar-icon mx-0" width="26px" height="26px" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
                             d="M21.5 8.5C21.5 7.09554 21.5 6.39331 21.1629 5.88886C21.017 5.67048 20.8295 5.48298 20.6111 5.33706C20.1699 5.04224 19.5774 5.00529 18.496 5.00066C18.5001 5.29206 18.5 5.59655 18.5 5.91051L18.5 6V7.25H19.5C19.9142 7.25 20.25 7.58579 20.25 8C20.25 8.41421 19.9142 8.75 19.5 8.75H18.5V10.25H19.5C19.9142 10.25 20.25 10.5858 20.25 11C20.25 11.4142 19.9142 11.75 19.5 11.75H18.5V13.25H19.5C19.9142 13.25 20.25 13.5858 20.25 14C20.25 14.4142 19.9142 14.75 19.5 14.75H18.5V21.25H17V6C17 4.11438 17 3.17157 16.4142 2.58579C15.8284 2 14.8856 2 13 2H11C9.11438 2 8.17157 2 7.58579 2.58579C7 3.17157 7 4.11438 7 6V21.25H5.5V14.75H4.5C4.08579 14.75 3.75 14.4142 3.75 14C3.75 13.5858 4.08579 13.25 4.5 13.25H5.5V11.75H4.5C4.08579 11.75 3.75 11.4142 3.75 11C3.75 10.5858 4.08579 10.25 4.5 10.25H5.5V8.75H4.5C4.08579 8.75 3.75 8.41421 3.75 8C3.75 7.58579 4.08579 7.25 4.5 7.25H5.5V6L5.49999 5.9105C5.49996 5.59655 5.49992 5.29206 5.50403 5.00066C4.42262 5.00529 3.83008 5.04224 3.38886 5.33706C3.17048 5.48298 2.98298 5.67048 2.83706 5.88886C2.5 6.39331 2.5 7.09554 2.5 8.5V21.25H2C1.58579 21.25 1.25 21.5858 1.25 22C1.25 22.4142 1.58579 22.75 2 22.75H22C22.4142 22.75 22.75 22.4142 22.75 22C22.75 21.5858 22.4142 21.25 22 21.25H21.5V8.5ZM12 4.25C12.4142 4.25 12.75 4.58579 12.75 5V6.25H14C14.4142 6.25 14.75 6.58579 14.75 7C14.75 7.41421 14.4142 7.75 14 7.75H12.75V9C12.75 9.41421 12.4142 9.75 12 9.75C11.5858 9.75 11.25 9.41421 11.25 9V7.75H10C9.58579 7.75 9.25 7.41421 9.25 7C9.25 6.58579 9.58579 6.25 10 6.25H11.25V5C11.25 4.58579 11.5858 4.25 12 4.25ZM9.25 12C9.25 11.5858 9.58579 11.25 10 11.25H14C14.4142 11.25 14.75 11.5858 14.75 12C14.75 12.4142 14.4142 12.75 14 12.75H10C9.58579 12.75 9.25 12.4142 9.25 12ZM9.25 15C9.25 14.5858 9.58579 14.25 10 14.25H14C14.4142 14.25 14.75 14.5858 14.75 15C14.75 15.4142 14.4142 15.75 14 15.75H10C9.58579 15.75 9.25 15.4142 9.25 15ZM12 18.25C12.4142 18.25 12.75 18.5858 12.75 19V21.25H11.25V19C11.25 18.5858 11.5858 18.25 12 18.25Z"
                             fill="#9197B3" />
                     </svg>
+
                     <span class="menu-text">Health Care Facilities</span>
                 </div>
             </a>
 
-            <div class="menu-item-dropdown active">
-                <div class="menu-icon-wrapper">
+    <a href="/my-account/profile-settings.html">
+        <div class="menu-item">
                     <svg class="icon sidebar-icon" width="26" height="26" viewBox="0 0 26 26" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M10.8333 13.0002C9.64163 13.0002 8.62149 12.5759 7.77288 11.7272C6.92426 10.8786 6.49996 9.8585 6.49996 8.66683C6.49996 7.47516 6.92426 6.45502 7.77288 5.60641C8.62149 4.7578 9.64163 4.3335 10.8333 4.3335C12.025 4.3335 13.0451 4.7578 13.8937 5.60641C14.7423 6.45502 15.1666 7.47516 15.1666 8.66683C15.1666 9.8585 14.7423 10.8786 13.8937 11.7272C13.0451 12.5759 12.025 13.0002 10.8333 13.0002ZM2.16663 19.5002V18.6335C2.16663 18.0377 2.3201 17.4779 2.62704 16.9543C2.93399 16.4307 3.35829 16.0335 3.89996 15.7627C4.94718 15.2391 6.03051 14.8281 7.14996 14.5298C8.2694 14.2316 9.41593 14.0828 10.5895 14.0835C10.8965 14.0835 11.154 14.1918 11.362 14.4085C11.57 14.6252 11.6736 14.887 11.6729 15.1939C11.6722 15.5009 11.5682 15.7583 11.3609 15.9663C11.1536 16.1743 10.8965 16.278 10.5895 16.2772C9.57843 16.2772 8.59874 16.4036 7.65046 16.6564C6.70218 16.9092 5.77701 17.2613 4.87496 17.7127C4.6944 17.8029 4.55899 17.9293 4.46871 18.0918C4.37843 18.2543 4.33329 18.4349 4.33329 18.6335V19.5002H10.5895C10.8965 19.5002 11.154 19.6042 11.362 19.8122C11.57 20.0202 11.6736 20.2773 11.6729 20.5835C11.6722 20.8897 11.5682 21.1472 11.3609 21.3559C11.1536 21.5646 10.8965 21.6683 10.5895 21.6668H4.33329C3.73746 21.6668 3.22757 21.4549 2.80363 21.0309C2.37968 20.607 2.16735 20.0967 2.16663 19.5002ZM17.1708 21.8835L17.0083 21.1252C16.7916 21.0349 16.5887 20.9403 16.3995 20.8413C16.2102 20.7424 16.016 20.6203 15.8166 20.4752L15.0312 20.7189C14.7965 20.7911 14.5665 20.7821 14.3411 20.6918C14.1158 20.6016 13.9396 20.4571 13.8125 20.2585L13.5958 19.8793C13.4694 19.6627 13.4243 19.4279 13.4604 19.1752C13.4965 18.9224 13.6138 18.7147 13.8125 18.5522L14.4083 18.0377C14.3722 17.7849 14.3541 17.5502 14.3541 17.3335C14.3541 17.1168 14.3722 16.8821 14.4083 16.6293L13.8125 16.1147C13.6138 15.9522 13.4965 15.7489 13.4604 15.5048C13.4243 15.2607 13.4694 15.0307 13.5958 14.8147L13.8395 14.4085C13.9659 14.2099 14.1375 14.0654 14.3541 13.9752C14.5708 13.8849 14.7965 13.8759 15.0312 13.9481L15.8166 14.1918C16.0152 14.0474 16.2095 13.9253 16.3995 13.8257C16.5894 13.726 16.7923 13.6314 17.0083 13.5418L17.1708 12.7564C17.225 12.5036 17.347 12.3007 17.537 12.1476C17.7269 11.9945 17.9479 11.9176 18.2 11.9168H18.6333C18.8861 11.9168 19.1074 11.9981 19.2974 12.1606C19.4873 12.3231 19.609 12.5307 19.6625 12.7835L19.825 13.5418C20.0416 13.6321 20.2446 13.7314 20.4338 13.8397C20.623 13.9481 20.8173 14.0835 21.0166 14.246L21.7479 14.0022C22.0007 13.912 22.2444 13.912 22.4791 14.0022C22.7138 14.0925 22.8944 14.246 23.0208 14.4627L23.2375 14.8418C23.3638 15.0585 23.409 15.2932 23.3729 15.546C23.3368 15.7988 23.2194 16.0064 23.0208 16.1689L22.425 16.6835C22.4611 16.9002 22.4791 17.1259 22.4791 17.3606C22.4791 17.5953 22.4611 17.821 22.425 18.0377L23.0208 18.5522C23.2194 18.7147 23.3368 18.918 23.3729 19.1622C23.409 19.4063 23.3638 19.6363 23.2375 19.8522L22.9937 20.2585C22.8673 20.4571 22.6958 20.6016 22.4791 20.6918C22.2625 20.7821 22.0368 20.7911 21.802 20.7189L21.0166 20.4752C20.818 20.6196 20.6237 20.7413 20.4338 20.8402C20.2438 20.9392 20.0409 21.0342 19.825 21.1252L19.6625 21.9106C19.6083 22.1634 19.4866 22.3667 19.2974 22.5205C19.1082 22.6743 18.8868 22.7509 18.6333 22.7502H18.2C17.9472 22.7502 17.7262 22.6689 17.537 22.5064C17.3477 22.3439 17.2257 22.1363 17.1708 21.8835ZM18.4166 19.5002C19.0125 19.5002 19.5227 19.2882 19.9474 18.8642C20.372 18.4403 20.584 17.9301 20.5833 17.3335C20.5826 16.7369 20.3706 16.2271 19.9474 15.8038C19.5242 15.3806 19.0139 15.1683 18.4166 15.1668C17.8193 15.1654 17.3095 15.3777 16.887 15.8038C16.4645 16.2299 16.2521 16.7398 16.25 17.3335C16.2478 17.9272 16.4601 18.4374 16.887 18.8642C17.3138 19.2911 17.8237 19.5031 18.4166 19.5002ZM10.8333 10.8335C11.4291 10.8335 11.9394 10.6215 12.364 10.1976C12.7887 9.77363 13.0007 9.26338 13 8.66683C12.9992 8.07027 12.7873 7.56038 12.364 7.13716C11.9408 6.71394 11.4306 6.50161 10.8333 6.50016C10.236 6.49872 9.72613 6.71105 9.30363 7.13716C8.88113 7.56327 8.66879 8.07316 8.66663 8.66683C8.66446 9.2605 8.87679 9.77075 9.30363 10.1976C9.73046 10.6244 10.2403 10.8364 10.8333 10.8335Z"
                             fill="#9197B3" />
                     </svg>
-                    <span class="menu-text">Manage Users</span>
-                </div>
-                <i class="bi bi-chevron-right arrow"></i>
-            </div>
-            <div class="dropdown-content ps-4 show">
+    
+            <span class="menu-text">Profile Settings</span>
+        </div>
+    </a>
+
+            <div class="dropdown-content ps-4">
                 <ul class="custom-bullets">
                     <li><a href="/admin-dashboard/add-user.html" class="dropdown-item-custom">Add New User</a></li>
-                    <li><a href="/admin-dashboard/manage-users.html" class="dropdown-item-custom active">Staff
-                            Members</a></li>
+                    <li><a href="/admin-dashboard/manage-users.html" class="dropdown-item-custom">Staff Members</a></li>
                 </ul>
             </div>
             <!-- Logout Button -->
@@ -203,14 +203,83 @@
         <div class="sidebar-overlay" id="sidebarOverlay"></div>
         <!-- Main Content -->
         <div class="main-content p-4">
+            <!-- Stats Cards Row -->
+            <div class="row g-3 mb-4">
+                <!-- Total Users Card -->
+                <div class="col-md-3 col-6" id="hospitals-card">
+                    <div class="card border-0 shadow-sm total-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center total-card-content">
+                                <div class="icon-circle me-3">
+                                    <img src="assets/hospital.png" width="50" alt="hospital">
+                                </div>
+                                <div>
+                                    <h2 class="mb-0 fw-bold card-heading" id="total-hospital">0</h2>
+                                    <p class="text-muted mb-0 card-text">Hospitals</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Registered Users Card -->
+                <div class="col-md-3 col-6" id="emergency-card">
+                    <div class="card border-0 shadow-sm total-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center total-card-content">
+                                <div class="icon-circle me-3">
+                                    <img src="assets/siren.png" width="50" alt="Emergency">
+                                </div>
+                                <div>
+                                    <h2 class="mb-0 fw-bold card-heading" id="total-emergency">0</h2>
+                                    <p class="text-muted mb-0 card-text">Emergency</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DHA Users Card -->
+                <div class="col-md-3 col-6" id="medical-card">
+                    <div class="card border-0 shadow-sm total-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center  total-card-content">
+                                <div class="icon-circle me-3">
+                                    <img src="assets/flask.png" width="50" alt="Medical Labs">
+                                </div>
+                                <div>
+                                    <h2 class="mb-0 fw-bold card-heading" id="total-medical-labs">0</h2>
+                                    <p class="text-muted mb-0 card-text text-nowrap">Medical Labs</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DHA Users Card -->
+                <div class="col-md-3 col-6" id="chemists-card">
+                    <div class="card border-0 shadow-sm total-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center  total-card-content">
+                                <div class="icon-circle me-3">
+                                    <img src="assets/chemist.png" width="50" alt="Emergency">
+                                </div>
+                                <div>
+                                    <h2 class="mb-0 fw-bold card-heading" id="total-chemists">0</h2>
+                                    <p class="text-muted mb-0 card-text">Chemists</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- Users Table Section -->
             <div class="card border-0 shadow-sm">
                 <div class="card-body p-4">
                     <div
-                        class=" facilities-card d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
-                        <h5 class="heading-text card-title mb-0">Staff Members</h5>
-
+                        class="facilities-card d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
+                        <h5 class="card-title mb-0 heading-text">Health Care Facilities</h5>
                         <div class="d-flex align-items-center seach-filter">
                             <div class="dropdown">
                                 <button class="btn btn-outline-secondary dropdown-toggle" id="sort-filter" type="button"
@@ -218,8 +287,8 @@
                                     Sort by : <span style="font-weight: bold; color:black;">Newest</span>
                                 </button>
                                 <ul class="dropdown-menu w-100">
-                                    <li class="px-3">
-                                        <div class="search-box">
+                                    <li>
+                                        <div class="search-box px-2 w-100">
                                             <input type="text" id="searchInput" class="form-control"
                                                 placeholder="Search">
                                         </div>
@@ -228,25 +297,28 @@
                                     <li class="dropdown-item" id="sortOldest">Oldest</li>
                                 </ul>
                             </div>
-                            <a class="btn btn-primary ms-3 add-icon text-black" href="/admin-dashboard/add-user.html">
+                            <a class="btn btn-primary ms-3 add-icon text-black" href="\">
                                 <i class="bi bi-plus"></i>
                             </a>
                         </div>
                     </div>
 
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th class="table-text">Name</th>
-                                    <th class="table-text">Email</th>
-                                    <th class="table-text">Role</th>
-                                    <th class="action">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="table-body">
-                            </tbody>
-                        </table>
+                    <div class="facilities-table">
+                        <div class="table-responsive">
+                            <table class="table facilities-table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Organization Name</th>
+                                        <th>Joined</th>
+                                        <th>Country</th>
+                                        <th>Email</th>
+                                        <th class="action">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-body">
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
                     <div class="d-flex flex-column-reverse flex-sm-row justify-content-between align-items-center mt-4">
@@ -269,6 +341,66 @@
                 </div>
             </div>
         </div>
+        <!-- Call Remote Care Popup -->
+        <div class="popup d-none justify-content-center align-items-center" id="paired-device-popup">
+            <div class="paired-box bg-white rounded text-center position-relative ">
+                <h5 class="my-3 test-primary">+1 (313) 560 1122</h5>
+                <p class="my-3">Click on call Now to initiate a call</p>
+                <div class="d-flex  gap-4 justify-content-center mt-4">
+                    <a href="tel:+1 (313) 560 1122" id="paired-black-btn" class="btn popup-btn">Call Now</a>
+                </div>
+                <div class="close-btn">
+                    <button class="btn border-0" type="submit" id="paired-close-btn"><img src="assets/icons/close.svg"
+                            alt="close"></button>
+                </div>
+            </div>
+        </div>
+        <!-- Share Profile Popup -->
+        <div class="popup d-none justify-content-center align-items-center" id="share-profile-popup">
+            <div class="profile-box bg-white rounded text-center position-relative w-100">
+                <h5 class="mt-3">Share My Profile</h5>
+                <div
+                    class="profile-link w-100 mt-5 d-flex flex-md-row flex-column gap-3 align-items-center justify-content-lg-between">
+
+                    <h6 id="profile-url">https://health-monitor-sa.vercel.app/user-dashboard/user-profile.html</h6>
+                    <div class="d-flex">
+                        <button class="btn py-0 bg-white border-0" id="prfile-copy-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none">
+                                <path
+                                    d="M6 11C6 8.172 6 6.757 6.879 5.879C7.757 5 9.172 5 12 5H15C17.828 5 19.243 5 20.121 5.879C21 6.757 21 8.172 21 11V16C21 18.828 21 20.243 20.121 21.121C19.243 22 17.828 22 15 22H12C9.172 22 7.757 22 6.879 21.121C6 20.243 6 18.828 6 16V11Z"
+                                    stroke="#2E2E2E" stroke-width="1.5" />
+                                <path opacity="0.5"
+                                    d="M6 19C5.20435 19 4.44129 18.6839 3.87868 18.1213C3.31607 17.5587 3 16.7956 3 16V10C3 6.229 3 4.343 4.172 3.172C5.344 2.001 7.229 2 11 2H15C15.7956 2 16.5587 2.31607 17.1213 2.87868C17.6839 3.44129 18 4.20435 18 5"
+                                    stroke="#2E2E2E" stroke-width="1.5" />
+                            </svg>
+                        </button>
+                        <div class="dropdown">
+                            <button class="btn py-0 bg-white border-0 " id="dropdownMenuButton"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none">
+                                    <path
+                                        d="M18 16C17.212 16 16.501 16.31 15.966 16.807L8.91 12.7C8.96 12.47 9 12.24 9 12C9 11.76 8.96 11.53 8.91 11.3L15.96 7.19C16.5 7.69 17.21 8 18 8C19.66 8 21 6.66 21 5C21 3.34 19.66 2 18 2C16.34 2 15 3.34 15 5C15 5.24 15.04 5.47 15.09 5.7L8.04 9.81C7.5 9.31 6.79 9 6 9C4.34 9 3 10.34 3 12C3 13.66 4.34 15 6 15C6.79 15 7.5 14.69 8.04 14.19L15.088 18.308C15.0319 18.5345 15.0023 18.7667 15 19C15 19.5933 15.1759 20.1734 15.5056 20.6667C15.8352 21.1601 16.3038 21.5446 16.8519 21.7716C17.4001 21.9987 18.0033 22.0581 18.5853 21.9424C19.1672 21.8266 19.7018 21.5409 20.1213 21.1213C20.5409 20.7018 20.8266 20.1672 20.9424 19.5853C21.0581 19.0033 20.9987 18.4001 20.7716 17.8519C20.5446 17.3038 20.1601 16.8352 19.6667 16.5056C19.1734 16.1759 18.5933 16 18 16Z"
+                                        fill="#2E2E2E" />
+                                </svg>
+                            </button>
+                            <ul class="dropdown-menu profle-drop-down" aria-labelledby="dropdownMenuButton">
+                                <li><a class="dropdown-item" href="#">Forward</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="close-btn">
+                    <button class="btn border-0" type="submit" id="profile-close-btn"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                            <path d="M10.7618 10.7621L1.23804 1.23828M10.7618 1.23828L1.23804 10.7621" stroke="black"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg></button>
+                </div>
+            </div>
+        </div>
+        <!-- View Facility Modal -->
         <!-- View Facility Modal -->
         <div class="modal fade" id="viewFacilityModal" tabindex="-1" aria-labelledby="viewFacilityModalLabel"
             aria-hidden="true">
@@ -282,40 +414,144 @@
                     <div class="modal-body p-4">
                         <!-- Title and Meta -->
                         <div class="text-center mb-3">
-                            <h2 class="user-full-name mb-1">
-                               
-                            </h2>
-                            <p class="user-address mb-1"></p>
-                            <p class="user-role mb-1"></p>
+                            <h2 class="facility-name mb-1"></h2>
+                            <p class="facility-type mb-3"></p>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="d-flex justify-content-center gap-2 mb-4">
+                            <button class="btn btn-light px-3 py-1 rounded-pill share-btn">
+                                <i class="bi bi-share"></i> Share
+                            </button>
+                            <button class="btn btn-light px-3 py-1 rounded-pill directions-btn">
+                                <i class="bi bi-geo-alt"></i> Directions
+                            </button>
                         </div>
 
                         <!-- Address Section -->
                         <div class="text-center mb-3">
-                            <p class="user-phone mb-1"></p>
-                            <p class="user-email mb-1"></p>
+                            <h6 class="address-label mb-2">Address</h6>
+                            <p class="facility-address mb-3"></p>
+                        </div>
+
+                        <!-- Contact Section -->
+                        <div class="text-center mb-3">
+                            <div class="facility-email mb-1"></div>
+                            <div class="facility-phone"></div>
+                        </div>
+
+                        <!-- Facility Type Section -->
+                        <div class="text-center mb-3 facility-box">
+                        </div>
+
+                        <!-- Hours Section -->
+                        <div class="text-center timing-box">
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <!-- First Add Img Popup -->
+        <div class="popup d-none justify-content-center align-items-center" id="add-1-popup">
+            <div class="add-box bg-white rounded text-center w-100 position-relative">
+                <div class="add-img-container">
+                    <img src="assets/add popup.jpg" class="img-fluid" alt="">
+                    <div class="learn-more">
+                        <a href="">Click to Learn More</a>
+                    </div>
+                    <div class="add-stats-container">
+                        <div class="stat-item">
+                            <i class="bi bi-hand-thumbs-up"></i>
+                            <span>22</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="bi bi-share-fill"></i>
+                            <span>23</span>
+                        </div>
+
+                        <div class="stat-item">
+                            <i class="bi bi-eye"></i>
+                            <span>23</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="add-close-btn">
+                    <button class="btn border-0" type="submit" id="add-close-btn"><img src="assets/white close btn.svg"
+                            alt="close"></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Video Popup -->
+        <div class="popup d-none justify-content-center align-items-center" id="share-popup">
+            <div class="share-box bg-white rounded position-relative ">
+                <div>
+                    <h4>Share</h4>
+                </div>
+                <div class="d-flex flex-column social-button">
+                    <button>
+                        <img src="assets/facebook.png" alt="">
+                        <span class="mx-3">Facebook</span>
+                    </button>
+                    <button>
+                        <img src="assets/whats app.png" alt="">
+                        <span class="mx-3">WhatsApp</span>
+                    </button>
+                    <button>
+                        <img src="assets/x.png" alt="">
+                        <span class="mx-3">X</span>
+                    </button>
+                    <button>
+                        <img src="assets/email.png" alt="">
+                        <span class="mx-3">Email</span>
+                    </button>
+                </div>
+                <div class="close-btn">
+                    <button class="btn border-0" type="submit" id="share-close"><img src="assets/icons/close.svg"
+                            alt="close"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Share Message start -->
+    <div class="share-message">
+        <div class="share-card p-3">
+            <div class="share-img text-end">
+                <i class="bi-regular bi-x-lg"></i>
+            </div>
+            <div class="share-heading text-center my-4">
+                <h4>Share My Profile</h4>
+            </div>
+            <div class="share-content d-flex">
+                <a href="#" class="text-decoration-none text-black">Copy Link</a>
+                <a href="#"
+                    class="text-decoration-underline text-black mx-auto">https://health-monitor-sa.vercel.app/user-dashboard/user-profile.html</a>
+                <a href="#" class="text-decoration-underline text-black me-3"><i class="bi bi-files"></i></a>
+                <a href="#" class="text-decoration-underline text-black"><i class="bi bi-share-fill"></i></a>
             </div>
         </div>
     </div>
     <!-- Share Message end -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="js/toastr.min.js"></script>
     <script src="js/sidebar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        const loginOut = document.getElementById('logout-btn');
+    let userEmail = '';
+    const u_id = localStorage.getItem('u_id');
+            axios.get('https://health-care-facilities-backend.vercel.app/api/get-user', {
+                    headers: {
+                        'id': u_id
+                    }
+                }).then((res) => {
+                    userEmail = res.data.user.email
+                            getData(1)
+                    console.log(userEmail);
+                }).catch((err) => {
+                    console.log(err);
+                })
 
-        loginOut.addEventListener(('click'), () => {
-            localStorage.removeItem('login')
-            localStorage.removeItem('u_id')
-            location.href = '/';
-        })
+
 
         const deletePopup = `<div class="modal fade" id="deleteFacilityModal" tabindex="-1" aria-labelledby="deleteFacilityModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -329,8 +565,8 @@
                     <line x1="15" y1="9" x2="9" y2="15"/>
                     <line x1="9" y1="9" x2="15" y2="15"/>
                 </svg>
-                <h4 class="mt-4 mb-3">Delete User?</h4>
-                <p class="mb-4">Are you sure you want to delete this user? This action cannot be undone.</p>
+                <h4 class="mt-4 mb-3">Delete Facility?</h4>
+                <p class="mb-4">Are you sure you want to delete this facility? This action cannot be undone.</p>
                 <div class="d-flex justify-content-center gap-3">
                     <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">Cancel</button>
                     <button type="button" class="btn btn-danger px-4" id="confirmDelete">Delete</button>
@@ -340,64 +576,9 @@
     </div>
 </div>`;
 
-        const blockPopup = `<div class="modal fade" id="blockFacilityModal" tabindex="-1" aria-labelledby="deleteFacilityModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header border-0">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body text-center pb-5">
-                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"/>
-                    <line x1="15" y1="9" x2="9" y2="15"/>
-                    <line x1="9" y1="9" x2="15" y2="15"/>
-                </svg>
-                <h4 class="mt-4 mb-3">Block User?</h4>
-                <p class="mb-4">Are you sure you want to block this user?</p>
-                <div class="d-flex justify-content-center gap-3">
-                    <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-danger px-4" id="confirmBlock">Block</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>`;
-
-        const unblockPopup = `<div class="modal fade" id="unblockFacilityModal" tabindex="-1" aria-labelledby="deleteFacilityModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header border-0">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body text-center pb-5">
-                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"/>
-                    <line x1="15" y1="9" x2="9" y2="15"/>
-                    <line x1="9" y1="9" x2="15" y2="15"/>
-                </svg>
-                <h4 class="mt-4 mb-3">Unblock User?</h4>
-                <p class="mb-4">Are you sure you want to unblock this user?</p>
-                <div class="d-flex justify-content-center gap-3">
-                    <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-danger px-4" id="confirmUnblock">Unblock</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>`;
-
         // Add this to your DOMContentLoaded event handler
         document.addEventListener('DOMContentLoaded', function () {
             // ... your existing viewButtons code ...
-
-            // Add delete modal to body if it doesn't exist
-            if (!document.getElementById('blockFacilityModal')) {
-                document.body.insertAdjacentHTML('beforeend', blockPopup);
-            }
-
-            if (!document.getElementById('unblockFacilityModal')) {
-                document.body.insertAdjacentHTML('beforeend', unblockPopup);
-            }
 
             // Add delete modal to body if it doesn't exist
             if (!document.getElementById('deleteFacilityModal')) {
@@ -412,25 +593,35 @@
         let currentPage = 1;
         let allData = [];
         let deleteFacilityId;
-        let blockFacilityId;
 
         async function getData(page) {
             const pageSize = document.getElementById("pageSize").value;
             currentPage = page;
+            const addedUsers = new Set();
 
             try {
-                const res = await axios.get('https://health-care-facilities-backend.vercel.app/api/get-all-users');
+                const res = await axios.post('https://health-care-facilities-backend.vercel.app/api/get-user-report' , { email: userEmail});
+                const facilityCounts = { hospital: 0, emergency: 0, chemists: 0, "medical labs": 0 };
 
-
-
-                allData = res.data.users;
+                console.log(res.data);
+                allData = res.data.data;
                 totalRecords = allData.length;
+
+
+                allData.forEach((item) => {
+                    const facilityType = item.facility_type.toLowerCase();
+
+                    if (Object.keys(facilityCounts).some(key => key.toLowerCase() === facilityType)) {
+                        facilityCounts[facilityType] = (facilityCounts[facilityType] || 0) + 1;
+                    }
+                });
+
+                renderTable(allData);
 
                 const start = (page - 1) * pageSize;
                 const end = start + parseInt(pageSize);
                 const paginatedData = allData.slice(start, end);
 
-                renderTable(allData);
                 document.querySelector(".pagination-info").textContent = `Showing data ${start + 1} to ${end} of ${totalRecords} entries`;
 
                 renderPagination(totalRecords, pageSize, page);
@@ -440,11 +631,12 @@
                 paginatedData.forEach((item) => {
                     tableBody.innerHTML += `
                 <tr class="table-row">
-                    <td class="table-text">${item.name}</td>
-                    <td class="table-text">${item.email}</td>
-                    <td class="table-text">${item.role}</td>
+                    <td>${item.organisation_name}</td>
+                    <td>${new Date(item.createdAt).toLocaleDateString('en-US')}</td>
+                    <td>${item.country}</td>
+                    <td>${item.email}</td>
                      <td>
-                                        <div class="d-flex justify-content-center">
+                                        <div class="d-flex">
                                             <button class="btn btn-sm edit-facility-btn"  data-id=${item._id}><svg
                                                     xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                     viewBox="0 0 20 20" fill="none">
@@ -474,28 +666,15 @@
                                                         fill="#9197B3" stroke="#9197B3" stroke-width="1.5"
                                                         stroke-linecap="round" stroke-linejoin="round" />
                                                 </svg></button>
-       <select class="form-select form-select-sm status-facility-btn" data-id=${item._id} user-status=${item.isBlocked}>
-                <option selected disabled>Status</option>
-               <option value="block">Block</option>    
-            <option value="unblock">Unblock</option>
-    </select>
                                         </div>
                                     </td>
                 </tr>`;
                 });
 
-                const userStatus = document.querySelectorAll('.status-facility-btn');
-
-               userStatus.forEach(select => {
-                    const status = select.getAttribute('user-status');
-                    if (status === 'true') {
-                        select.value = 'block';
-                    } 
-                });
-
                 // Get all delete buttons
                 const editButtons = document.querySelectorAll('.edit-facility-btn');
 
+                // Initialize delete buttons click handlers
                 editButtons.forEach(button => {
                     button.addEventListener('click', () => {
                         editBtn(button)
@@ -503,11 +682,17 @@
                 });
 
 
+
                 // Add modal HTML to document if it doesn't exist
                 if (!document.getElementById('viewFacilityModal')) {
                     document.body.insertAdjacentHTML('beforeend', modalHTML);
                 }
 
+
+                document.getElementById('total-chemists').innerText = facilityCounts.chemists;
+                document.getElementById('total-hospital').innerText = facilityCounts.hospital;
+                document.getElementById('total-emergency').innerText = facilityCounts.emergency;
+                document.getElementById('total-medical-labs').innerText = facilityCounts["medical labs"];
 
                 let viewFacilityId;
                 // Initialize view buttons
@@ -521,6 +706,15 @@
                     });
                 });
 
+
+                // Show Share Popup 
+                const shareBtn = document.querySelectorAll('.share-btn');
+                shareBtn.forEach((button) => {
+                    button.addEventListener(('click'), () => {
+                        shareFun()
+                    })
+                })
+
                 // Get all delete buttons
                 const deleteButtons = document.querySelectorAll('.delete-facility-btn');
 
@@ -533,132 +727,171 @@
                     });
                 });
 
-                // Get all delete buttons
-                const statusButtons = document.querySelectorAll('.status-facility-btn');
-
-                console.log(statusButtons);
-                // Initialize delete buttons click handlers
-                statusButtons.forEach(button => {
-                    button.addEventListener('change', (e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        handleStatus(button)
-                    });
-                });
-
                 // const id = item._id
                 document.getElementById('confirmDelete')?.addEventListener('click', async () => {
                     try {
-                        await axios.delete('https://health-care-facilities-backend.vercel.app/api/delete-user', {
+                        await axios.delete('https://health-care-facilities-backend.vercel.app/api/delete', {
                             headers: {
                                 'id': deleteFacilityId
                             }
                         }).then((res) => {
-                            console.log(res.data);
                             getData(1)
                         })
                     } catch (error) {
-                        toastr.error(`${error.response?.data?.error || 'Something went wrong.'}`, "Error", {
-                            "closeButton": true,
-                            "progressBar": true,
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "2000",
-                            "extendedTimeOut": "1000",
-                        })
                         console.log(error);
                     }
                     const modal = bootstrap.Modal.getInstance(document.getElementById('deleteFacilityModal'));
                     modal.hide();
                 });
 
-                document.getElementById('confirmBlock')?.addEventListener('click', async () => {
-                    try {
-                        await axios.put('https://health-care-facilities-backend.vercel.app/api/block-user', {}, {
-                            headers: {
-                                id: blockFacilityId
-                            }
-                        }).then((res) => {
-                            toastr.success(`${res.data.message || 'User blocked successfully'}`, "Error", {
-                                "closeButton": true,
-                                "progressBar": true,
-                                "showDuration": "300",
-                                "hideDuration": "1000",
-                                "timeOut": "2000",
-                                "extendedTimeOut": "1000",
-                            })
-                        })
-                    } catch (error) {
-                        console.log(blockFacilityId);
-                        toastr.error(`${error.response?.data?.message || 'Something went wrong.'}`, "Error", {
-                            "closeButton": true,
-                            "progressBar": true,
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "2000",
-                            "extendedTimeOut": "1000",
-                        })
-                        console.log(error);
-                    }
-                    const modal = bootstrap.Modal.getInstance(document.getElementById('blockFacilityModal'));
-                    modal.hide();
-                });
-
-                document.getElementById('confirmUnblock')?.addEventListener('click', async () => {
-                    try {
-                        await axios.put('https://health-care-facilities-backend.vercel.app/api/unblock-user', {}, {
-                            headers: {
-                                id: blockFacilityId
-                            }
-                        }).then((res) => {
-                            toastr.success(`${res.data.message || 'User blocked successfully'}`, "Error", {
-                                "closeButton": true,
-                                "progressBar": true,
-                                "showDuration": "300",
-                                "hideDuration": "1000",
-                                "timeOut": "2000",
-                                "extendedTimeOut": "1000",
-                            })
-                        })
-                    } catch (error) {
-                        console.log(blockFacilityId);
-                        toastr.error(`${error.response?.data?.message || 'Something went wrong.'}`, "Error", {
-                            "closeButton": true,
-                            "progressBar": true,
-                            "showDuration": "300",
-                            "hideDuration": "1000",
-                            "timeOut": "2000",
-                            "extendedTimeOut": "1000",
-                        })
-                        console.log(error);
-                    }
-                    const modal = bootstrap.Modal.getInstance(document.getElementById('unblockFacilityModal'));
-                    modal.hide();
-                });
-
-
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
         }
 
+        const sharePopup = document.getElementById('share-popup');
+        const shareCloseBtn = document.getElementById('share-close');
 
+        shareCloseBtn.addEventListener(('click'), () => {
+            sharePopup.classList.add('d-none');
+        })
 
-        const handleStatus = async (button) => {
-            const selectedValue = button.value;
-            const id = button.getAttribute('data-id');
-            blockFacilityId = id
-
-            if (selectedValue === "block") {
-                const modal = new bootstrap.Modal(document.getElementById('blockFacilityModal'));
-                modal.show();
-
-            } else if (selectedValue === "unblock") {
-                const modal = new bootstrap.Modal(document.getElementById('unblockFacilityModal'));
-                modal.show();
+        sharePopup.addEventListener(('click'), (e) => {
+            if (e.target === sharePopup) {
+                sharePopup.classList.add('d-none');
             }
+        })
+
+        const shareFun = () => {
+            sharePopup.classList.remove('d-none');
         }
 
+
+        const viewBtn = async (button) => {
+            const id = button.getAttribute('data-id');
+            localStorage.setItem('facilityId', id)
+
+            await axios.get('https://health-care-facilities-backend.vercel.app/api/get-report', {
+                headers: {
+                    'id': id
+                }
+            }).then((res) => {
+                const link = res.data.data.google_maps_link;
+                document.querySelector('.facility-name').innerHTML = res.data.data.organisation_name;
+                document.querySelector('.facility-type').innerHTML = `${res.data.data.facility_type.charAt(0).toUpperCase() + res.data.data.facility_type.slice(1)} , ${res.data.data.city} , ${res.data.data.state} , ${res.data.data.country}`;
+                document.querySelector('.facility-email').innerHTML = `<a href="mailto:${res.data.data.email}">${res.data.data.email}</a>`;
+                document.querySelector('.facility-phone').innerHTML = `<a href="tel:${res.data.data.phone}">${res.data.data.phone}</a>`;
+
+                if (res.data.data.address) {
+                    document.querySelector('.facility-address').innerHTML = `${res.data.data.address} , ${res.data.data.city} , ${res.data.data.state} , ${res.data.data.country}`;
+                    if (res.data.data.zip_code) {
+                        document.querySelector('.facility-address').innerHTML = `${res.data.data.address} , ${res.data.data.zip_code} , ${res.data.data.city} , ${res.data.data.state} , ${res.data.data.country}`;
+                    }
+                } else {
+                    document.querySelector('.facility-address').innerHTML = `${res.data.data.city} , ${res.data.data.state} , ${res.data.data.country}`;
+                }
+
+                const directionsBtn = document.querySelector('.directions-btn');
+                const open24Hours = res.data.data.is_24_hours;
+
+
+
+                const startTime = res.data.data.time_slots[0]?.start_time;
+                const endTime = res.data.data.time_slots[0]?.end_time;
+
+
+                function convertDecimalToTime(decimalString) {
+                    let decimal = parseFloat(decimalString);
+                    let totalMinutes = Math.round(decimal * 24 * 60);
+                    let hours = Math.floor(totalMinutes / 60);
+                    let minutes = totalMinutes % 60;
+                    let ampm = hours >= 12 ? "PM" : "AM";
+
+                    // Convert 24-hour format to 12-hour format
+                    hours = hours % 12 || 12;
+
+                    // Format time as HH:MM AM/PM
+                    return `${hours}:${minutes.toString().padStart(2, "0")} ${ampm}`;
+                }
+
+                // Convert `start_time` and `end_time` to time format
+                let openTime = convertDecimalToTime(startTime);
+                let closeTime = convertDecimalToTime(endTime);
+
+
+                if (startTime) {
+                    if (startTime === '-') {
+                        document.querySelector('.timing-box').innerHTML = `<p class="hours-24 mb-1">Open 24 Hours</p>`;
+                    } else {
+                        document.querySelector('.timing-box').innerHTML = `
+                    <p class="hours-normal mb-1">Opens ${openTime} - Closes ${closeTime}</p>
+                `;
+                    }
+                }
+
+                // console.log(time_slots);
+                const facilityAE = res.data.data.facility_a_e;
+
+                if (open24Hours === 'yes') {
+                    document.querySelector('.timing-box').innerHTML = `<p class="hours-24 mb-1">Open 24 Hours</p>`;
+                } else {
+                    const timeSlots = res.data.data.time_slots;
+
+                    if (timeSlots && timeSlots.length > 0) {
+                        function formatTime(time) {
+                            let [hours, minutes] = time.split(":").map(Number);
+                            let period = hours >= 12 ? "PM" : "AM";
+                            hours = hours % 12 || 12; // Convert to 12-hour format
+                            return `${hours}:${minutes.toString().padStart(2, "0")} ${period}`;
+                        }
+
+                        const openingTime = formatTime(timeSlots[0].start_time);
+                        const closingTime = formatTime(timeSlots[0].end_time);
+
+                        console.log(timeSlots[0].start_time);
+                        console.log(timeSlots[0].end_time);
+
+                        document.querySelector('.timing-box').innerHTML = `
+                    <p class="hours-normal mb-1">Opens ${openingTime} - Closes ${closingTime}</p>
+                `;
+                    }
+                }
+
+                if (facilityAE === 'yes') {
+                    document.querySelector('.facility-box').innerHTML = `<p class="facility-ae mb-1">A&E Facility</p>`;
+                }
+
+                directionsBtn.addEventListener(('click'), () => {
+                    window.open(res.data.data.google_maps_link, "_blank");
+                })
+
+            }).catch((err) => {
+                console.log(err);
+            })
+            // Show modal
+            const modalElement = document.getElementById('viewFacilityModal')
+            const modalInstance = new bootstrap.Modal(modalElement);
+
+            modalElement.addEventListener('hidden.bs.modal', () => {
+                document.querySelector('.facility-name').innerHTML = "";
+                document.querySelector('.facility-type').innerHTML = "";
+                document.querySelector('.facility-email').innerHTML = "";
+                document.querySelector('.facility-phone').innerHTML = "";
+                document.querySelector('.facility-address').innerHTML = "";
+                document.querySelector('.timing-box').innerHTML = "";
+                document.querySelector('.facility-box').innerHTML = "";
+            });
+
+        }
+
+        // Edit Button 
+        const editBtn = (button) => {
+            const id = button.getAttribute('data-id');
+            localStorage.setItem('facilityId', id)
+            location.href = "/my-account/edit-facilities.html";
+        }
+
+        // Edit Button Delete Button
         const deleteBtn = async (button) => {
             const id = button.getAttribute('data-id');
             deleteFacilityId = id
@@ -668,69 +901,52 @@
         }
 
 
-        document.addEventListener("DOMContentLoaded", function () {
-            const sortNewest = document.getElementById("sortNewest");
-            const sortOldest = document.getElementById("sortOldest");
-            const sortLabel = document.getElementById("sort-filter");
 
-            // Newest click event
-            sortNewest.addEventListener("click", function () {
-                sortLabel.innerHTML = `Sort by: <span style="font-weight: bold; color:black;">Newest</span>`;
-
-                console.log(sortLabel);
-            });
-
-            // Oldest click event
-            sortOldest.addEventListener("click", function () {
-                sortLabel.innerHTML = `Sort by: <span style="font-weight: bold; color:black;">Oldest</span>`;
-                console.log(sortLabel);
-            });
-        });
-
-        // View Button
-        const viewBtn = async (button) => {
-            const id = button.getAttribute('data-id');
-            localStorage.setItem('facilityId', id)
-
-            await axios.get('https://health-care-facilities-backend.vercel.app/api/get-user', {
-                headers: {
-                    'id': id
-                }
-            }).then((res) => {
-                document.querySelector('.user-full-name').innerHTML = `${res.data.user.name} ${res.data.user.last_name}`;
-                document.querySelector('.user-address').innerHTML = `${res.data.user.country} , ${res.data.user.state} , ${res.data.user.city}`;
-                document.querySelector('.user-role').innerHTML = res.data.user.role;
-                document.querySelector('.user-email').innerHTML = ` <a href="mailto:${res.data.user.email}">${res.data.user.email}</a>`;
-                document.querySelector('.user-phone').innerHTML = ` <a href="tel:${res.data.user.phone}">${res.data.user.phone}</a>`;
-
-            }).catch((err) => {
-                console.log(err);
-            })
-            // Show modal
-            const modalInstance = new bootstrap.Modal(modal);
-            modalInstance.show();
-        }
-
-
-
-        // Edit Button 
-        const editBtn = (button) => {
-            const id = button.getAttribute('data-id');
-            localStorage.setItem('userId', id)
-            location.href = "/admin-dashboard/edit-user.html";
-        }
-
-
-        // Search Function
-        document.getElementById("searchInput").addEventListener("input", function () {
-            let query = this.value.toLowerCase();
+        //  Chemists Filter
+        document.getElementById("medical-card").addEventListener("click", function () {
+            let query = 'medical labs';
             let filteredData = allData.filter(item =>
-                item.name.toLowerCase().includes(query) ||
-                item.email.toLowerCase().includes(query)
+                item.facility_type.toLowerCase().includes(query)
             );
             renderTable(filteredData);
         });
 
+        //  Chemists Filter
+        document.getElementById("emergency-card").addEventListener("click", function () {
+            let query = 'emergency';
+            let filteredData = allData.filter(item =>
+                item.facility_type.toLowerCase().includes(query)
+            );
+            renderTable(filteredData);
+        });
+
+        //  Chemists Filter
+        document.getElementById("hospitals-card").addEventListener("click", function () {
+            let query = 'hospital';
+            let filteredData = allData.filter(item =>
+                item.facility_type.toLowerCase().includes(query)
+            );
+            renderTable(filteredData);
+        });
+
+        //  Chemists Filter
+        document.getElementById("chemists-card").addEventListener("click", function () {
+            let query = 'chemists';
+            let filteredData = allData.filter(item =>
+                item.facility_type.toLowerCase().includes(query)
+            );
+            renderTable(filteredData);
+        });
+
+        //  Search Function
+        document.getElementById("searchInput").addEventListener("input", function () {
+            let query = this.value.toLowerCase();
+            let filteredData = allData.filter(item =>
+                item.organisation_name.toLowerCase().includes(query) ||
+                item.email.toLowerCase().includes(query)
+            );
+            renderTable(filteredData);
+        });
 
         //  Sorting Function
         document.getElementById("sortNewest").addEventListener("click", function () {
@@ -750,12 +966,13 @@
 
             data.forEach(item => {
                 tableBody.innerHTML += `
-            <tr class="table-row">
-                <td class="table-text">${item.name}</td>
-                <td class="table-text">${item.email}</td>
-                <td class="table-text">${item.role}</td>
-             <td>
-                                        <div class="d-flex justify-content-center">
+                <tr class="table-row">
+                    <td>${item.organisation_name}</td>
+                    <td>${new Date(item.createdAt).toLocaleDateString('en-US')}</td>
+                    <td>${item.country}</td>
+                    <td>${item.email}</td>
+                     <td>
+                                        <div class="d-flex">
                                             <button class="btn btn-sm edit-facility-btn"  data-id=${item._id}><svg
                                                     xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                     viewBox="0 0 20 20" fill="none">
@@ -785,45 +1002,9 @@
                                                         fill="#9197B3" stroke="#9197B3" stroke-width="1.5"
                                                         stroke-linecap="round" stroke-linejoin="round" />
                                                 </svg></button>
-                                               <select class="form-select form-select-sm status-facility-btn" data-id=${item._id} user-status=${item.isBlocked}>
-                <option selected disabled>Status</option>
-               <option value="block">Block</option>    
-            <option value="unblock">Unblock</option>
-    </select>
                                         </div>
                                     </td>
                 </tr>`;
-            });
-
-            
-            const userStatus = document.querySelectorAll('.status-facility-btn');
-
-            userStatus.forEach(select => {
-                const status = select.getAttribute('user-status');
-                if (status === 'true') {
-                    select.value = 'block';
-                }
-            });
-
-          const statusButtons = document.querySelectorAll('.status-facility-btn');
-
-            console.log(statusButtons);
-            // Initialize delete buttons click handlers
-            statusButtons.forEach(button => {
-                button.addEventListener('change', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    handleStatus(button)
-                });
-            });
-            // Get all delete buttons
-            const editButtons = document.querySelectorAll('.edit-facility-btn');
-
-            // Initialize delete buttons click handlers
-            editButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    editBtn(button)
-                });
             });
 
 
@@ -849,8 +1030,41 @@
                 });
             });
 
+            // Show Share Popup 
+            const shareBtn = document.querySelectorAll('.share-btn');
+            shareBtn.forEach((button) => {
+                button.addEventListener(('click'), () => {
+                    shareFun()
+                })
+            })
+
+            // Get all delete buttons
+            const editButtons = document.querySelectorAll('.edit-facility-btn');
+
+            // Initialize delete buttons click handlers
+            editButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    editBtn(button)
+                });
+            });
 
         }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const sortNewest = document.getElementById("sortNewest");
+            const sortOldest = document.getElementById("sortOldest");
+            const sortLabel = document.getElementById("sort-filter");
+
+            // Newest click event
+            sortNewest.addEventListener("click", function () {
+                sortLabel.innerHTML = `Sort by: <span style="font-weight: bold; color:black;">Newest</span>`;
+            });
+
+            // Oldest click event
+            sortOldest.addEventListener("click", function () {
+                sortLabel.innerHTML = `Sort by: <span style="font-weight: bold; color:black;">Oldest</span>`;
+            });
+        });
 
 
         function renderPagination(total, pageSize, currentPage) {
@@ -904,8 +1118,6 @@
         </li>
     `;
         }
-
-        getData(1)
 
     </script>
 

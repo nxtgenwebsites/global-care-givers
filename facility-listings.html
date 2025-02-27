@@ -32,9 +32,9 @@
 
             <!-- Navbar Links -->
             <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul
-                        class="navbar-nav align-items-lg-center justify-content-lg-center flex-lg-grow-1 mb-2 mb-lg-0 mt-lg-0 mt-4 d-lg-none">
-                        <!-- <li class="nav-item">
+                <ul
+                    class="navbar-nav align-items-lg-center justify-content-lg-center flex-lg-grow-1 mb-2 mb-lg-0 mt-lg-0 mt-4 d-lg-none">
+                    <!-- <li class="nav-item">
                                             <a class="nav-link mx-2 text-primary" href="#">Emergency</a>
                                         </li>
                                         <li class="nav-item">
@@ -43,20 +43,25 @@
                                         <li class="nav-item">
                                             <a class="nav-link mx-2 text-primary" href="#" id="registerBtn">Register</a>
                                         </li> -->
-                        <li class="nav-item">
-                            <a class="nav-link mx-2 text-primary" href="facility-listings.html">Facility
-                                Listings</a>
-                        </li>
-                        <li class="nav-item d-none" id="nav-admin-dashboard">
-                            <a class="nav-link mx-2 text-primary" href="/admin-dashboard/health-facilities.html">Admin Dashboard</a>
-                        </li>
-                        <li class="nav-item  d-lg-none" id="logout-btn-container">
-                            <button class="dropdown-item py-2 text-primary fw-semibold logout-btn nav-link mx-2 text-primary"
-                                id="logout-btn2">
-                                Logout
-                            </button>
-                        </li>
-                    </ul>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 text-primary" href="facility-listings.html">Facility
+                            Listings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 text-primary" href="/my-account/health-facilities.html">My Account</a>
+                    </li>
+                    <li class="nav-item d-none" id="nav-admin-dashboard">
+                        <a class="nav-link mx-2 text-primary" href="/admin-dashboard/health-facilities.html">Admin
+                            Dashboard</a>
+                    </li>
+                    <li class="nav-item  d-lg-none" id="logout-btn-container">
+                        <button
+                            class="dropdown-item py-2 text-primary fw-semibold logout-btn nav-link mx-2 text-primary"
+                            id="logout-btn2">
+                            Logout
+                        </button>
+                    </li>
+                </ul>
 
                 <!-- Login Button -->
                 <div class="d-flex ms-lg-auto" id="login-btn">
@@ -83,10 +88,16 @@
                                     </div>
                                 </div>
                             </li>
-                            <li id="admin-dashboard" class="d-none"><a class="dropdown-item py-2 d-flex align-items-center gap-3"
+                            <li id="admin-dashboard" class="d-none"><a
+                                    class="dropdown-item py-2 d-flex align-items-center gap-3"
                                     href="/admin-dashboard/health-facilities.html">
                                     <img src="assets/images/user.png" width="25" alt="">
-                            Admin Dashboard
+                                    Admin Dashboard
+                                </a></li>
+                            <li><a class="dropdown-item py-2 d-flex align-items-center gap-3"
+                                    href="/my-account/health-facilities.html">
+                                    <img src="assets/images/user.png" width="25" alt="">
+                                    My Account
                                 </a></li>
                             <li><a class="dropdown-item py-2 d-flex align-items-center gap-3"
                                     href="/facility-listings.html">
@@ -178,7 +189,7 @@
                     <img src="assets/images/x.png" alt="X">
                     <span class="mx-3">X</span>
                 </button>
-                <button  class="email-share-btn">
+                <button class="email-share-btn">
                     <img src="assets/images/email.png" alt="Email">
                     <span class="mx-3">Email</span>
                 </button>
@@ -238,7 +249,7 @@
             userName.forEach((name) => {
                 name.innerHTML = `${res.data.user.name} ${res.data.user.last_name}`;
             })
-            
+
             email.innerHTML = res.data.user.role
 
             if (res.data.user.role === 'super admin') {

@@ -55,6 +55,9 @@
                         <a class="nav-link mx-2 text-primary" href="facility-listings.html">Facility
                             Listings</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 text-primary" href="/my-account/health-facilities.html">My Account</a>
+                    </li>
                     <li class="nav-item d-none" id="nav-admin-dashboard">
                         <a class="nav-link mx-2 text-primary" href="/admin-dashboard/health-facilities.html">Admin
                             Dashboard</a>
@@ -98,6 +101,12 @@
                                     href="/admin-dashboard/health-facilities.html">
                                     <img src="assets/images/user.png" width="25" alt="">
                                     Admin Dashboard
+                                </a></li>
+                            <li><a
+                                    class="dropdown-item py-2 d-flex align-items-center gap-3"
+                                    href="/my-account/health-facilities.html">
+                                    <img src="assets/images/user.png" width="25" alt="">
+                                   My Account
                                 </a></li>
                             <li><a class="dropdown-item py-2 d-flex align-items-center gap-3"
                                     href="/facility-listings.html">
@@ -673,8 +682,6 @@
 
         let time_slots = [];
         const id = localStorage.getItem('u_id');
-        // const id = localStorage.getItem('#985098ljfj98309');
-        console.log(id);
         axios.get('https://health-care-facilities-backend.vercel.app/api/get-user', {
             headers: {
                 'id': id
