@@ -282,8 +282,7 @@
                 </form>
             </div>
         </div>
-
-        <!-- Call Remote Care Popup -->
+        <!-- User Add Popup  -->
         <div class="popup d-none justify-content-center align-items-center" id="updated-popup">
             <div class="updated-box bg-white rounded text-center position-relative ">
                 <h5 class="my-3 test-primary">User add successfully.</h5>
@@ -294,216 +293,6 @@
                     <button class="btn border-0" type="submit" id="updated-close-btn"><img src="assets/icons/close.svg"
                             alt="close"></button>
                 </div>
-            </div>
-        </div>
-        <!-- Call Remote Care Popup -->
-        <div class="popup d-none justify-content-center align-items-center" id="paired-device-popup">
-            <div class="paired-box bg-white rounded text-center position-relative ">
-                <h5 class="my-3 test-primary">+1 (313) 560 1122</h5>
-                <p class="my-3">Click on call Now to initiate a call</p>
-                <div class="d-flex  gap-4 justify-content-center mt-4">
-                    <a href="tel:+1 (313) 560 1122" id="paired-black-btn" class="btn popup-btn">Call Now</a>
-                </div>
-                <div class="close-btn">
-                    <button class="btn border-0" type="submit" id="paired-close-btn"><img src="assets/icons/close.svg"
-                            alt="close"></button>
-                </div>
-            </div>
-        </div>
-        <!-- Share Profile Popup -->
-        <div class="popup d-none justify-content-center align-items-center" id="share-profile-popup">
-            <div class="profile-box bg-white rounded text-center position-relative w-100">
-                <div
-                    class="profile-link w-100 mt-5 d-flex flex-md-row flex-column gap-3 align-items-center justify-content-lg-between">
-                    <h6>Copy Link</h6>
-                    <h6 id="profile-url">https://health-monitor-sa.vercel.app/user-dashboard/user-profile.html</h6>
-                    <div class="d-flex">
-                        <button class="btn py-0 bg-white border-0" id="prfile-copy-btn">
-                            <img src="assets/copy.svg" alt="icon">
-                        </button>
-                        <div class="dropdown">
-                            <button class="btn py-0 bg-white border-0 " id="dropdownMenuButton"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="assets/share.svg" alt="icon">
-                            </button>
-                            <ul class="dropdown-menu profle-drop-down" aria-labelledby="dropdownMenuButton">
-                                <li><a class="dropdown-item" href="#">Forward</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="close-btn">
-                    <button class="btn border-0" type="submit" id="profile-close-btn"><img src="assets/icons/close.svg"
-                            alt="close"></button>
-                </div>
-            </div>
-        </div>
-        <!-- First Add Img Popup -->
-        <div class="popup d-none justify-content-center align-items-center" id="add-1-popup">
-            <div class="add-box bg-white rounded text-center w-100 position-relative">
-                <div class="add-img-container">
-                    <img src="assets/add popup.jpg" class="img-fluid" alt="">
-                    <div class="learn-more">
-                        <a href="">Click to Learn More</a>
-                    </div>
-                    <div class="add-stats-container">
-                        <div class="stat-item">
-                            <i class="bi bi-hand-thumbs-up"></i>
-                            <span>22</span>
-                        </div>
-                        <div class="stat-item">
-                            <i class="bi bi-share-fill"></i>
-                            <span>23</span>
-                        </div>
-
-                        <div class="stat-item">
-                            <i class="bi bi-eye"></i>
-                            <span>23</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="add-close-btn">
-                    <button class="btn border-0" type="submit" id="add-close-btn"><img src="assets/white close btn.svg"
-                            alt="close"></button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Add Video Popup -->
-        <div class="popup d-none justify-content-center align-items-center" id="add-2-popup">
-            <div class="add-video-box">
-                <iframe src="https://www.youtube.com/embed/1WGTftm_IEU?si=LRPCj-aTZp5tMti9"></iframe>
-            </div>
-        </div>
-        <!-- Right Sidebar -->
-        <div class="right-sidebar">
-            <div class="ad-container" id="add-1-img">
-                <img src="assets/add img 1.jpg" alt="Advertisement">
-                <div class="stats-container">
-                    <div class="stat-item">
-                        <i class="bi bi-eye-fill"></i>
-                        <span>22</span>
-                    </div>
-                    <div class="stat-item">
-                        <i class="bi bi-heart-fill"></i>
-                        <span>23</span>
-                    </div>
-                </div>
-            </div>
-            <div class="ad-container" id="add-2-video">
-                <img src="assets/add img 2.jpg" alt="Advertisement">
-                <div class="stats-container">
-                    <div class="stat-item">
-                        <i class="bi bi-eye-fill"></i>
-                        <span>22</span>
-                    </div>
-                    <div class="stat-item">
-                        <i class="bi bi-heart-fill"></i>
-                        <span>23</span>
-                    </div>
-                </div>
-            </div>
-            <div class="ad-container">
-                <img src="assets/add img 3.jpg" alt="Advertisement">
-                <div class="stats-container">
-                    <div class="stat-item">
-                        <i class="bi bi-eye-fill"></i>
-                        <span>22</span>
-                    </div>
-                    <div class="stat-item">
-                        <i class="bi bi-heart-fill"></i>
-                        <span>23</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade show d-none" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel"
-        aria-modal="true" role="dialog" style="display: block;">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content preview-modal">
-                <!-- Close button -->
-                <button type="button" id="btn-close preview" class="btn-close preview-close" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
-
-                <!-- Modal body -->
-                <div class="modal-body p-4">
-                    <!-- Title -->
-                    <h2 class="preview-title">Panadol - Completed</h2>
-
-                    <!-- Prescribed by -->
-                    <p class="preview-text">Prescribed by Dr. Mannu</p>
-
-                    <!-- Date Range -->
-                    <p class="preview-text">
-                        <span class="fst-italic">From</span> Tues, 12 June, 2024
-                        <span class="fst-italic">To</span> Tues, 12 July, 2024
-                    </p>
-
-                    <!-- History Section -->
-                    <div class="preview-history">
-                        <h3 class="preview-history-title">History</h3>
-
-                        <div class="timeline-entries">
-                            <div class="timeline-entry">
-                                <span>Tues, 12 June, 2024</span>
-                                <span>11:30 am</span>
-                            </div>
-                            <div class="timeline-entry">
-                                <span>Tues, 17 June 2024</span>
-                                <span>12:00 pm</span>
-                            </div>
-                            <div class="timeline-entry">
-                                <span>Tues, 25 June 2024</span>
-                                <span>01:30 pm</span>
-                            </div>
-                            <div class="timeline-entry fst-italic" id="addagain">
-                                Add Record
-                            </div>
-                            <div class="w-100 d-flex justify-content-between align-items-center">
-                                <button class="popup-btn mt-4">Live</button>
-                                <div class="preview-actions">
-                                    <a href="add-a-medicine.html">
-                                        <button class="action-btn">
-                                            <i class="bi bi-pencil"></i>
-                                        </button>
-                                    </a>
-                                    <div class="share-icon">
-                                        <i class="bi bi-share"></i>
-                                        <div class="share-dropdown">
-                                            <button class="share-dropdown-item">Forward</button>
-                                            <button class="share-dropdown-item">Print</button>
-                                            <button class="share-dropdown-item">Download Pdf</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- Action buttons -->
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Share Message start -->
-    <div class="share-message">
-        <div class="share-card p-3">
-            <div class="share-img text-end">
-                <i class="bi-regular bi-x-lg"></i>
-            </div>
-            <div class="share-heading text-center my-4">
-                <h4>Share My Profile</h4>
-            </div>
-            <div class="share-content d-flex">
-                <a href="#" class="text-decoration-none text-black">Copy Link</a>
-                <a href="#"
-                    class="text-decoration-underline text-black mx-auto">https://health-monitor-sa.vercel.app/user-dashboard/user-profile.html</a>
-                <a href="#" class="text-decoration-underline text-black me-3"><i class="bi bi-files"></i></a>
-                <a href="#" class="text-decoration-underline text-black"><i class="bi bi-share-fill"></i></a>
             </div>
         </div>
     </div>
@@ -561,59 +350,6 @@
                 // Initialize country dropdown with placeholder
                 create_country_selection();
             })();
-        
-        // Remote Care functionality
-        const remoteCareDropdown = document.getElementById('m-remote-care-dropdown');
-        const remoteCareDropdownBtn = document.getElementById('remote-care-dropdown');
-        const remoteCareBtn = document.querySelectorAll('.remote-care-btn');
-        const pairDevicePopop = document.getElementById('paired-device-popup');
-        const pairedBackBtn = document.getElementById('paired-black-btn');
-        const pairedCloseBtn = document.getElementById('paired-close-btn');
-
-        // Share Profile functionality
-        const shareProfilePopup = document.getElementById('share-profile-popup');
-        const shareProfileBtn = document.getElementById('share-profile-btn');
-        const ProfileCloseBtn = document.getElementById('profile-close-btn');
-
-        // Add event listeners for remote care dropdown
-        remoteCareDropdownBtn.addEventListener('click', () => {
-            remoteCareDropdown.classList.toggle('d-none');
-        });
-
-        ProfileCloseBtn.addEventListener('click', () => {
-            shareProfilePopup.classList.toggle('d-none');
-        });
-
-        // Remote Care Button functionality
-        remoteCareBtn.forEach(btn => {
-            btn.addEventListener('click', () => {
-                pairDevicePopop.classList.remove('d-none');
-                pairDevicePopop.classList.add('d-flex');
-            });
-        });
-
-        pairedBackBtn.addEventListener('click', () => {
-            pairDevicePopop.classList.add('d-none');
-        });
-
-        pairedCloseBtn.addEventListener('click', () => {
-            pairDevicePopop.classList.add('d-none');
-        });
-
-        // Profile Copy Button functionality
-        const closeButton = document.getElementById("prfile-copy-btn");
-        const profileUrl = document.getElementById("profile-url");
-
-        closeButton.addEventListener("click", () => {
-            const tempInput = document.createElement("textarea");
-            tempInput.value = profileUrl.textContent;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand("copy");
-            document.body.removeChild(tempInput);
-            alert("Link copied to clipboard.");
-        });
-
 
         const updateBtn = document.getElementById('update-btn');
         const updatedPopup = document.getElementById('updated-popup');
@@ -684,7 +420,7 @@
 
             } catch (error) {
                 console.error('Error adding user:', error);
-                alert(`${error.response?.data?.message || 'Something went wrong.'}`);
+                alert(`${error.response?.data?.error || 'Something went wrong.'}`);
             }
         })
     </script>
