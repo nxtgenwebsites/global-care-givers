@@ -1926,3 +1926,11 @@ textarea.form-control {
 .password-container button:hover{
   text-decoration: underline;
 }
+
+#upload-img{
+  width: 150px !important;
+  height: 150px !important;
+  /* background: red !important; */
+  border-radius: 50%;
+  border: 2px dotted #0959a3;
+}

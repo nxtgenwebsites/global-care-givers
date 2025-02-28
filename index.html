@@ -102,7 +102,7 @@
                                     <img src="assets/images/user.png" width="25" alt="">
                                     Admin Dashboard
                                 </a></li>
-                            <li><a
+                            <li id="user-account"><a
                                     class="dropdown-item py-2 d-flex align-items-center gap-3"
                                     href="/my-account/health-facilities.html">
                                     <img src="assets/images/user.png" width="25" alt="">
@@ -667,6 +667,7 @@
 
 
         let user = '';
+        let inputter = '';
 
         const input = document.querySelector("#phone");
         const iti = window.intlTelInput(input, {
@@ -695,6 +696,9 @@
             }
 
             user = res.data.user.name;
+            inputter = res.data.user.email;
+
+            console.log(inputter);
 
             const userName = document.querySelectorAll('.user-name');
             const email = document.getElementById('user-role');
@@ -707,6 +711,7 @@
 
 
             if (res.data.user.role === 'super admin') {
+                document.getElementById('user-account').classList.add('d-none');
                 document.getElementById('admin-dashboard').classList.remove('d-none');
                 document.getElementById('nav-admin-dashboard').classList.remove('d-none');
             } else {
@@ -853,6 +858,7 @@
                     is_24_hours: document.querySelector('input[name="is_24hours"]:checked').value,
                     facility_a_e: document.querySelector('input[name="ae_available"]:checked').value,
                     user: user,
+                    inputter: inputter,
                     time_slots: []
                 };
 
@@ -871,6 +877,8 @@
                 }
 
                 console.log("Submitting form data:", JSON.stringify(formData, null, 2));
+
+                console.log(formData);
 
                 try {
                     const response = await axios.post('https://health-care-facilities-backend.vercel.app/api/save', formData);
@@ -936,6 +944,7 @@
                 const formData = new FormData();
                 formData.append("file", file);
                 formData.append("user", user);
+                formData.append("inputter", inputter);
 
                 axios.post("https://health-care-facilities-backend.vercel.app/api/upload", formData, {
                     headers: { "Content-Type": "multipart/form-data" }
@@ -973,6 +982,7 @@
 
                             // Add the user field to each object
                             obj.user = user;
+                            obj.inputter = inputter;
 
                             return obj;
                         });
@@ -1122,6 +1132,7 @@
             }).catch((err) => {
                 console.log(err);
             })
+            console.log(data);
             showThankYouMessage(true); // Pass true for bulk upload
         }
 
@@ -1199,143 +1210,6 @@
                 showStep(currentStep);
             }
         }
-
-        // Handle time schedule visibility
-        // Handle time schedule visibility
-        // document.addEventListener('DOMContentLoaded', function () {
-        //     const timeScheduleDiv = document.getElementById('timeSchedule');
-        //     const timeSlotsDiv = timeScheduleDiv.querySelector('.time-slots');
-        //     const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-
-        //     // Create time slots
-        //     function createTimeSlots() {
-        //         timeSlotsDiv.innerHTML = days.map(day => `
-        //     <div class="time-slot row align-items-center g-3 mb-2">
-        //         <div class="col-3">
-        //             <span class="day-label">${day}</span>
-        //         </div>
-        //         <div class="col-9">
-        //             <div class="d-flex align-items-center time-input-group">
-        //                 <input type="time" class="form-control form-control-sm" name="${day.toLowerCase()}_start" 
-        //                        placeholder="Start Time" required>
-        //                 <span class="time-separator mx-2">to</span>
-        //                 <input type="time" class="form-control form-control-sm" name="${day.toLowerCase()}_end" 
-        //                        placeholder="End Time" required>
-        //             </div>
-        //         </div>
-        //     </div>
-        // `).join('');
-        //     }
-
-        //     // Handle 24 hours toggle
-        //     document.querySelectorAll('input[name="is_24hours"]').forEach(radio => {
-        //         radio.addEventListener('change', function () {
-        //             const showTimeSchedule = this.value === 'no';
-        //             if (showTimeSchedule) {
-        //                 createTimeSlots(); // Create the time slots when showing
-        //             }
-        //             timeScheduleDiv.style.display = showTimeSchedule ? 'block' : 'none';
-
-        //             // Update required attribute for time inputs
-        //             const timeInputs = timeScheduleDiv.querySelectorAll('input[type="time"]');
-        //             timeInputs.forEach(input => {
-        //                 input.required = showTimeSchedule;
-        //             });
-        //         });
-        //     });
-
-        //     // Add required to A&E radio buttons
-        //     document.querySelectorAll('input[name="ae_available"]').forEach(radio => {
-        //         radio.required = true;
-        //     });
-        // });
-        // const countryDropdown = $('#country');
-        // const stateDropdown = $('#state-drop-down');
-        // const cityDropdown = $('#city');
-
-        // // Step 1: Load Countries
-        // function loadCountries() {
-        //     $.ajax({
-        //         url: 'https://restcountries.com/v3.1/all',
-        //         method: 'GET',
-        //         success: function (data) {
-        //             // Sort countries alphabetically
-        //             const sortedCountries = data.sort((a, b) =>
-        //                 a.name.common.localeCompare(b.name.common)
-        //             );
-
-        //             // Populate the country dropdown
-        //             countryDropdown.empty().append('<option value="">Select Country</option>');
-        //             sortedCountries.forEach(country => {
-        //                 countryDropdown.append(new Option(country.name.common, country.cca2)); // ISO code as value
-        //             });
-        //         },
-        //         error: function () {
-        //             alert('Failed to load countries. Try again later.');
-        //         }
-        //     });
-        // }
-
-        // // Step 2: Load States
-        // function loadStates(countryCode) {
-        //     console.log('Fetching states for country code:', countryCode); // Debugging log
-        //     $.ajax({
-        //         url: `https://wft-geo-db.p.rapidapi.com/v1/geo/countries/${countryCode}/regions`,
-        //         method: 'GET',
-        //         headers: {
-        //             'x-rapidapi-host': 'wft-geo-db.p.rapidapi.com',
-        //             'x-rapidapi-key': 'b83f74efaamshb4574179b332748p156dadjsn907ed0ab88f9' // Replace with your actual API key
-        //         },
-        //         success: function (data) {
-        //             console.log('States fetched successfully:', data); // Debugging log
-        //             stateDropdown.empty().append('<option value="">Select State</option>');
-        //             if (data.data && data.data.length > 0) {
-        //                 data.data.forEach(state => {
-        //                     stateDropdown.append(new Option(state.name, state.code));
-        //                 });
-        //                 stateDropdown.prop('disabled', false);
-
-        //             } else {
-        //                 alert('No states found for the selected country.');
-        //             }
-        //         },
-        //         error: function (xhr, status, error) {
-        //             console.error('Error fetching states:', error); // Debugging log
-        //             alert('Failed to load states. Please try again later.');
-        //         }
-        //     });
-        // }
-
-        // // Step 3: Load Cities
-
-        // // Step 4: Event Listeners
-        // $(document).ready(function () {
-        //     // Load countries on page load
-        //     loadCountries();
-
-        //     // When a country is selected, load states
-        //     countryDropdown.on('change', function () {
-        //         const countryCode = $(this).val();
-        //         if (countryCode) {
-        //             loadStates(countryCode);
-        //             cityDropdown.prop('disabled', true).empty().append('<option value="">Select City</option>');
-        //         } else {
-        //             stateDropdown.prop('disabled', true).empty().append('<option value="">Select State</option>');
-        //             cityDropdown.prop('disabled', true).empty().append('<option value="">Select City</option>');
-        //         }
-        //     });
-
-        //     // When a state is selected, load cities
-        //     stateDropdown.on('change', function () {
-        //         const stateCode = $(this).val();
-        //         const countryCode = countryDropdown.val();
-        //         if (stateCode && countryCode) {
-        //             loadCities(stateCode, countryCode);
-        //         } else {
-        //             cityDropdown.prop('disabled', true).empty().append('<option value="">Select City</option>');
-        //         }
-        //     });
-        // });
 
         function resetForm() {
             selectedFile = null;
