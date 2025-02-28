@@ -347,24 +347,11 @@
         // Remote Care functionality
         const remoteCareDropdown = document.getElementById('m-remote-care-dropdown');
         const remoteCareDropdownBtn = document.getElementById('remote-care-dropdown');
-        const remoteCareBtn = document.querySelectorAll('.remote-care-btn');
-        const pairDevicePopop = document.getElementById('paired-device-popup');
-        const pairedBackBtn = document.getElementById('paired-black-btn');
-        const pairedCloseBtn = document.getElementById('paired-close-btn');
 
         // Add event listeners for remote care dropdown
         remoteCareDropdownBtn.addEventListener('click', () => {
             remoteCareDropdown.classList.toggle('d-none');
         });
-
-        pairedBackBtn.addEventListener('click', () => {
-            pairDevicePopop.classList.add('d-none');
-        });
-
-        pairedCloseBtn.addEventListener('click', () => {
-            pairDevicePopop.classList.add('d-none');
-        });
-
 
 
         var user_country_code = "";

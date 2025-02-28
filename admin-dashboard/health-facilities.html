@@ -869,8 +869,8 @@
 
 
 
-                const startTime = res.data.data.time_slots[0].start_time;
-                const endTime = res.data.data.time_slots[0].end_time;
+                const startTime = res.data.data.time_slots[0]?.start_time;
+                const endTime = res.data.data.time_slots[0]?.end_time;
 
 
                 function convertDecimalToTime(decimalString) {
