@@ -339,6 +339,9 @@
 
         email.innerHTML = res.data.user.role
     }).catch((err) => {
+         if (err.response.data.error === 'User not found') {
+            location.href = '/';
+        }
         console.log(err);
     })
 
@@ -654,7 +657,7 @@
                                 id: blockFacilityId
                             }
                         }).then((res) => {
-                            toastr.success(`${res.data.message || 'User blocked successfully'}`, "Error", {
+                            toastr.success(`${res.data.message || 'User blocked successfully'}`, "Success", {
                                 "closeButton": true,
                                 "progressBar": true,
                                 "showDuration": "300",

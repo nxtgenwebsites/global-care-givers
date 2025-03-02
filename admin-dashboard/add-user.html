@@ -334,6 +334,9 @@
 
         email.innerHTML = res.data.user.role
     }).catch((err) => {
+         if (err.response.data.error === 'User not found') {
+            location.href = '/';
+        }
         console.log(err);
     })
 
