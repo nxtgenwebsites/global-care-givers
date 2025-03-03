@@ -102,11 +102,10 @@
                                     <img src="assets/images/user.png" width="25" alt="">
                                     Admin Dashboard
                                 </a></li>
-                            <li id="user-account"><a
-                                    class="dropdown-item py-2 d-flex align-items-center gap-3"
+                            <li id="user-account"><a class="dropdown-item py-2 d-flex align-items-center gap-3"
                                     href="/my-account/health-facilities.html">
                                     <img src="assets/images/user.png" width="25" alt="">
-                                   My Account
+                                    My Account
                                 </a></li>
                             <li><a class="dropdown-item py-2 d-flex align-items-center gap-3"
                                     href="/facility-listings.html">
@@ -136,7 +135,7 @@
     <div class="container-fluid py-4">
         <div class="row mb-4">
             <div class="col-12 text-center heading-text">
-                <h2 class="page-head">HealthCare <span>Providers</span></h2>
+                <h2 class="page-head">Global Healthcare <span>Providers DB</span></h2>
                 <p class="heading-paraf">Register your healthcare facility using either bulk upload or step-by-step form
                 </p>
             </div>
@@ -147,15 +146,15 @@
                 <div class="card">
                     <ul class="nav nav-tabs providerTabs" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active w-100" id="bulk-tab" data-bs-toggle="tab"
-                                data-bs-target="#bulk" type="button" role="tab">
-                                Bulk Upload Health Care Providers Data
+                            <button class="nav-link w-100" id="form-tab" data-bs-toggle="tab" data-bs-target="#form"
+                                type="button" role="tab">
+                                Single Registration Form
                             </button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link w-100" id="form-tab" data-bs-toggle="tab" data-bs-target="#form"
-                                type="button" role="tab">
-                                Health Care Providers Registration Form
+                            <button class="nav-link active w-100" id="bulk-tab" data-bs-toggle="tab"
+                                data-bs-target="#bulk" type="button" role="tab">
+                                Bulk Registration Form
                             </button>
                         </li>
                     </ul>
@@ -618,6 +617,12 @@
     <script src="js/share.js"></script>
     <script src="js/country-states.js"></script>
     <script>
+
+    window.onload = function () {
+        document.getElementById("form-tab").click();
+    };
+
+
         var user_country_code = ""; // Default me koi country selected nahi
 
         (() => {
