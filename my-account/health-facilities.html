@@ -486,22 +486,22 @@
                     <h4>Share</h4>
                 </div>
                 <div class="d-flex flex-column social-button">
-                    <button>
-                        <img src="assets/facebook.png" alt="">
-                        <span class="mx-3">Facebook</span>
-                    </button>
-                    <button>
-                        <img src="assets/whats app.png" alt="">
-                        <span class="mx-3">WhatsApp</span>
-                    </button>
-                    <button>
-                        <img src="assets/x.png" alt="">
-                        <span class="mx-3">X</span>
-                    </button>
-                    <button>
-                        <img src="assets/email.png" alt="">
-                        <span class="mx-3">Email</span>
-                    </button>
+                <button class="fb-share-btn">
+                    <img src="assets/facebook.png" alt="Facebook">
+                    <span class="mx-3">Facebook</span>
+                </button>
+                <button class="whatsapp-share-btn">
+                    <img src="assets/whats app.png" alt="WhatsApp">
+                    <span class="mx-3">WhatsApp</span>
+                </button>
+                <button class="x-share-btn">
+                    <img src="assets/x.png" alt="X">
+                    <span class="mx-3">X</span>
+                </button>
+                <button class="email-share-btn">
+                    <img src="assets/email.png" alt="Email">
+                    <span class="mx-3">Email</span>
+                </button>
                 </div>
                 <div class="close-btn">
                     <button class="btn border-0" type="submit" id="share-close"><img src="assets/icons/close.svg"
@@ -531,8 +531,9 @@
     <!-- Share Message end -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/sidebar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/share.js"></script>
+    <script src="js/sidebar.js"></script>
     <script>
         let userEmail = '';
 
@@ -611,7 +612,6 @@
                 const res = await axios.post('https://health-care-facilities-backend.vercel.app/api/get-user-report', { email: userEmail });
                 const facilityCounts = { hospital: 0, emergency: 0, chemists: 0, "medical labs": 0 };
 
-                console.log(res.data);
                 allData = res.data.data;
                 totalRecords = allData.length;
 
@@ -837,7 +837,6 @@
                     }
                 }
 
-                // console.log(time_slots);
                 const facilityAE = res.data.data.facility_a_e;
 
                 if (open24Hours === 'yes') {
@@ -855,9 +854,6 @@
 
                         const openingTime = formatTime(timeSlots[0].start_time);
                         const closingTime = formatTime(timeSlots[0].end_time);
-
-                        console.log(timeSlots[0].start_time);
-                        console.log(timeSlots[0].end_time);
 
                         document.querySelector('.timing-box').innerHTML = `
                     <p class="hours-normal mb-1">Opens ${openingTime} - Closes ${closingTime}</p>
