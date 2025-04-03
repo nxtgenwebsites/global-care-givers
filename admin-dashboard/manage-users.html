@@ -467,8 +467,6 @@
             try {
                 const res = await axios.get('https://health-care-facilities-backend.vercel.app/api/get-all-users');
 
-
-
                 allData = res.data.users;
                 totalRecords = allData.length;
 
@@ -600,7 +598,14 @@
                                 'id': deleteFacilityId
                             }
                         }).then((res) => {
-                            console.log(res.data);
+                                toastr.success(`${res.data.message || 'User deleted successfully'}`, "Successfully", {
+                                "closeButton": true,
+                                "progressBar": true,
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "2000",
+                                "extendedTimeOut": "1000",
+                            })
                             getData(1)
                         })
                     } catch (error) {

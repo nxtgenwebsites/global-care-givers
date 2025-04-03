@@ -148,6 +148,11 @@
     text-align: center;
   }
 
+  .develop-by {
+    width: 100% !important;
+    text-align: center !important;
+  }
+
   .footer-section {
     padding: 3rem 0 0 0 !important;
   }

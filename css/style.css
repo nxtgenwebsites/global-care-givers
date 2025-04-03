@@ -539,3 +539,12 @@ footer a{
 footer .social-media img{
   cursor: pointer;
 }
+
+.develop-by p{
+  color: #9197B3 !important;
+}
+
+.develop-by p a{
+  color: #333333 !important;
+  text-decoration: underline;
+}

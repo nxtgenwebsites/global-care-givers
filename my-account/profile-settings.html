@@ -300,7 +300,9 @@
             <div class="updated-box bg-white rounded text-center position-relative ">
                 <h5 class="my-3 test-primary">Your changes have been successfully updated.</h5>
                 <div class="d-flex  gap-4 justify-content-center mt-4">
-                    <button class="popup-btn" id="updated-back-btn">Back</button>
+                    <a href="/my-account/health-facilities.html">
+                        <button class="popup-btn" id="updated-back-btn">Back</button>
+                    </a>
                 </div>
                 <div class="close-btn">
                     <button class="btn border-0" type="submit" id="updated-close-btn"><img src="assets/icons/close.svg"
@@ -313,7 +315,7 @@
             <div class="updated-box bg-white rounded text-center position-relative ">
                 <h4 class="my-3 text-primary">Please change your password.</h4>
                 <div class="d-flex  gap-4 justify-content-center mt-4">
-                    <button class="popup-btn" id="password-back-btn">Back</button>
+                    <button class="popup-btn" id="password-back-btn">Ok</button>
                 </div>
                 <div class="close-btn">
                     <button class="btn border-0" type="submit" id="password-close-btn"><img src="assets/icons/close.svg"
@@ -389,13 +391,8 @@
             const updateBtn = document.getElementById('update-btn');
             const updatedPopup = document.getElementById('updated-popup');
             const updateClose = document.getElementById('updated-close-btn');
-            const updateBack = document.getElementById('updated-back-btn');
 
             updateClose.addEventListener(('click'), () => {
-                updatedPopup.classList.add('d-none')
-            })
-
-            updateBack.addEventListener(('click'), () => {
                 updatedPopup.classList.add('d-none')
             })
 
@@ -468,7 +465,7 @@
                         'id': id
                     }
                 }).then((res) => {
-                    location.href = '/my-account/health-facilities.html';
+                    updatedPopup.classList.remove('d-none');
                 }).catch((err) => {
                     console.log(err);
                 })
