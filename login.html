@@ -181,6 +181,7 @@
   <script src="js/auth.js"></script>
   <script src="js/share.js"></script>
   <script>
+    const completeProfile = localStorage.getItem('completeProfile')
     document.getElementById("login-form").addEventListener("submit", async function (e) {
       e.preventDefault();
 
@@ -207,7 +208,11 @@
           if (response.data.user.role === 'super admin') {
             window.location.href = "/admin-dashboard/health-facilities.html";
           } else {
-            window.location.href = "/";
+            if (!completeProfile) {
+              window.location.href = "/my-account/profile-settings.html";
+            }else{
+              window.location.href = "/";
+            }
           }
         } else {
           localStorage.setItem("login", false);

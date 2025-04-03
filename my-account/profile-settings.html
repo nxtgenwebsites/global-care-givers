@@ -208,11 +208,13 @@
                     <div class="row">
                         <!-- Organization Details -->
                         <div class="col-12 mb-4">
-                                <div id="upload-img" class="h-100 w-100 d-flex justify-content-center align-items-center upload-image-container"
-                                    onclick="document.getElementById('file-input').click()">
-                                    <img src="assets/add img.png" alt="">
-                                </div>
-                                <input type="file" id="file-input" style="display: none;" onchange="handleFileChange(event)">
+                            <div id="upload-img"
+                                class="h-100 w-100 d-flex justify-content-center align-items-center upload-image-container"
+                                onclick="document.getElementById('file-input').click()">
+                                <img src="assets/add img.png" alt="">
+                            </div>
+                            <input type="file" id="file-input" style="display: none;"
+                                onchange="handleFileChange(event)">
                         </div>
                         <div class="col-12 col-md-6">
                             <input type="text" class="form-control" id="first-name" name="first-name"
@@ -293,7 +295,7 @@
             </form>
         </div>
 
-        <!-- Call Remote Care Popup -->
+        <!-- Changes Updated Popup -->
         <div class="popup d-none justify-content-center align-items-center" id="updated-popup">
             <div class="updated-box bg-white rounded text-center position-relative ">
                 <h5 class="my-3 test-primary">Your changes have been successfully updated.</h5>
@@ -306,12 +308,35 @@
                 </div>
             </div>
         </div>
+        <!-- Change Password Popup -->
+        <div class="popup d-none justify-content-center align-items-center" id="password-popup">
+            <div class="updated-box bg-white rounded text-center position-relative ">
+                <h4 class="my-3 text-primary">Please change your password.</h4>
+                <div class="d-flex  gap-4 justify-content-center mt-4">
+                    <button class="popup-btn" id="password-back-btn">Back</button>
+                </div>
+                <div class="close-btn">
+                    <button class="btn border-0" type="submit" id="password-close-btn"><img src="assets/icons/close.svg"
+                            alt="close"></button>
+                </div>
+            </div>
+        </div>
         <!-- Share Message end -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
         <script src="js/sidebar.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script>
+            window.addEventListener("beforeunload", function () {
+                localStorage.setItem("completeProfile", "true");
+            });
+
+            const completeProfile = localStorage.getItem('completeProfile')
+            const passwordPopup = document.getElementById('password-popup')
+            if (!completeProfile) {
+                passwordPopup.classList.remove('d-none')
+            }
+
             const u_id = localStorage.getItem('u_id');
             axios.get('https://health-care-facilities-backend.vercel.app/api/get-user', {
                 headers: {
@@ -377,6 +402,24 @@
             updatedPopup.addEventListener(('click'), (e) => {
                 if (e.target === updatedPopup) {
                     updatedPopup.classList.add('d-none')
+                }
+            })
+
+            const passwordBtn = document.getElementById('password-btn');
+            const passwordClose = document.getElementById('password-close-btn');
+            const passwordBack = document.getElementById('password-back-btn');
+
+            passwordClose.addEventListener(('click'), () => {
+                passwordPopup.classList.add('d-none')
+            })
+
+            passwordBack.addEventListener(('click'), () => {
+                passwordPopup.classList.add('d-none')
+            })
+
+            passwordPopup.addEventListener(('click'), (e) => {
+                if (e.target === updatedPopup) {
+                    passwordPopup.classList.add('d-none')
                 }
             })
 
