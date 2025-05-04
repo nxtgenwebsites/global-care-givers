@@ -40,7 +40,7 @@
                 <ul
                     class="navbar-nav align-items-lg-center justify-content-lg-center flex-lg-grow-1 mb-2 mb-lg-0 mt-lg-0 mt-4 d-lg-none">
                     <!-- <li class="nav-item">
-                        <a class="nav-link mx-2 text-primary" href="#">Emergency</a>
+                        <a class="nav-link mx-2 text-primary" href="#">Health Centre</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link mx-2 text-primary" href="#">Community</a>
@@ -358,7 +358,7 @@
                                                     <label class="form-label mb-0">A&E:</label>
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <select class="form-select" id="A&E">
+                                                    <select class="form-select" id="facility_a_e">
                                                         <option value="">Select CSV Column (Optional)</option>
                                                     </select>
                                                 </div>
@@ -409,9 +409,14 @@
                                         <select class="form-select" name="facility_type" id="facilityType" required>
                                             <option value="">Facility Type*</option>
                                             <option value="hospital">Hospital</option>
-                                            <option value="emergency">Emergency</option>
+                                            <option value="hospital">Hospital</option>
+                                            <option value="health centre">Health Centre</option>
+                                            <option value="pharmacy">Pharmacy</option>
+                                            <option value="drug store">Drug Store</option>
+                                            <option value="maternity centre">Maternity Centre</option>
                                             <option value="medical labs">Medical Labs</option>
                                             <option value="chemists">Chemists</option>
+                                            <option value="not stated">Not Stated</option>
                                             <option value="other">Other</option>
                                         </select>
                                         <!-- Add this new div for custom facility type -->
@@ -430,6 +435,7 @@
                                             <option value="private">Private</option>
                                             <option value="charity">Charity</option>
                                             <option value="church">Church</option>
+                                            <option value="not stated">Not Stated</option>
                                             <option value="other">Other</option>
                                         </select>
                                         <!-- Add this new div for custom ownership type -->
@@ -908,7 +914,7 @@
             'state',
             'zipcode',
             'google_map_link',
-            'A&E',
+            'A&facility_a_e',
             'is_24hours'
         ];
 
@@ -1109,8 +1115,8 @@
                 document.getElementById('state').append(new Option(item.state, item.state));
                 document.getElementById('zipcode').append(new Option(item.zip_code, item.zip_code));
                 document.getElementById('google_map_link').append(new Option(item.google_maps_link, item.google_maps_link));
-                if (item['is_A&E'] !== null) {
-                    document.getElementById('A&E').append(new Option(item['is_A&E'], item['is_A&E']));
+                if (item['facility_a_e'] !== null) {
+                    document.getElementById('facility_a_e').append(new Option(item['facility_a_e'], item['facility_a_e']));
                 }
                 if (item.is_24_hours !== null) {
                     document.getElementById('is_24hours').append(new Option(item.is_24_hours, item.is_24_hours));
@@ -1127,7 +1133,6 @@
             }).catch((err) => {
                 console.log(err);
             })
-            console.log(data);
             showThankYouMessage(true); // Pass true for bulk upload
         }
 

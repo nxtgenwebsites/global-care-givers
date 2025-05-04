@@ -225,11 +225,11 @@
                         <div class="card-body p-4">
                             <div class="d-flex align-items-center total-card-content">
                                 <div class="icon-circle me-3">
-                                    <img src="assets/siren.png" width="50" alt="Emergency">
+                                    <img src="assets/rehabilitation.png" width="50" alt="Emergency">
                                 </div>
                                 <div>
                                     <h2 class="mb-0 fw-bold card-heading" id="total-emergency">0</h2>
-                                    <p class="text-muted mb-0 card-text">Emergency</p>
+                                    <p class="text-muted mb-0 card-text">Health Centre</p>
                                 </div>
                             </div>
                         </div>
@@ -264,6 +264,56 @@
                                 <div>
                                     <h2 class="mb-0 fw-bold card-heading" id="total-chemists">0</h2>
                                     <p class="text-muted mb-0 card-text">Chemists</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DHA Users Card -->
+                <div class="col-md-3 col-6" id="pharmacy-card">
+                    <div class="card border-0 shadow-sm total-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center  total-card-content">
+                                <div class="icon-circle me-3">
+                                    <img src="assets/pharmacy.png" width="50" alt="Emergency">
+                                </div>
+                                <div>
+                                    <h2 class="mb-0 fw-bold card-heading" id="total-pharmacy ">0</h2>
+                                    <p class="text-muted mb-0 card-text">Pharmacy</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- DHA Users Card -->
+                <div class="col-md-3 col-6" id="drug-store-card">
+                    <div class="card border-0 shadow-sm total-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center  total-card-content">
+                                <div class="icon-circle me-3">
+                                    <img src="assets/medicine.png" width="50" alt="Emergency">
+                                </div>
+                                <div>
+                                    <h2 class="mb-0 fw-bold card-heading" id="total-drug-store">0</h2>
+                                    <p class="text-muted mb-0 card-text">Drug Store</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DHA Users Card -->
+                <div class="col-md-3 col-6" id="maternity-centre-card">
+                    <div class="card border-0 shadow-sm total-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center  total-card-content">
+                                <div class="icon-circle me-3">
+                                    <img src="assets/maternity.png" width="50" alt="Emergency">
+                                </div>
+                                <div>
+                                    <h2 class="mb-0 fw-bold card-heading" id="total-maternity-centre">0</h2>
+                                    <p class="text-muted mb-0 card-text">Maternity Centre</p>
                                 </div>
                             </div>
                         </div>
@@ -610,10 +660,11 @@
 
             try {
                 const res = await axios.post('https://health-care-facilities-backend.vercel.app/api/get-user-report', { email: userEmail });
-                const facilityCounts = { hospital: 0, emergency: 0, chemists: 0, "medical labs": 0 };
+                const facilityCounts = { hospital: 0, "health centre": 0, chemists: 0, "medical labs": 0 , pharmacy : 0 , "drug store" : 0 , "maternity centre" : 0};
 
                 allData = res.data.data;
                 totalRecords = allData.length;
+                console.log(facilityCounts);
 
 
                 allData.forEach((item) => {
@@ -699,8 +750,11 @@
 
                 document.getElementById('total-chemists').innerText = facilityCounts.chemists;
                 document.getElementById('total-hospital').innerText = facilityCounts.hospital;
-                document.getElementById('total-emergency').innerText = facilityCounts.emergency;
+                document.getElementById('total-emergency').innerText = facilityCounts["health centre"];
                 document.getElementById('total-medical-labs').innerText = facilityCounts["medical labs"];
+                document.getElementById('total-drug-store').innerText = facilityCounts['drug store'];
+                document.getElementById('total-maternity-centre').innerText = facilityCounts['maternity centre'];
+                document.getElementById('total-pharmacy ').innerText = facilityCounts.pharmacy;
 
                 let viewFacilityId;
                 // Initialize view buttons
@@ -907,6 +961,33 @@
 
 
         //  Chemists Filter
+        document.getElementById("maternity-centre-card").addEventListener("click", function () {
+            let query = 'maternity centre';
+            let filteredData = allData.filter(item =>
+                item.facility_type.toLowerCase().includes(query)
+            );
+            renderTable(filteredData);
+        });
+
+        //  Chemists Filter
+        document.getElementById("drug-store-card").addEventListener("click", function () {
+            let query = 'drug store';
+            let filteredData = allData.filter(item =>
+                item.facility_type.toLowerCase().includes(query)
+            );
+            renderTable(filteredData);
+        });
+
+        //  Chemists Filter
+        document.getElementById("pharmacy-card").addEventListener("click", function () {
+            let query = 'pharmacy';
+            let filteredData = allData.filter(item =>
+                item.facility_type.toLowerCase().includes(query)
+            );
+            renderTable(filteredData);
+        });
+
+        //  Chemists Filter
         document.getElementById("medical-card").addEventListener("click", function () {
             let query = 'medical labs';
             let filteredData = allData.filter(item =>
@@ -917,7 +998,7 @@
 
         //  Chemists Filter
         document.getElementById("emergency-card").addEventListener("click", function () {
-            let query = 'emergency';
+            let query = 'health centre';
             let filteredData = allData.filter(item =>
                 item.facility_type.toLowerCase().includes(query)
             );
@@ -1068,7 +1149,11 @@
             sortOldest.addEventListener("click", function () {
                 sortLabel.innerHTML = `Sort by: <span style="font-weight: bold; color:black;">Oldest</span>`;
             });
+
+            sortNewest.click();
         });
+
+
 
 
         function renderPagination(total, pageSize, currentPage) {
