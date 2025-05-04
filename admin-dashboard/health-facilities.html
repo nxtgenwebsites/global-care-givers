@@ -985,9 +985,11 @@
                 `;
                     }
                 }
-
+   
                 if (facilityAE === 'yes') {
                     document.querySelector('.facility-box').innerHTML = `<p class="facility-ae mb-1">A&E Facility</p>`;
+                } else {
+                    document.querySelector('.facility-box').innerHTML = `<p class="facility-ae mb-1">Not Stated</p>`;
                 }
 
                 directionsBtn.addEventListener(('click'), () => {
