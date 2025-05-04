@@ -945,3 +945,7 @@ line-height: normal;
 .total-card {
     cursor: pointer;
 }
+
+#maternity-centre-card p{
+  text-wrap: nowrap !important;
+}
