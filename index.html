@@ -377,7 +377,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button class="btn btn-success mt-3" onclick="submitMapping()">
+                                    <button class="btn btn-success mt-3" id="data-submit-btn" onclick="submitMapping()">
                                         Confirm Mapping
                                     </button>
                                 </div>
@@ -1126,14 +1126,30 @@
 
         // showFieldMapping()
 
-        async function submitMapping() {
-            await axios.post('https://health-care-facilities-backend.vercel.app/api/save-file', data).then((res) => {
-                location.reload();
-            }).catch((err) => {
-                console.log(err);
-            })
-            showThankYouMessage(true); // Pass true for bulk upload
+    async function submitMapping() {
+        console.log(data);
+        const button = document.getElementById('data-submit-btn');
+        button.disabled = true;
+        button.innerHTML = 'Processing...';
+
+        const batchSize = 50; // You can tweak this if needed
+        const totalBatches = Math.ceil(data.length / batchSize);
+
+        try {
+            for (let i = 0; i < totalBatches; i++) {
+                const batch = data.slice(i * batchSize, (i + 1) * batchSize);
+                await axios.post('https://health-care-facilities-backend.vercel.app/api/save-file', batch);
+            }
+            location.reload();
+        } catch (err) {
+            console.error('Error uploading batches:', err);
+        } finally {
+            button.disabled = false;
+            button.innerHTML = 'Confirm Mapping';
+            showThankYouMessage(true);
         }
+    }
+
 
         function submitForm(event) {
             if (event) {

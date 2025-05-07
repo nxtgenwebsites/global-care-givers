@@ -4,84 +4,65 @@ const xBtn = [...document.querySelectorAll('.x-share-btn')];
 const whatsappBtn = [...document.querySelectorAll('.whatsapp-share-btn')];
 const emailBtn = [...document.querySelectorAll('.email-share-btn')];
 
+// ✅ Get orgName and mapsLink from localStorage
+function getShareDetails() {
+    const orgName = localStorage.getItem('orgName') || "";
+    const mapsLink = localStorage.getItem('mapsLink') || "";
+    return { orgName, mapsLink };
+}
 
-console.log(whatsappBtn);
-
-
-linkedinBtn.map((button) => {
-    button.addEventListener(('click'), () => {
+// ✅ LinkedIn Share
+linkedinBtn.forEach((button) => {
+    button.addEventListener('click', () => {
+        const { orgName, mapsLink } = getShareDetails();
         const shareUrl = "https://www.linkedin.com/sharing/share-offsite";
-
-        const params = new URLSearchParams({
-            url: "https://health-monitor-sa.vercel.app/",
-            title: "Health Monitor",
-            summary: "The Health Care Facilities Database allows hospitals, emergency centers, pharmacies, and other medical services to list their information, making it easily searchable by users worldwide to find reliable care nearby.", // Summary text
-            source: "Health Monitor"
-        }).toString();
+        const params = new URLSearchParams({ url: mapsLink }).toString();
 
         window.open(`${shareUrl}?${params}`, "_blank", "width=600,height=400");
-    })
-})
+    });
+});
 
-
-facebookBtn.map((button) => {
-    button.addEventListener(('click'), () => {
+// ✅ Facebook Share
+facebookBtn.forEach((button) => {
+    button.addEventListener('click', () => {
+        const { orgName, mapsLink } = getShareDetails();
         const fbShareUrl = "https://www.facebook.com/sharer/sharer.php";
-        const params = new URLSearchParams({
-            u: "https://health-monitor-sa.vercel.app/", // Your website URL
-            quote: "The Health Care Facilities Database allows hospitals, emergency centers, pharmacies, and other medical services to list their information, making it easily searchable by users worldwide to find reliable care nearby.", // Text to share
-            hashtag: "#healthMonitor", // Optional hashtag
-        }).toString();
+        const params = new URLSearchParams({ u: mapsLink }).toString();
 
-        const shareUrl = `${fbShareUrl}?${params}`;
-        window.open(shareUrl, "_blank", "width=600,height=400");
-    })
-})
+        window.open(`${fbShareUrl}?${params}`, "_blank", "width=600,height=400");
+    });
+});
 
-
-facebookBtn.map((button) => {
-    button.addEventListener(('click'), () => {
-        const fbShareUrl = "https://www.facebook.com/sharer/sharer.php";
-        const params = new URLSearchParams({
-            u: "https://health-monitor-sa.vercel.app/", // Your website URL
-            quote: "The Health Care Facilities Database allows hospitals, emergency centers, pharmacies, and other medical services to list their information, making it easily searchable by users worldwide to find reliable care nearby.", // Text to share
-            hashtag: "#healthMonitor", // Optional hashtag
-        }).toString();
-
-        const shareUrl = `${fbShareUrl}?${params}`;
-        window.open(shareUrl, "_blank", "width=600,height=400");
-    })
-})
-
-xBtn.map((button) => {
-    button.addEventListener(('click'), () => {
-        const tweetText = encodeURIComponent("The Health Care Facilities Database allows hospitals, emergency centers, pharmacies, and other medical services to list their information, making it easily searchable by users worldwide to find reliable care nearby. : https://health-monitor-sa.vercel.app/ #healthMonitor");
+// ✅ X (Twitter) Share
+xBtn.forEach((button) => {
+    button.addEventListener('click', () => {
+        const { orgName, mapsLink } = getShareDetails();
+        const tweetText = encodeURIComponent(`${orgName}\n${mapsLink}`);
         const tweetUrl = `https://twitter.com/intent/tweet?text=${tweetText}`;
+
         window.open(tweetUrl, "_blank", "width=600,height=400");
-    })
-})
+    });
+});
 
-whatsappBtn.map((button) => {
-    button.addEventListener(('click'), () => {
-        const whatsappShareUrl = "https://api.whatsapp.com/send";
-        const params = new URLSearchParams({
-            text: "The Health Care Facilities Database allows hospitals, emergency centers, pharmacies, and other medical services to list their information, making it easily searchable by users worldwide to find reliable care nearby: https://health-monitor-sa.vercel.app/"
-        }).toString();
+// ✅ WhatsApp Share
+whatsappBtn.forEach((button) => {
+    button.addEventListener('click', () => {
+        const { orgName, mapsLink } = getShareDetails();
+        const text = `${orgName}\n${mapsLink}`;
+        const shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
 
-        const shareUrl = `${whatsappShareUrl}?${params}`;
         window.open(shareUrl, "_blank");
-    })
-})
+    });
+});
 
-emailBtn.map((button) => {
-    button.addEventListener(('click'), () => {
-        const emailShareUrl = "mailto:";
-        const params = new URLSearchParams({
-            subject: "Check out Health Monitor!",
-            body: "The Health Care Facilities Database allows hospitals, emergency centers, pharmacies, and other medical services to list their information, making it easily searchable by users worldwide to find reliable care nearby.: https://health-monitor-sa.vercel.app/"
-        }).toString();
+// ✅ Email Share
+emailBtn.forEach((button) => {
+    button.addEventListener('click', () => {
+        const { orgName, mapsLink } = getShareDetails();
+        const subject = orgName;
+        const body = mapsLink;
 
-        const shareUrl = `${emailShareUrl}?${params.replace(/&/g, '%0A')}`; // Replace '&' with newline
-        window.open(shareUrl, "_self")
-    })
-})
+        const mailtoUrl = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.open(mailtoUrl, "_self");
+    });
+});

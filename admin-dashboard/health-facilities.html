@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Global CareGivers Database</title>
-    <link rel="shortcut icon" href="assets/images/logo loading screen.png type=" image/x-icon">
+    <link rel="shortcut icon" href="../assets/images/logo loading screen.png" image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css" />
@@ -932,6 +932,10 @@
 
 
                 function convertDecimalToTime(decimalString) {
+                    if (!decimalString || isNaN(parseFloat(decimalString))) {
+                        return 'Invalid Time';
+                    }
+
                     let decimal = parseFloat(decimalString);
                     let totalMinutes = Math.round(decimal * 24 * 60);
                     let hours = Math.floor(totalMinutes / 60);
@@ -945,23 +949,35 @@
                     return `${hours}:${minutes.toString().padStart(2, "0")} ${ampm}`;
                 }
 
+
                 // Convert `start_time` and `end_time` to time format
                 let openTime = convertDecimalToTime(startTime);
                 let closeTime = convertDecimalToTime(endTime);
 
 
                 if (startTime) {
-                    if (startTime === '-') {
+                    if (startTime === '-' || isNaN(startTime)) {
                         document.querySelector('.timing-box').innerHTML = `<p class="hours-24 mb-1">Open 24 Hours</p>`;
                     } else {
                         document.querySelector('.timing-box').innerHTML = `
-                    <p class="hours-normal mb-1">Opens ${openTime} - Closes ${closeTime}</p>
-                `;
+        <p class="hours-normal mb-1">Opens ${openTime} - Closes ${closeTime}</p>
+    `;
                     }
                 }
 
                 // console.log(time_slots);
-                const facilityAE = res.data.data.facility_a_e;
+                const facilityAE = res.data.data.facility_a_e.toLowerCase();
+                console.log(facilityAE);
+
+                if (facilityAE === 'yes') {
+                    document.querySelector('.facility-box').innerHTML = `<p class="facility-ae mb-1">A&E Facility</p>`;
+                } else {
+                    document.querySelector('.facility-box').innerHTML = `<p class="facility-ae mb-1">Not Stated</p>`;
+                }
+
+                directionsBtn.addEventListener(('click'), () => {
+                    window.open(res.data.data.google_maps_link, "_blank");
+                })
 
                 if (open24Hours === 'yes') {
                     document.querySelector('.timing-box').innerHTML = `<p class="hours-24 mb-1">Open 24 Hours</p>`;
@@ -985,16 +1001,6 @@
                 `;
                     }
                 }
-   
-                if (facilityAE === 'yes') {
-                    document.querySelector('.facility-box').innerHTML = `<p class="facility-ae mb-1">A&E Facility</p>`;
-                } else {
-                    document.querySelector('.facility-box').innerHTML = `<p class="facility-ae mb-1">Not Stated</p>`;
-                }
-
-                directionsBtn.addEventListener(('click'), () => {
-                    window.open(res.data.data.google_maps_link, "_blank");
-                })
 
             }).catch((err) => {
                 console.log(err);
@@ -1229,8 +1235,8 @@
             sortOldest.addEventListener("click", function () {
                 sortLabel.innerHTML = `Sort by: <span style="font-weight: bold; color:black;">Oldest</span>`;
             });
-            
-            
+
+
         });
 
 

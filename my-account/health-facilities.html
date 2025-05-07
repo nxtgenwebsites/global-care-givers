@@ -882,7 +882,7 @@
 
 
                 if (startTime) {
-                    if (startTime === '-') {
+                    if (startTime === '-' || isNaN(startTime)) {
                         document.querySelector('.timing-box').innerHTML = `<p class="hours-24 mb-1">Open 24 Hours</p>`;
                     } else {
                         document.querySelector('.timing-box').innerHTML = `
@@ -891,7 +891,13 @@
                     }
                 }
 
-                const facilityAE = res.data.data.facility_a_e;
+                const facilityAE = res.data.data.facility_a_e.toLowerCase();
+             // FACILITY BOX LOGIC
+                if (facilityAE === 'yes') {
+                    document.querySelector('.facility-box').innerHTML = `<p class="facility-ae mb-1">A&E Facility</p>`;
+                } else {
+                    document.querySelector('.facility-box').innerHTML = `<p class="facility-ae mb-1">Not Stated</p>`;
+                }
 
                 if (open24Hours === 'yes') {
                     document.querySelector('.timing-box').innerHTML = `<p class="hours-24 mb-1">Open 24 Hours</p>`;
@@ -913,13 +919,6 @@
                     <p class="hours-normal mb-1">Opens ${openingTime} - Closes ${closingTime}</p>
                 `;
                     }
-                }
-
-                // FACILITY BOX LOGIC
-                if (facilityAE === 'yes') {
-                    document.querySelector('.facility-box').innerHTML = `<p class="facility-ae mb-1">A&E Facility</p>`;
-                } else {
-                    document.querySelector('.facility-box').innerHTML = `<p class="facility-ae mb-1">Not Stated</p>`;
                 }
 
                 directionsBtn.addEventListener(('click'), () => {
