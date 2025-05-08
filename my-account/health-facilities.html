@@ -653,27 +653,19 @@
         let allData = [];
         let deleteFacilityId;
 
-        async function getData(page) {
+        async function getData(page = 1) {
             const pageSize = document.getElementById("pageSize").value;
             currentPage = page;
             const addedUsers = new Set();
 
             try {
-                const res = await axios.post('https://health-care-facilities-backend.vercel.app/api/get-user-report', { email: userEmail });
-                const facilityCounts = { hospital: 0, "health centre": 0, chemists: 0, "medical labs": 0, pharmacy: 0, "drug store": 0, "maternity centre": 0 };
+                const res = await axios.get(`http://localhost:3001/api/get-reports?page=${page}&limit=${pageSize}`, { email: userEmail });
+                  const facilityCounts = { hospital: res.data.facilityCounts.hospital, "health centre": res.data.facilityCounts['health centre'], chemists: res.data.facilityCounts.chemists, "medical labs": res.data.facilityCounts["medical labs"], pharmacy: res.data.facilityCounts.pharmacy, "drug store": res.data.facilityCounts["drug store"], "maternity centre": res.data.facilityCounts["maternity centre"] };
+
 
                 allData = res.data.data;
-                totalRecords = allData.length;
-                console.log(facilityCounts);
+                  const totalRecords = res.data.totalReports;
 
-
-                allData.forEach((item) => {
-                    const facilityType = item.facility_type.toLowerCase();
-
-                    if (Object.keys(facilityCounts).some(key => key.toLowerCase() === facilityType)) {
-                        facilityCounts[facilityType] = (facilityCounts[facilityType] || 0) + 1;
-                    }
-                });
 
                 renderTable(allData);
 
@@ -687,7 +679,7 @@
 
                 tableBody.innerHTML = "";
 
-                paginatedData.forEach((item) => {
+                allData.forEach((item) => {
                     tableBody.innerHTML += `
                 <tr class="table-row">
                     <td>${item.organisation_name}</td>

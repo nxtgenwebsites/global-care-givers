@@ -703,17 +703,18 @@
         let allData = [];
         let deleteFacilityId;
 
-        async function getData(page) {
+        async function getData(page = 1) {
             const pageSize = document.getElementById("pageSize").value;
             currentPage = page;
             const addedUsers = new Set();
 
             try {
-                const res = await axios.get('https://health-care-facilities-backend.vercel.app/api/get-reports');
-                const facilityCounts = { hospital: 0, "health centre": 0, chemists: 0, "medical labs": 0, pharmacy: 0, "drug store": 0, "maternity centre": 0 };
+                const res = await axios.get(`http://localhost:3001/api/get-reports?page=${page}&limit=${pageSize}`);
+                console.log(res.data.facilityCounts['health centre']);
+                const facilityCounts = { hospital: res.data.facilityCounts.hospital, "health centre": res.data.facilityCounts['health centre'], chemists: res.data.facilityCounts.chemists, "medical labs": res.data.facilityCounts["medical labs"], pharmacy: res.data.facilityCounts.pharmacy, "drug store": res.data.facilityCounts["drug store"], "maternity centre": res.data.facilityCounts["maternity centre"] };
 
                 allData = res.data.data;
-                totalRecords = allData.length;
+                const totalRecords = res.data.totalReports;
 
 
                 allData.forEach(item => {
@@ -735,13 +736,13 @@
 
 
 
-                allData.forEach((item) => {
-                    const facilityType = item.facility_type.toLowerCase();
+                // allData.forEach((item) => {
+                //     const facilityType = item.facility_type.toLowerCase();
 
-                    if (Object.keys(facilityCounts).some(key => key.toLowerCase() === facilityType)) {
-                        facilityCounts[facilityType] = (facilityCounts[facilityType] || 0) + 1;
-                    }
-                });
+                //     if (Object.keys(facilityCounts).some(key => key.toLowerCase() === facilityType)) {
+                //         facilityCounts[facilityType] = (facilityCounts[facilityType] || 0) + 1;
+                //     }
+                // });
 
                 renderTable(allData);
 
@@ -755,7 +756,7 @@
 
                 tableBody.innerHTML = "";
 
-                paginatedData.forEach((item) => {
+                allData.forEach((item) => {
                     tableBody.innerHTML += `
                 <tr class="table-row">
                     <td>${item.organisation_name}</td>
@@ -1249,18 +1250,20 @@
 
             // Previous button
             pagination.innerHTML += `
-        <li class="page-item ${currentPage === 1 ? 'd-none' : ''}">
+        <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
             <a class="page-link" href="#" onclick="getData(${currentPage - 1})">Previous</a>
         </li>
     `;
 
-            // First page
+            // Always show first page
             pagination.innerHTML += createPageItem(1, currentPage);
 
-            if (totalPages > 4 && currentPage > 3) {
+            // Dots before current window
+            if (currentPage > 3) {
                 pagination.innerHTML += `<li class="page-item disabled"><span class="page-link">...</span></li>`;
             }
 
+            // Middle page numbers (before and after current)
             let start = Math.max(2, currentPage - 1);
             let end = Math.min(totalPages - 1, currentPage + 1);
 
@@ -1268,17 +1271,19 @@
                 pagination.innerHTML += createPageItem(i, currentPage);
             }
 
-            if (totalPages > 4 && currentPage < totalPages - 2) {
+            // Dots after current window
+            if (currentPage < totalPages - 2) {
                 pagination.innerHTML += `<li class="page-item disabled"><span class="page-link">...</span></li>`;
             }
 
+            // Last page (if more than 1)
             if (totalPages > 1) {
                 pagination.innerHTML += createPageItem(totalPages, currentPage);
             }
 
             // Next button
             pagination.innerHTML += `
-        <li class="page-item ${currentPage === totalPages ? 'd-none' : ''}">
+        <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
             <a class="page-link" href="#" onclick="getData(${currentPage + 1})">Next</a>
         </li>
     `;

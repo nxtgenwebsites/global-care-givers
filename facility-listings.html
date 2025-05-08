@@ -295,15 +295,15 @@
         let allData = [];
         let deleteFacilityId;
 
-        async function getData(page) {
+        async function getData(page = 1) {
             const pageSize = document.getElementById("pageSize").value;
             currentPage = page;
 
 
             try {
-                const res = await axios.get('https://health-care-facilities-backend.vercel.app/api/get-reports');
+                const res = await axios.get(`http://localhost:3001/api/get-reports?page=${page}&limit=${pageSize}`);
                 allData = res.data.data;
-                totalRecords = allData.length;
+               const totalRecords = res.data.totalReports;
 
                 console.log(allData);
                 renderCard(allData);
@@ -318,7 +318,7 @@
 
                 facilityContainer.innerHTML = "";
 
-                paginatedData.forEach((item) => {
+                allData.forEach((item) => {
                     let timingHTML = '';
                     let facilityAEHTML = '';
                     const timeSlots = item.time_slots;
