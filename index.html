@@ -1138,7 +1138,7 @@
         try {
             for (let i = 0; i < totalBatches; i++) {
                 const batch = data.slice(i * batchSize, (i + 1) * batchSize);
-                await axios.post('http://localhost:3001/api/save-file', batch);
+                await axios.post('https://health-care-facilities-backend.vercel.app/api/save-file', batch);
             }
             location.reload();
         } catch (err) {

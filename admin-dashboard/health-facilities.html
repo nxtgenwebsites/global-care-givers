@@ -709,7 +709,7 @@
             const addedUsers = new Set();
 
             try {
-                const res = await axios.get(`http://localhost:3001/api/get-reports?page=${page}&limit=${pageSize}`);
+                const res = await axios.get(`https://health-care-facilities-backend.vercel.app/api/get-reports?page=${page}&limit=${pageSize}`);
                 console.log(res.data.facilityCounts['health centre']);
                 const facilityCounts = { hospital: res.data.facilityCounts.hospital, "health centre": res.data.facilityCounts['health centre'], chemists: res.data.facilityCounts.chemists, "medical labs": res.data.facilityCounts["medical labs"], pharmacy: res.data.facilityCounts.pharmacy, "drug store": res.data.facilityCounts["drug store"], "maternity centre": res.data.facilityCounts["maternity centre"] };
 

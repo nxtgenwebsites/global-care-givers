@@ -301,7 +301,7 @@
 
 
             try {
-                const res = await axios.get(`http://localhost:3001/api/get-reports?page=${page}&limit=${pageSize}`);
+                const res = await axios.get(`https://health-care-facilities-backend.vercel.app/api/get-reports?page=${page}&limit=${pageSize}`);
                 allData = res.data.data;
                const totalRecords = res.data.totalReports;
 
