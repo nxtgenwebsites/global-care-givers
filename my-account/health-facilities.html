@@ -659,14 +659,10 @@
             const addedUsers = new Set();
 
             try {
-                const res = await axios.get(`https://health-care-facilities-backend.vercel.app/api/get-user-report?page=${page}&limit=${pageSize}`, { email: userEmail });
-                  const facilityCounts = { hospital: res.data.facilityCounts.hospital, "health centre": res.data.facilityCounts['health centre'], chemists: res.data.facilityCounts.chemists, "medical labs": res.data.facilityCounts["medical labs"], pharmacy: res.data.facilityCounts.pharmacy, "drug store": res.data.facilityCounts["drug store"], "maternity centre": res.data.facilityCounts["maternity centre"] };
-
-
+                const res = await axios.post(`http://localhost:3001/api/get-user-report?page=${page}&limit=${pageSize}`, { email: userEmail });
+                const facilityCounts = { hospital: res.data.facilityCounts.hospital, "health centre": res.data.facilityCounts['health centre'], chemists: res.data.facilityCounts.chemists, "medical labs": res.data.facilityCounts["medical labs"], pharmacy: res.data.facilityCounts.pharmacy, "drug store": res.data.facilityCounts["drug store"], "maternity centre": res.data.facilityCounts["maternity centre"] };
                 allData = res.data.data;
-                  const totalRecords = res.data.totalReports;
-                console.log(allData);
-                
+                const totalRecords = res.data.totalReports;
 
                 renderTable(allData);
 
@@ -885,7 +881,7 @@
                 }
 
                 const facilityAE = res.data.data.facility_a_e.toLowerCase();
-             // FACILITY BOX LOGIC
+                // FACILITY BOX LOGIC
                 if (facilityAE === 'yes') {
                     document.querySelector('.facility-box').innerHTML = `<p class="facility-ae mb-1">A&E Facility</p>`;
                 } else {
