@@ -1126,29 +1126,32 @@
 
         // showFieldMapping()
 
-    async function submitMapping() {
-        console.log(data);
-        const button = document.getElementById('data-submit-btn');
-        button.disabled = true;
-        button.innerHTML = 'Processing...';
+            async function submitMapping() {
+                console.log(data);
+                const button = document.getElementById('data-submit-btn');
+                button.disabled = true;
+                button.innerHTML = 'Processing...';
 
-        const batchSize = 50; // You can tweak this if needed
-        const totalBatches = Math.ceil(data.length / batchSize);
+                const batchSize = 50;
+                const totalBatches = Math.ceil(data.length / batchSize);
 
-        try {
-            for (let i = 0; i < totalBatches; i++) {
-                const batch = data.slice(i * batchSize, (i + 1) * batchSize);
-                await axios.post('https://health-care-facilities-backend.vercel.app/api/save-file', batch);
+                try {
+                    for (let i = 0; i < totalBatches; i++) {
+                        const batch = data.slice(i * batchSize, (i + 1) * batchSize);
+
+                        const response = await axios.post('https://health-care-facilities-backend.vercel.app/api/save-file', batch);
+                        console.log(`Batch ${i + 1} Response:`, response.data);  // Log response
+                    }
+
+                    // location.reload();
+                } catch (err) {
+                    console.error('Error uploading batches:', err);
+                } finally {
+                    button.disabled = false;
+                    button.innerHTML = 'Confirm Mapping';
+                    showThankYouMessage(true);
+                }
             }
-            location.reload();
-        } catch (err) {
-            console.error('Error uploading batches:', err);
-        } finally {
-            button.disabled = false;
-            button.innerHTML = 'Confirm Mapping';
-            showThankYouMessage(true);
-        }
-    }
 
 
         function submitForm(event) {
