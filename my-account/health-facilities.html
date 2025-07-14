@@ -661,7 +661,7 @@
             try {
                 const res = await axios.post(`https://health-care-facilities-backend.vercel.app/api/get-user-report?page=${page}&limit=${pageSize}`, { email: userEmail });
                 const facilityCounts = { hospital: res.data.facilityCounts.hospital, "health centre": res.data.facilityCounts['health centre'], chemists: res.data.facilityCounts.chemists, "medical labs": res.data.facilityCounts["medical labs"], pharmacy: res.data.facilityCounts.pharmacy, "drug store": res.data.facilityCounts["drug store"], "maternity centre": res.data.facilityCounts["maternity centre"] };
-                console.log(res.data);
+                
                 allData = res.data.data;
                 const totalRecords = res.data.totalReports;
                     

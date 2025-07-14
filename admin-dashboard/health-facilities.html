@@ -343,6 +343,15 @@
                             <div class="dropdown">
                                 <button class="btn btn-outline-secondary dropdown-toggle" id="sort-filter" type="button"
                                     data-bs-toggle="dropdown">
+                                    Sort by : <span style="font-weight: bold; color:black;">Country</span>
+                                </button>
+                                <ul class="dropdown-menu w-100">
+                                    <div id="countryList"></div>
+                                </ul>
+                            </div>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle" id="sort-filter" type="button"
+                                    data-bs-toggle="dropdown">
                                     Sort by : <span style="font-weight: bold; color:black;">User</span>
                                 </button>
                                 <ul class="dropdown-menu w-100">
@@ -710,31 +719,106 @@
 
             try {
                 const res = await axios.get(`https://health-care-facilities-backend.vercel.app/api/get-reports?page=${page}&limit=${pageSize}`);
-                console.log(res.data.facilityCounts['health centre']);
+            
                 const facilityCounts = { hospital: res.data.facilityCounts.hospital, "health centre": res.data.facilityCounts['health centre'], chemists: res.data.facilityCounts.chemists, "medical labs": res.data.facilityCounts["medical labs"], pharmacy: res.data.facilityCounts.pharmacy, "drug store": res.data.facilityCounts["drug store"], "maternity centre": res.data.facilityCounts["maternity centre"] };
 
                 allData = res.data.data;
                 const totalRecords = res.data.totalReports;
 
 
-                allData.forEach(item => {
-                    if (!addedUsers.has(item.user)) {
-                        addedUsers.add(item.user);
+                // allData.forEach(item => {
+                //     if (!addedUsers.has(item.user)) {
+                //         addedUsers.add(item.user);
 
-                        const li = document.createElement("li");
-                        li.classList.add("dropdown-item");
-                        li.textContent = item.user; // Assuming "user" is the field name
+                //         const li = document.createElement("li");
+                //         li.classList.add("dropdown-item");
+                //         li.textContent = item.user; // Assuming "user" is the field name
 
-                        // Click event to filter by user name
-                        li.addEventListener("click", function () {
-                            filterByUser(item.user);
+                //         // Click event to filter by user name
+                //         li.addEventListener("click", function () {
+                //             filterByUser(item.user);
+                //         });
+
+                //         userList.appendChild(li);
+                //     }
+                // });
+
+                let countries;
+                async function loadSummary() {
+                    try {
+                        const res = await axios.get('https://health-care-facilities-backend.vercel.app/api/filter-data');
+                        authors = res.data.authors || [];
+                        countries = res.data.countries || [];
+                        console.log(countries);
+                        
+                        console.log(res.data);
+                        
+                        populateAuthorsDropdown();
+                        populateCountriesDropdown();
+                    } catch (err) {
+                        console.error('Failed to load summary:', err);
+                    }
+                }
+
+                //  Create dropdown items for each author
+                function populateAuthorsDropdown() {
+                    const userList = document.getElementById('userList');
+                    userList.innerHTML = ''; // Clear any existing list
+
+                    authors.forEach(author => {
+                        const li = document.createElement('li');
+                        li.classList.add('dropdown-item');
+                        li.textContent = author.name;
+
+                        li.addEventListener('click', () => {
+                            filterByEmail(author.email);
                         });
 
                         userList.appendChild(li);
+                    });
+                }
+
+                //  Create dropdown items for each countries
+                function populateCountriesDropdown() {
+                    const countryList = document.getElementById('countryList');
+                    countryList.innerHTML = ''; // Clear any existing list
+
+                    countries.forEach(country => {
+                        const li = document.createElement('li');
+                        li.classList.add('dropdown-item');
+                        li.textContent = country;
+
+                        li.addEventListener('click', () => {
+                            filterByCountry(country);
+                        });
+
+                        countryList.appendChild(li);
+                    });
+                }
+
+                async function filterByCountry(country) {
+                    try {
+                        const res = await axios.post(`https://health-care-facilities-backend.vercel.app/api/filter-by-country?page=${page}&limit=${pageSize}`, { country: country });
+                        console.log(res.data);
+                        renderTable(res.data.reports)
+                        
+                    } catch (err) {
+                        console.error('Failed to fetch by email:', err);
                     }
-                });
+                }
+                
+                async function filterByEmail(email) {
+                    try {
+                        const res = await axios.post(`https://health-care-facilities-backend.vercel.app/api/filter-by-user?page=${page}&limit=${pageSize}`, { inputter: email });
+                        console.log(res.data);
+                        renderTable(res.data.reports)
+                        
+                    } catch (err) {
+                        console.error('Failed to fetch by email:', err);
+                    }
+                }
 
-
+                loadSummary()
 
                 // allData.forEach((item) => {
                 //     const facilityType = item.facility_type.toLowerCase();
