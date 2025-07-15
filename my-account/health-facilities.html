@@ -326,7 +326,10 @@
                 <div class="card-body p-4">
                     <div
                         class="facilities-card d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
-                        <h5 class="card-title mb-0 heading-text">Healthcare Providers</h5>
+                        <div class="search-box px-2 w-100">
+                            <input type="text" id="searchInput" class="form-control"
+                                placeholder="Search">
+                        </div>
                         <div class="d-flex align-items-center seach-filter">
                             <div class="dropdown">
                                 <button class="btn btn-outline-secondary dropdown-toggle" id="sort-filter" type="button"
@@ -335,10 +338,6 @@
                                 </button>
                                 <ul class="dropdown-menu w-100">
                                     <li>
-                                        <div class="search-box px-2 w-100">
-                                            <input type="text" id="searchInput" class="form-control"
-                                                placeholder="Search">
-                                        </div>
                                     </li>
                                     <li class="dropdown-item mt-2" id="sortNewest">Newest</li>
                                     <li class="dropdown-item" id="sortOldest">Oldest</li>
@@ -1040,6 +1039,15 @@
         function renderTable(data) {
             let tableBody = document.getElementById("table-body");
             tableBody.innerHTML = "";
+
+            if (!data.length) {
+                tableBody.innerHTML = `
+        <div id="no-found-entire">
+            No entrie found
+        </div>
+    `;
+                return
+            }
 
             data.forEach(item => {
                 tableBody.innerHTML += `

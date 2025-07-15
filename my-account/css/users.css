@@ -949,3 +949,22 @@ line-height: normal;
 #maternity-centre-card p{
   text-wrap: nowrap !important;
 }
+
+#searchInput{
+    max-width: 250px;
+    background: #f1f1f1;
+    color: rgb(0, 0, 0);
+}
+
+#no-found-entire{
+    background: #ffffff !important;
+    width: 100% !important;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    font-size: 20px !important;
+    white-space: nowrap;
+    color: #555555;
+    border-radius: 8px;
+    text-align: left;
+}
